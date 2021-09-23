@@ -22,9 +22,9 @@ markup:
     tabWidth: 4
 params:
   twitter_url: "https://twitter.com/projectantrea"
-  github_url: "https://github.com/vmware-tanzu/antrea"
+  github_url: "https://github.com/antrea-io/antrea"
   slack_url: "https://kubernetes.slack.com/archives/CR2J23M0X"
-  github_base_url: "https://github.com/vmware-tanzu/antrea/site"
+  github_base_url: "https://github.com/antrea-io/antrea/site"
   rss_url: "/blog/feed.xml"
   use_advanced_docs: true
   docs_right_sidebar: true
