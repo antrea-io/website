@@ -1,0 +1,10 @@
+# Where Hugo generates the webiste
+public/
+
+.DS_Store
+
+# VIM
+.*.swp
+
+# Emacs
+*~
