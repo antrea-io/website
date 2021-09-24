@@ -20,6 +20,9 @@ markup:
     noClasses: true
     style: native
     tabWidth: 4
+  goldmark:
+    renderer:
+      unsafe: true
 params:
   twitter_url: "https://twitter.com/projectantrea"
   github_url: "https://github.com/antrea-io/antrea"
@@ -32,8 +35,9 @@ params:
   docs_search_index_name: index_name
   docs_search_api_key: api_key
   docs_versioning: true
-  docs_latest: v0.11.1
+  docs_latest: main
   docs_versions:
+    - main
     - v0.30.0
     - v0.11.1
 mediaTypes:

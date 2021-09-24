@@ -1,0 +1,16 @@
+<img
+  {{- $relPermalink := .Page.Parent.RelPermalink -}}
+  {{- range $k, $v := .Params -}}
+    {{- if eq $k "src" -}}
+        {{- $link := $v -}}
+        {{- if not (strings.HasPrefix $link "http") -}}
+            {{- if not (fileExists (path.Join $relPermalink $link)) -}}
+                {{- $link = path.Join ".." $link -}}
+            {{- end -}}
+        {{- end -}}
+        {{- (printf " %s=%q" $k $link) | safeHTMLAttr -}}
+    {{- else -}}
+        {{- (printf " %s=%q" $k $v) | safeHTMLAttr -}}
+    {{- end -}}
+  {{- end -}}
+>
