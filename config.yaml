@@ -3,8 +3,8 @@ languageCode: "en-us"
 title: "Antrea"
 theme: "antrea"
 outputs:
-  home: [ "HTML", "REDIRECTS" ]
-  posts: [ "HTML", "RSS" ]
+  home: ["HTML", "REDIRECTS"]
+  posts: ["HTML", "RSS"]
 pygmentsCodefences: true
 pygmentsStyle: "pygments"
 markup:
@@ -38,8 +38,6 @@ params:
   docs_latest: main
   docs_versions:
     - main
-    - v0.30.0
-    - v0.11.1
 mediaTypes:
   "text/netlify":
     delimiter: ""
