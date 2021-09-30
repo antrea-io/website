@@ -40,8 +40,6 @@ should work with Antrea, starting with version 7.4.
 In case a node does not have a supported OVS module installed,
 you can install it following the instructions at:
 [Installing Open vSwitch](https://docs.openvswitch.org/en/latest/intro/install).
-Please be aware that the `vport-stt` module is not in the Linux tree and needs to be
-built from source, please build and load it manually before STT tunneling is enabled.
 
 Some experimental features disabled by default may have additional requirements,
 please refer to the [Feature Gates documentation](feature-gates.md) to determine
@@ -51,24 +49,21 @@ Antrea will work out-of-the-box on most popular Operating Systems. Known issues
 encountered when running Antrea on specific OSes are documented
 [here](os-issues.md).
 
-There are also a few network prerequisites which need to be satisfied, and they depend
-on the tunnel mode you choose, please check [network requirements](./network-requirements.md).
-
 ## Installation
 
 To deploy a released version of Antrea, pick a deployment manifest from the
-[list of releases](https://github.com/antrea-io/antrea/releases). For any
+[list of releases](https://github.com/vmware-tanzu/antrea/releases). For any
 given release `<TAG>` (e.g. `v0.1.0`), you can deploy Antrea as follows:
 
 ```bash
-kubectl apply -f https://github.com/antrea-io/antrea/releases/download/<TAG>/antrea.yml
+kubectl apply -f https://github.com/vmware-tanzu/antrea/releases/download/<TAG>/antrea.yml
 ```
 
 To deploy the latest version of Antrea (built from the main branch), use the
 checked-in [deployment yaml](/build/yamls/antrea.yml):
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/antrea-io/antrea/main/build/yamls/antrea.yml
+kubectl apply -f https://raw.githubusercontent.com/vmware-tanzu/antrea/main/build/yamls/antrea.yml
 ```
 
 Antrea supports some experimental features that can be enabled or disabled,

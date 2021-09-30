@@ -22,6 +22,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -208,6 +209,38 @@ func fixupMarkdown(destDocsPath string) error {
 	return nil
 }
 
+func generateAPIReference(sourceDocsPath string, destDocsPath string) error {
+	log.Printf("Generating API reference file\n")
+	cmd := exec.Command("./generate-api-reference.sh")
+	dir := filepath.Join(sourceDocsPath, "hack", "api-reference")
+	cmd.Dir = dir
+	if err := cmd.Run(); err != nil {
+		return fmt.Errorf("Error when invoking generate-api-reference.sh: %w", err)
+	}
+	source := filepath.Join(dir, "api-reference.html")
+	dest := filepath.Join(destDocsPath, "docs", "api-reference.html")
+	log.Printf("Copying API reference %s -> %s\n", source, dest)
+	if !DryRun {
+		if err := CopyFile(source, dest); err != nil {
+			return err
+		}
+	}
+	md := `
+---
+---
+
+{{% include-html "api-reference.html" %}}
+`
+	log.Printf("Creating api-reference.md\n")
+	mdPath := filepath.Join(destDocsPath, "docs", "api-reference.md")
+	if !DryRun {
+		if err := ioutil.WriteFile(mdPath, []byte(md), 0644); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 func init() {
 	flag.StringVar(&AntreaRepo, "antrea-repo", "", "Path to the Antrea repo")
 	flag.StringVar(&WebsiteRepo, "website-repo", "", "Path to the Antrea website")
@@ -241,6 +274,10 @@ func UpdateDocs(destDocsPath string) error {
 
 	if err := fixupMarkdown(destDocsPath); err != nil {
 		return fmt.Errorf("error when fixing-up markdown files: %w", err)
+	}
+
+	if err := generateAPIReference(sourceDocsPath, destDocsPath); err != nil {
+		return fmt.Errorf("error when generating API reference: %w", err)
 	}
 
 	return nil

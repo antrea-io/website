@@ -222,7 +222,7 @@ f06768ee-17ec-4abb-a971-b3b76abc8cda
         Port antrea-gw0
             Interface antrea-gw0
             type: internal
-    ovs_version: "2.14.2"
+    ovs_version: "2.14.0"
 ```
 
 - `ovs-ofctl show br-int`: show OpenFlow information of the OVS bridge.
@@ -262,6 +262,6 @@ go tool pprof http://127.0.0.1:8001/debug/pprof/profile?seconds=30
 ## Ask your questions to the Antrea community
 
 If you are running into issues when running Antrea and you need help, ask your
-questions on [Github](https://github.com/antrea-io/antrea/issues/new/choose)
+questions on [Github](https://github.com/vmware-tanzu/antrea/issues/new/choose)
 or [reach out to us on Slack or during the Antrea office
 hours](../README.md/#community).
