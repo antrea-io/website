@@ -1,0 +1,54 @@
+name: Update website source
+
+on:
+  workflow_dispatch:
+    inputs:
+      antrea-repository:
+        description: 'The Antrea repository to check-out'
+        required: false
+        default: 'antrea-io/antrea'
+      antrea-ref:
+        description: 'The Git ref to use when checking-out the Antrea repository'
+        required: false
+        default: 'main'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Antrea
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ github.event.inputs.antrea-repository }}
+        ref: ${{ github.event.inputs.antrea-ref }}
+        path: antrea
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        path: website
+        token: ${{ secrets.ANTREA_BOT_PAT }}
+    - name: Install golang
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+    - name: Build tools
+      working-directory: ./website/scripts
+      run: make
+    - name: Update main docs
+      if: ${{ github.event.inputs.antrea-ref == 'main' }}
+      run: |
+        ./website/scripts/bin/update-main-docs -antrea-repo antrea -website-repo website
+    - name: Update release docs
+      if: ${{ github.event.inputs.antrea-ref != 'main' }}
+      env:
+        TAG: ${{ github.event.inputs.antrea-ref }}
+      run: |
+        ./website/scripts/bin/freeze-version-docs -antrea-repo antrea -website-repo website -version $TAG
+    - name: Commit changes as antrea-bot
+      uses: EndBug/add-and-commit@v7
+      with:
+        cwd: ./website
+        author_name: antrea-bot
+        author_email: antreabot@gmail.com
+        message: "Website update for ${{ github.event.inputs.antrea-ref }}"
+        signoff: false
