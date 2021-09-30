@@ -1,6 +1,15 @@
 <p>Packages:</p>
 <ul>
 <li>
+<a href="#controlplane.antrea.io%2fv1beta2">controlplane.antrea.io/v1beta2</a>
+</li>
+<li>
+<a href="#crd.antrea.io%2fv1alpha1">crd.antrea.io/v1alpha1</a>
+</li>
+<li>
+<a href="#crd.antrea.io%2fv1alpha2">crd.antrea.io/v1alpha2</a>
+</li>
+<li>
 <a href="#crd.antrea.io%2fv1alpha3">crd.antrea.io/v1alpha3</a>
 </li>
 <li>
@@ -12,1459 +21,7 @@
 <li>
 <a href="#system.antrea.io%2fv1beta1">system.antrea.io/v1beta1</a>
 </li>
-<li>
-<a href="#controlplane.antrea.io%2fv1beta2">controlplane.antrea.io/v1beta2</a>
-</li>
-<li>
-<a href="#crd.antrea.io%2fv1alpha1">crd.antrea.io/v1alpha1</a>
-</li>
-<li>
-<a href="#crd.antrea.io%2fv1alpha2">crd.antrea.io/v1alpha2</a>
-</li>
 </ul>
-<h2 id="crd.antrea.io/v1alpha3">crd.antrea.io/v1alpha3</h2>
-Resource Types:
-<ul><li>
-<a href="#crd.antrea.io/v1alpha3.ClusterGroup">ClusterGroup</a>
-</li></ul>
-<h3 id="crd.antrea.io/v1alpha3.ClusterGroup">ClusterGroup
-</h3>
-<p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>apiVersion</code></br>
-string</td>
-<td>
-<code>
-crd.antrea.io/v1alpha3
-</code>
-</td>
-</tr>
-<tr>
-<td>
-<code>kind</code></br>
-string
-</td>
-<td><code>ClusterGroup</code></td>
-</tr>
-<tr>
-<td>
-<code>metadata</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
-Kubernetes meta/v1.ObjectMeta
-</a>
-</em>
-</td>
-<td>
-<p>Standard metadata of the object.</p>
-Refer to the Kubernetes API documentation for the fields of the
-<code>metadata</code> field.
-</td>
-</tr>
-<tr>
-<td>
-<code>spec</code></br>
-<em>
-<a href="#crd.antrea.io/v1alpha3.GroupSpec">
-GroupSpec
-</a>
-</em>
-</td>
-<td>
-<p>Desired state of the group.</p>
-<br/>
-<br/>
-<table>
-<tr>
-<td>
-<code>podSelector</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
-Kubernetes meta/v1.LabelSelector
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Select Pods matching the labels set in the PodSelector in
-AppliedTo/To/From fields. If set with NamespaceSelector, Pods are
-matched from Namespaces matched by the NamespaceSelector.
-Cannot be set with any other selector except NamespaceSelector.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>namespaceSelector</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
-Kubernetes meta/v1.LabelSelector
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Select all Pods from Namespaces matched by this selector, as
-workloads in AppliedTo/To/From fields. If set with PodSelector,
-Pods are matched from Namespaces matched by the NamespaceSelector.
-Cannot be set with any other selector except PodSelector.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>ipBlocks</code></br>
-<em>
-<a href="#crd.antrea.io/v1alpha1.IPBlock">
-[]IPBlock
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>IPBlocks describe the IPAddresses/IPBlocks that are matched in to/from.
-IPBlocks cannot be set as part of the AppliedTo field.
-Cannot be set with any other selector or ServiceReference.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>serviceReference</code></br>
-<em>
-<a href="#crd.antrea.io/v1alpha3.ServiceReference">
-ServiceReference
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Select backend Pods of the referred Service.
-Cannot be set with any other selector or ipBlock.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>externalEntitySelector</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
-Kubernetes meta/v1.LabelSelector
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Select ExternalEntities from all Namespaces as workloads
-in AppliedTo/To/From fields. If set with NamespaceSelector,
-ExternalEntities are matched from Namespaces matched by the
-NamespaceSelector.
-Cannot be set with any other selector except NamespaceSelector.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>childGroups</code></br>
-<em>
-<a href="#crd.antrea.io/v1alpha3.ClusterGroupReference">
-[]ClusterGroupReference
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Select other ClusterGroups by name. The ClusterGroups must already
-exist and must not contain ChildGroups themselves.
-Cannot be set with any selector/IPBlock/ServiceReference.</p>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-<tr>
-<td>
-<code>status</code></br>
-<em>
-<a href="#crd.antrea.io/v1alpha3.GroupStatus">
-GroupStatus
-</a>
-</em>
-</td>
-<td>
-<p>Most recently observed status of the group.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="crd.antrea.io/v1alpha3.ClusterGroupReference">ClusterGroupReference
-(<code>string</code> alias)</p></h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha3.GroupSpec">GroupSpec</a>)
-</p>
-<p>
-<p>ClusterGroupReference represent reference to a ClusterGroup.</p>
-</p>
-<h3 id="crd.antrea.io/v1alpha3.GroupCondition">GroupCondition
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha3.GroupStatus">GroupStatus</a>)
-</p>
-<p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>type</code></br>
-<em>
-<a href="#crd.antrea.io/v1alpha3.GroupConditionType">
-GroupConditionType
-</a>
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>status</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#conditionstatus-v1-core">
-Kubernetes core/v1.ConditionStatus
-</a>
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>lastTransitionTime</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
-Kubernetes meta/v1.Time
-</a>
-</em>
-</td>
-<td>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="crd.antrea.io/v1alpha3.GroupConditionType">GroupConditionType
-(<code>string</code> alias)</p></h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha3.GroupCondition">GroupCondition</a>)
-</p>
-<p>
-</p>
-<h3 id="crd.antrea.io/v1alpha3.GroupSpec">GroupSpec
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha3.ClusterGroup">ClusterGroup</a>)
-</p>
-<p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>podSelector</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
-Kubernetes meta/v1.LabelSelector
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Select Pods matching the labels set in the PodSelector in
-AppliedTo/To/From fields. If set with NamespaceSelector, Pods are
-matched from Namespaces matched by the NamespaceSelector.
-Cannot be set with any other selector except NamespaceSelector.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>namespaceSelector</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
-Kubernetes meta/v1.LabelSelector
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Select all Pods from Namespaces matched by this selector, as
-workloads in AppliedTo/To/From fields. If set with PodSelector,
-Pods are matched from Namespaces matched by the NamespaceSelector.
-Cannot be set with any other selector except PodSelector.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>ipBlocks</code></br>
-<em>
-<a href="#crd.antrea.io/v1alpha1.IPBlock">
-[]IPBlock
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>IPBlocks describe the IPAddresses/IPBlocks that are matched in to/from.
-IPBlocks cannot be set as part of the AppliedTo field.
-Cannot be set with any other selector or ServiceReference.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>serviceReference</code></br>
-<em>
-<a href="#crd.antrea.io/v1alpha3.ServiceReference">
-ServiceReference
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Select backend Pods of the referred Service.
-Cannot be set with any other selector or ipBlock.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>externalEntitySelector</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
-Kubernetes meta/v1.LabelSelector
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Select ExternalEntities from all Namespaces as workloads
-in AppliedTo/To/From fields. If set with NamespaceSelector,
-ExternalEntities are matched from Namespaces matched by the
-NamespaceSelector.
-Cannot be set with any other selector except NamespaceSelector.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>childGroups</code></br>
-<em>
-<a href="#crd.antrea.io/v1alpha3.ClusterGroupReference">
-[]ClusterGroupReference
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Select other ClusterGroups by name. The ClusterGroups must already
-exist and must not contain ChildGroups themselves.
-Cannot be set with any selector/IPBlock/ServiceReference.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="crd.antrea.io/v1alpha3.GroupStatus">GroupStatus
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha3.ClusterGroup">ClusterGroup</a>)
-</p>
-<p>
-<p>GroupStatus represents information about the status of a Group.</p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>conditions</code></br>
-<em>
-<a href="#crd.antrea.io/v1alpha3.GroupCondition">
-[]GroupCondition
-</a>
-</em>
-</td>
-<td>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="crd.antrea.io/v1alpha3.ServiceReference">ServiceReference
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha3.GroupSpec">GroupSpec</a>)
-</p>
-<p>
-<p>ServiceReference represent reference to a v1.Service.</p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>name</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Name of the Service</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>namespace</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Namespace of the Service</p>
-</td>
-</tr>
-</tbody>
-</table>
-<hr/>
-<h2 id="crd.antrea.io/v1beta1">crd.antrea.io/v1beta1</h2>
-Resource Types:
-<ul><li>
-<a href="#crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo</a>
-</li><li>
-<a href="#crd.antrea.io/v1beta1.AntreaControllerInfo">AntreaControllerInfo</a>
-</li></ul>
-<h3 id="crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo
-</h3>
-<p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>apiVersion</code></br>
-string</td>
-<td>
-<code>
-crd.antrea.io/v1beta1
-</code>
-</td>
-</tr>
-<tr>
-<td>
-<code>kind</code></br>
-string
-</td>
-<td><code>AntreaAgentInfo</code></td>
-</tr>
-<tr>
-<td>
-<code>metadata</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
-Kubernetes meta/v1.ObjectMeta
-</a>
-</em>
-</td>
-<td>
-Refer to the Kubernetes API documentation for the fields of the
-<code>metadata</code> field.
-</td>
-</tr>
-<tr>
-<td>
-<code>version</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>podRef</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectreference-v1-core">
-Kubernetes core/v1.ObjectReference
-</a>
-</em>
-</td>
-<td>
-<p>Antrea binary version</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>nodeRef</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectreference-v1-core">
-Kubernetes core/v1.ObjectReference
-</a>
-</em>
-</td>
-<td>
-<p>The Pod that Antrea Agent is running in</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>nodeSubnets</code></br>
-<em>
-[]string
-</em>
-</td>
-<td>
-<p>The Node that Antrea Agent is running in</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>ovsInfo</code></br>
-<em>
-<a href="#crd.antrea.io/v1beta1.OVSInfo">
-OVSInfo
-</a>
-</em>
-</td>
-<td>
-<p>Node subnets</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>networkPolicyControllerInfo</code></br>
-<em>
-<a href="#crd.antrea.io/v1beta1.NetworkPolicyControllerInfo">
-NetworkPolicyControllerInfo
-</a>
-</em>
-</td>
-<td>
-<p>OVS Information</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>localPodNum</code></br>
-<em>
-int32
-</em>
-</td>
-<td>
-<p>Antrea Agent NetworkPolicy information</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>agentConditions</code></br>
-<em>
-<a href="#crd.antrea.io/v1beta1.AgentCondition">
-[]AgentCondition
-</a>
-</em>
-</td>
-<td>
-<p>The number of Pods which the agent is in charge of</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>apiPort</code></br>
-<em>
-int
-</em>
-</td>
-<td>
-<p>Agent condition contains types like AgentHealthy</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="crd.antrea.io/v1beta1.AntreaControllerInfo">AntreaControllerInfo
-</h3>
-<p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>apiVersion</code></br>
-string</td>
-<td>
-<code>
-crd.antrea.io/v1beta1
-</code>
-</td>
-</tr>
-<tr>
-<td>
-<code>kind</code></br>
-string
-</td>
-<td><code>AntreaControllerInfo</code></td>
-</tr>
-<tr>
-<td>
-<code>metadata</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
-Kubernetes meta/v1.ObjectMeta
-</a>
-</em>
-</td>
-<td>
-Refer to the Kubernetes API documentation for the fields of the
-<code>metadata</code> field.
-</td>
-</tr>
-<tr>
-<td>
-<code>version</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>podRef</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectreference-v1-core">
-Kubernetes core/v1.ObjectReference
-</a>
-</em>
-</td>
-<td>
-<p>Antrea binary version</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>nodeRef</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectreference-v1-core">
-Kubernetes core/v1.ObjectReference
-</a>
-</em>
-</td>
-<td>
-<p>The Pod that Antrea Controller is running in</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>serviceRef</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectreference-v1-core">
-Kubernetes core/v1.ObjectReference
-</a>
-</em>
-</td>
-<td>
-<p>The Node that Antrea Controller is running in</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>networkPolicyControllerInfo</code></br>
-<em>
-<a href="#crd.antrea.io/v1beta1.NetworkPolicyControllerInfo">
-NetworkPolicyControllerInfo
-</a>
-</em>
-</td>
-<td>
-<p>Antrea Controller Service</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>connectedAgentNum</code></br>
-<em>
-int32
-</em>
-</td>
-<td>
-<p>Antrea Controller NetworkPolicy information</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>controllerConditions</code></br>
-<em>
-<a href="#crd.antrea.io/v1beta1.ControllerCondition">
-[]ControllerCondition
-</a>
-</em>
-</td>
-<td>
-<p>Number of agents which are connected to this controller</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>apiPort</code></br>
-<em>
-int
-</em>
-</td>
-<td>
-<p>Controller condition contains types like ControllerHealthy</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="crd.antrea.io/v1beta1.AgentCondition">AgentCondition
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo</a>)
-</p>
-<p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>type</code></br>
-<em>
-<a href="#crd.antrea.io/v1beta1.AgentConditionType">
-AgentConditionType
-</a>
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>status</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#conditionstatus-v1-core">
-Kubernetes core/v1.ConditionStatus
-</a>
-</em>
-</td>
-<td>
-<p>One of the AgentConditionType listed above</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>lastHeartbeatTime</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
-Kubernetes meta/v1.Time
-</a>
-</em>
-</td>
-<td>
-<p>Mark certain type status, one of True, False, Unknown</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>reason</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>The timestamp when AntreaAgentInfo is created/updated, ideally heartbeat interval is 60s</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>message</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Brief reason</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="crd.antrea.io/v1beta1.AgentConditionType">AgentConditionType
-(<code>string</code> alias)</p></h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1beta1.AgentCondition">AgentCondition</a>)
-</p>
-<p>
-</p>
-<h3 id="crd.antrea.io/v1beta1.ControllerCondition">ControllerCondition
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1beta1.AntreaControllerInfo">AntreaControllerInfo</a>)
-</p>
-<p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>type</code></br>
-<em>
-<a href="#crd.antrea.io/v1beta1.ControllerConditionType">
-ControllerConditionType
-</a>
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>status</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#conditionstatus-v1-core">
-Kubernetes core/v1.ConditionStatus
-</a>
-</em>
-</td>
-<td>
-<p>One of the ControllerConditionType listed above, controllerHealthy</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>lastHeartbeatTime</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
-Kubernetes meta/v1.Time
-</a>
-</em>
-</td>
-<td>
-<p>Mark certain type status, one of True, False, Unknown</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>reason</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>The timestamp when AntreaControllerInfo is created/updated, ideally heartbeat interval is 60s</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>message</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Brief reason</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="crd.antrea.io/v1beta1.ControllerConditionType">ControllerConditionType
-(<code>string</code> alias)</p></h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1beta1.ControllerCondition">ControllerCondition</a>)
-</p>
-<p>
-</p>
-<h3 id="crd.antrea.io/v1beta1.NetworkPolicyControllerInfo">NetworkPolicyControllerInfo
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo</a>, 
-<a href="#crd.antrea.io/v1beta1.AntreaControllerInfo">AntreaControllerInfo</a>)
-</p>
-<p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>networkPolicyNum</code></br>
-<em>
-int32
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>addressGroupNum</code></br>
-<em>
-int32
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>appliedToGroupNum</code></br>
-<em>
-int32
-</em>
-</td>
-<td>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="crd.antrea.io/v1beta1.OVSInfo">OVSInfo
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo</a>)
-</p>
-<p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>version</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>bridgeName</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>flowTable</code></br>
-<em>
-map[string]int32
-</em>
-</td>
-<td>
-</td>
-</tr>
-</tbody>
-</table>
-<hr/>
-<h2 id="stats.antrea.io/v1alpha1">stats.antrea.io/v1alpha1</h2>
-<p>
-<p>Package v1alpha1 is the v1alpha1 version of the Antrea Stats API.</p>
-</p>
-Resource Types:
-<ul><li>
-<a href="#stats.antrea.io/v1alpha1.AntreaClusterNetworkPolicyStats">AntreaClusterNetworkPolicyStats</a>
-</li><li>
-<a href="#stats.antrea.io/v1alpha1.AntreaNetworkPolicyStats">AntreaNetworkPolicyStats</a>
-</li><li>
-<a href="#stats.antrea.io/v1alpha1.NetworkPolicyStats">NetworkPolicyStats</a>
-</li></ul>
-<h3 id="stats.antrea.io/v1alpha1.AntreaClusterNetworkPolicyStats">AntreaClusterNetworkPolicyStats
-</h3>
-<p>
-<p>AntreaClusterNetworkPolicyStats is the statistics of a Antrea ClusterNetworkPolicy.</p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>apiVersion</code></br>
-string</td>
-<td>
-<code>
-stats.antrea.io/v1alpha1
-</code>
-</td>
-</tr>
-<tr>
-<td>
-<code>kind</code></br>
-string
-</td>
-<td><code>AntreaClusterNetworkPolicyStats</code></td>
-</tr>
-<tr>
-<td>
-<code>metadata</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
-Kubernetes meta/v1.ObjectMeta
-</a>
-</em>
-</td>
-<td>
-Refer to the Kubernetes API documentation for the fields of the
-<code>metadata</code> field.
-</td>
-</tr>
-<tr>
-<td>
-<code>trafficStats</code></br>
-<em>
-<a href="#stats.antrea.io/v1alpha1.TrafficStats">
-TrafficStats
-</a>
-</em>
-</td>
-<td>
-<p>The traffic stats of the Antrea ClusterNetworkPolicy.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>ruleTrafficStats</code></br>
-<em>
-<a href="#stats.antrea.io/v1alpha1.RuleTrafficStats">
-[]RuleTrafficStats
-</a>
-</em>
-</td>
-<td>
-<p>The traffic stats of the Antrea ClusterNetworkPolicy, from rule perspective.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="stats.antrea.io/v1alpha1.AntreaNetworkPolicyStats">AntreaNetworkPolicyStats
-</h3>
-<p>
-<p>AntreaNetworkPolicyStats is the statistics of a Antrea NetworkPolicy.</p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>apiVersion</code></br>
-string</td>
-<td>
-<code>
-stats.antrea.io/v1alpha1
-</code>
-</td>
-</tr>
-<tr>
-<td>
-<code>kind</code></br>
-string
-</td>
-<td><code>AntreaNetworkPolicyStats</code></td>
-</tr>
-<tr>
-<td>
-<code>metadata</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
-Kubernetes meta/v1.ObjectMeta
-</a>
-</em>
-</td>
-<td>
-Refer to the Kubernetes API documentation for the fields of the
-<code>metadata</code> field.
-</td>
-</tr>
-<tr>
-<td>
-<code>trafficStats</code></br>
-<em>
-<a href="#stats.antrea.io/v1alpha1.TrafficStats">
-TrafficStats
-</a>
-</em>
-</td>
-<td>
-<p>The traffic stats of the Antrea NetworkPolicy.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>ruleTrafficStats</code></br>
-<em>
-<a href="#stats.antrea.io/v1alpha1.RuleTrafficStats">
-[]RuleTrafficStats
-</a>
-</em>
-</td>
-<td>
-<p>The traffic stats of the Antrea NetworkPolicy, from rule perspective.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="stats.antrea.io/v1alpha1.NetworkPolicyStats">NetworkPolicyStats
-</h3>
-<p>
-<p>NetworkPolicyStats is the statistics of a K8s NetworkPolicy.</p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>apiVersion</code></br>
-string</td>
-<td>
-<code>
-stats.antrea.io/v1alpha1
-</code>
-</td>
-</tr>
-<tr>
-<td>
-<code>kind</code></br>
-string
-</td>
-<td><code>NetworkPolicyStats</code></td>
-</tr>
-<tr>
-<td>
-<code>metadata</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
-Kubernetes meta/v1.ObjectMeta
-</a>
-</em>
-</td>
-<td>
-Refer to the Kubernetes API documentation for the fields of the
-<code>metadata</code> field.
-</td>
-</tr>
-<tr>
-<td>
-<code>trafficStats</code></br>
-<em>
-<a href="#stats.antrea.io/v1alpha1.TrafficStats">
-TrafficStats
-</a>
-</em>
-</td>
-<td>
-<p>The traffic stats of the K8s NetworkPolicy.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="stats.antrea.io/v1alpha1.RuleTrafficStats">RuleTrafficStats
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#stats.antrea.io/v1alpha1.AntreaClusterNetworkPolicyStats">AntreaClusterNetworkPolicyStats</a>, 
-<a href="#stats.antrea.io/v1alpha1.AntreaNetworkPolicyStats">AntreaNetworkPolicyStats</a>, 
-<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyStats">NetworkPolicyStats</a>)
-</p>
-<p>
-<p>RuleTrafficStats contains TrafficStats of single rule inside a NetworkPolicy.</p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>name</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>trafficStats</code></br>
-<em>
-<a href="#stats.antrea.io/v1alpha1.TrafficStats">
-TrafficStats
-</a>
-</em>
-</td>
-<td>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="stats.antrea.io/v1alpha1.TrafficStats">TrafficStats
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#stats.antrea.io/v1alpha1.AntreaClusterNetworkPolicyStats">AntreaClusterNetworkPolicyStats</a>, 
-<a href="#stats.antrea.io/v1alpha1.AntreaNetworkPolicyStats">AntreaNetworkPolicyStats</a>, 
-<a href="#stats.antrea.io/v1alpha1.NetworkPolicyStats">NetworkPolicyStats</a>, 
-<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyStats">NetworkPolicyStats</a>, 
-<a href="#stats.antrea.io/v1alpha1.RuleTrafficStats">RuleTrafficStats</a>)
-</p>
-<p>
-<p>TrafficStats contains the traffic stats of a NetworkPolicy.</p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>packets</code></br>
-<em>
-int64
-</em>
-</td>
-<td>
-<p>Packets is the packets count hit by the NetworkPolicy.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>bytes</code></br>
-<em>
-int64
-</em>
-</td>
-<td>
-<p>Bytes is the bytes count hit by the NetworkPolicy.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>sessions</code></br>
-<em>
-int64
-</em>
-</td>
-<td>
-<p>Sessions is the sessions count hit by the NetworkPolicy.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<hr/>
-<h2 id="system.antrea.io/v1beta1">system.antrea.io/v1beta1</h2>
-<p>
-<p>Package v1beta1 contains the v1beta1 version of the Antrea &ldquo;system&rdquo; API
-group definitions.</p>
-</p>
-Resource Types:
-<ul><li>
-<a href="#system.antrea.io/v1beta1.SupportBundle">SupportBundle</a>
-</li></ul>
-<h3 id="system.antrea.io/v1beta1.SupportBundle">SupportBundle
-</h3>
-<p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>apiVersion</code></br>
-string</td>
-<td>
-<code>
-system.antrea.io/v1beta1
-</code>
-</td>
-</tr>
-<tr>
-<td>
-<code>kind</code></br>
-string
-</td>
-<td><code>SupportBundle</code></td>
-</tr>
-<tr>
-<td>
-<code>metadata</code></br>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
-Kubernetes meta/v1.ObjectMeta
-</a>
-</em>
-</td>
-<td>
-Refer to the Kubernetes API documentation for the fields of the
-<code>metadata</code> field.
-</td>
-</tr>
-<tr>
-<td>
-<code>status</code></br>
-<em>
-<a href="#system.antrea.io/v1beta1.BundleStatus">
-BundleStatus
-</a>
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>sum</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>since</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>size</code></br>
-<em>
-uint32
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>-</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="system.antrea.io/v1beta1.BundleStatus">BundleStatus
-(<code>string</code> alias)</p></h3>
-<p>
-(<em>Appears on:</em>
-<a href="#system.antrea.io/v1beta1.SupportBundle">SupportBundle</a>)
-</p>
-<p>
-</p>
-<hr/>
 <h2 id="controlplane.antrea.io/v1beta2">controlplane.antrea.io/v1beta2</h2>
 <p>
 <p>Package v1beta2 is the v1beta2 version of the Antrea NetworkPolicy API messages.</p>
@@ -3783,9 +2340,9 @@ int32
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha3.GroupSpec">GroupSpec</a>, 
+<a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">NetworkPolicyPeer</a>, 
 <a href="#crd.antrea.io/v1alpha2.GroupSpec">GroupSpec</a>, 
-<a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">NetworkPolicyPeer</a>)
+<a href="#crd.antrea.io/v1alpha3.GroupSpec">GroupSpec</a>)
 </p>
 <p>
 <p>IPBlock describes a particular CIDR (Ex. &ldquo;192.168.1.<sup>1</sup>&frasl;<sub>24</sub>&rdquo;) that is allowed
@@ -6480,6 +5037,1449 @@ string
 </h3>
 <p>
 <p>WebhookImpl implements webhook validator of a resource.</p>
+</p>
+<hr/>
+<h2 id="crd.antrea.io/v1alpha3">crd.antrea.io/v1alpha3</h2>
+Resource Types:
+<ul><li>
+<a href="#crd.antrea.io/v1alpha3.ClusterGroup">ClusterGroup</a>
+</li></ul>
+<h3 id="crd.antrea.io/v1alpha3.ClusterGroup">ClusterGroup
+</h3>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1alpha3
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>ClusterGroup</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+<p>Standard metadata of the object.</p>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha3.GroupSpec">
+GroupSpec
+</a>
+</em>
+</td>
+<td>
+<p>Desired state of the group.</p>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>podSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select Pods matching the labels set in the PodSelector in
+AppliedTo/To/From fields. If set with NamespaceSelector, Pods are
+matched from Namespaces matched by the NamespaceSelector.
+Cannot be set with any other selector except NamespaceSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespaceSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select all Pods from Namespaces matched by this selector, as
+workloads in AppliedTo/To/From fields. If set with PodSelector,
+Pods are matched from Namespaces matched by the NamespaceSelector.
+Cannot be set with any other selector except PodSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ipBlocks</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.IPBlock">
+[]IPBlock
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>IPBlocks describe the IPAddresses/IPBlocks that are matched in to/from.
+IPBlocks cannot be set as part of the AppliedTo field.
+Cannot be set with any other selector or ServiceReference.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>serviceReference</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha3.ServiceReference">
+ServiceReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select backend Pods of the referred Service.
+Cannot be set with any other selector or ipBlock.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>externalEntitySelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select ExternalEntities from all Namespaces as workloads
+in AppliedTo/To/From fields. If set with NamespaceSelector,
+ExternalEntities are matched from Namespaces matched by the
+NamespaceSelector.
+Cannot be set with any other selector except NamespaceSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>childGroups</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha3.ClusterGroupReference">
+[]ClusterGroupReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select other ClusterGroups by name. The ClusterGroups must already
+exist and must not contain ChildGroups themselves.
+Cannot be set with any selector/IPBlock/ServiceReference.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha3.GroupStatus">
+GroupStatus
+</a>
+</em>
+</td>
+<td>
+<p>Most recently observed status of the group.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha3.ClusterGroupReference">ClusterGroupReference
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha3.GroupSpec">GroupSpec</a>)
+</p>
+<p>
+<p>ClusterGroupReference represent reference to a ClusterGroup.</p>
+</p>
+<h3 id="crd.antrea.io/v1alpha3.GroupCondition">GroupCondition
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha3.GroupStatus">GroupStatus</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha3.GroupConditionType">
+GroupConditionType
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#conditionstatus-v1-core">
+Kubernetes core/v1.ConditionStatus
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>lastTransitionTime</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
+Kubernetes meta/v1.Time
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha3.GroupConditionType">GroupConditionType
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha3.GroupCondition">GroupCondition</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1alpha3.GroupSpec">GroupSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha3.ClusterGroup">ClusterGroup</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>podSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select Pods matching the labels set in the PodSelector in
+AppliedTo/To/From fields. If set with NamespaceSelector, Pods are
+matched from Namespaces matched by the NamespaceSelector.
+Cannot be set with any other selector except NamespaceSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespaceSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select all Pods from Namespaces matched by this selector, as
+workloads in AppliedTo/To/From fields. If set with PodSelector,
+Pods are matched from Namespaces matched by the NamespaceSelector.
+Cannot be set with any other selector except PodSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ipBlocks</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.IPBlock">
+[]IPBlock
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>IPBlocks describe the IPAddresses/IPBlocks that are matched in to/from.
+IPBlocks cannot be set as part of the AppliedTo field.
+Cannot be set with any other selector or ServiceReference.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>serviceReference</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha3.ServiceReference">
+ServiceReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select backend Pods of the referred Service.
+Cannot be set with any other selector or ipBlock.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>externalEntitySelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select ExternalEntities from all Namespaces as workloads
+in AppliedTo/To/From fields. If set with NamespaceSelector,
+ExternalEntities are matched from Namespaces matched by the
+NamespaceSelector.
+Cannot be set with any other selector except NamespaceSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>childGroups</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha3.ClusterGroupReference">
+[]ClusterGroupReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select other ClusterGroups by name. The ClusterGroups must already
+exist and must not contain ChildGroups themselves.
+Cannot be set with any selector/IPBlock/ServiceReference.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha3.GroupStatus">GroupStatus
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha3.ClusterGroup">ClusterGroup</a>)
+</p>
+<p>
+<p>GroupStatus represents information about the status of a Group.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>conditions</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha3.GroupCondition">
+[]GroupCondition
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha3.ServiceReference">ServiceReference
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha3.GroupSpec">GroupSpec</a>)
+</p>
+<p>
+<p>ServiceReference represent reference to a v1.Service.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Name of the Service</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Namespace of the Service</p>
+</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="crd.antrea.io/v1beta1">crd.antrea.io/v1beta1</h2>
+Resource Types:
+<ul><li>
+<a href="#crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo</a>
+</li><li>
+<a href="#crd.antrea.io/v1beta1.AntreaControllerInfo">AntreaControllerInfo</a>
+</li></ul>
+<h3 id="crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo
+</h3>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1beta1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>AntreaAgentInfo</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>version</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>podRef</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectreference-v1-core">
+Kubernetes core/v1.ObjectReference
+</a>
+</em>
+</td>
+<td>
+<p>Antrea binary version</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeRef</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectreference-v1-core">
+Kubernetes core/v1.ObjectReference
+</a>
+</em>
+</td>
+<td>
+<p>The Pod that Antrea Agent is running in</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeSubnets</code></br>
+<em>
+[]string
+</em>
+</td>
+<td>
+<p>The Node that Antrea Agent is running in</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ovsInfo</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.OVSInfo">
+OVSInfo
+</a>
+</em>
+</td>
+<td>
+<p>Node subnets</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>networkPolicyControllerInfo</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.NetworkPolicyControllerInfo">
+NetworkPolicyControllerInfo
+</a>
+</em>
+</td>
+<td>
+<p>OVS Information</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>localPodNum</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Antrea Agent NetworkPolicy information</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>agentConditions</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.AgentCondition">
+[]AgentCondition
+</a>
+</em>
+</td>
+<td>
+<p>The number of Pods which the agent is in charge of</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>apiPort</code></br>
+<em>
+int
+</em>
+</td>
+<td>
+<p>Agent condition contains types like AgentHealthy</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.AntreaControllerInfo">AntreaControllerInfo
+</h3>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1beta1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>AntreaControllerInfo</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>version</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>podRef</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectreference-v1-core">
+Kubernetes core/v1.ObjectReference
+</a>
+</em>
+</td>
+<td>
+<p>Antrea binary version</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeRef</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectreference-v1-core">
+Kubernetes core/v1.ObjectReference
+</a>
+</em>
+</td>
+<td>
+<p>The Pod that Antrea Controller is running in</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>serviceRef</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectreference-v1-core">
+Kubernetes core/v1.ObjectReference
+</a>
+</em>
+</td>
+<td>
+<p>The Node that Antrea Controller is running in</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>networkPolicyControllerInfo</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.NetworkPolicyControllerInfo">
+NetworkPolicyControllerInfo
+</a>
+</em>
+</td>
+<td>
+<p>Antrea Controller Service</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>connectedAgentNum</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Antrea Controller NetworkPolicy information</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>controllerConditions</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.ControllerCondition">
+[]ControllerCondition
+</a>
+</em>
+</td>
+<td>
+<p>Number of agents which are connected to this controller</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>apiPort</code></br>
+<em>
+int
+</em>
+</td>
+<td>
+<p>Controller condition contains types like ControllerHealthy</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.AgentCondition">AgentCondition
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.AgentConditionType">
+AgentConditionType
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#conditionstatus-v1-core">
+Kubernetes core/v1.ConditionStatus
+</a>
+</em>
+</td>
+<td>
+<p>One of the AgentConditionType listed above</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>lastHeartbeatTime</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
+Kubernetes meta/v1.Time
+</a>
+</em>
+</td>
+<td>
+<p>Mark certain type status, one of True, False, Unknown</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>reason</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The timestamp when AntreaAgentInfo is created/updated, ideally heartbeat interval is 60s</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>message</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Brief reason</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.AgentConditionType">AgentConditionType
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.AgentCondition">AgentCondition</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1beta1.ControllerCondition">ControllerCondition
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.AntreaControllerInfo">AntreaControllerInfo</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.ControllerConditionType">
+ControllerConditionType
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#conditionstatus-v1-core">
+Kubernetes core/v1.ConditionStatus
+</a>
+</em>
+</td>
+<td>
+<p>One of the ControllerConditionType listed above, controllerHealthy</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>lastHeartbeatTime</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
+Kubernetes meta/v1.Time
+</a>
+</em>
+</td>
+<td>
+<p>Mark certain type status, one of True, False, Unknown</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>reason</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The timestamp when AntreaControllerInfo is created/updated, ideally heartbeat interval is 60s</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>message</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Brief reason</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.ControllerConditionType">ControllerConditionType
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.ControllerCondition">ControllerCondition</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1beta1.NetworkPolicyControllerInfo">NetworkPolicyControllerInfo
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo</a>, 
+<a href="#crd.antrea.io/v1beta1.AntreaControllerInfo">AntreaControllerInfo</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>networkPolicyNum</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>addressGroupNum</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>appliedToGroupNum</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.OVSInfo">OVSInfo
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>version</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>bridgeName</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>flowTable</code></br>
+<em>
+map[string]int32
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="stats.antrea.io/v1alpha1">stats.antrea.io/v1alpha1</h2>
+<p>
+<p>Package v1alpha1 is the v1alpha1 version of the Antrea Stats API.</p>
+</p>
+Resource Types:
+<ul><li>
+<a href="#stats.antrea.io/v1alpha1.AntreaClusterNetworkPolicyStats">AntreaClusterNetworkPolicyStats</a>
+</li><li>
+<a href="#stats.antrea.io/v1alpha1.AntreaNetworkPolicyStats">AntreaNetworkPolicyStats</a>
+</li><li>
+<a href="#stats.antrea.io/v1alpha1.NetworkPolicyStats">NetworkPolicyStats</a>
+</li></ul>
+<h3 id="stats.antrea.io/v1alpha1.AntreaClusterNetworkPolicyStats">AntreaClusterNetworkPolicyStats
+</h3>
+<p>
+<p>AntreaClusterNetworkPolicyStats is the statistics of a Antrea ClusterNetworkPolicy.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+stats.antrea.io/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>AntreaClusterNetworkPolicyStats</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>trafficStats</code></br>
+<em>
+<a href="#stats.antrea.io/v1alpha1.TrafficStats">
+TrafficStats
+</a>
+</em>
+</td>
+<td>
+<p>The traffic stats of the Antrea ClusterNetworkPolicy.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ruleTrafficStats</code></br>
+<em>
+<a href="#stats.antrea.io/v1alpha1.RuleTrafficStats">
+[]RuleTrafficStats
+</a>
+</em>
+</td>
+<td>
+<p>The traffic stats of the Antrea ClusterNetworkPolicy, from rule perspective.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="stats.antrea.io/v1alpha1.AntreaNetworkPolicyStats">AntreaNetworkPolicyStats
+</h3>
+<p>
+<p>AntreaNetworkPolicyStats is the statistics of a Antrea NetworkPolicy.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+stats.antrea.io/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>AntreaNetworkPolicyStats</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>trafficStats</code></br>
+<em>
+<a href="#stats.antrea.io/v1alpha1.TrafficStats">
+TrafficStats
+</a>
+</em>
+</td>
+<td>
+<p>The traffic stats of the Antrea NetworkPolicy.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ruleTrafficStats</code></br>
+<em>
+<a href="#stats.antrea.io/v1alpha1.RuleTrafficStats">
+[]RuleTrafficStats
+</a>
+</em>
+</td>
+<td>
+<p>The traffic stats of the Antrea NetworkPolicy, from rule perspective.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="stats.antrea.io/v1alpha1.NetworkPolicyStats">NetworkPolicyStats
+</h3>
+<p>
+<p>NetworkPolicyStats is the statistics of a K8s NetworkPolicy.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+stats.antrea.io/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>NetworkPolicyStats</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>trafficStats</code></br>
+<em>
+<a href="#stats.antrea.io/v1alpha1.TrafficStats">
+TrafficStats
+</a>
+</em>
+</td>
+<td>
+<p>The traffic stats of the K8s NetworkPolicy.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="stats.antrea.io/v1alpha1.RuleTrafficStats">RuleTrafficStats
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#stats.antrea.io/v1alpha1.AntreaClusterNetworkPolicyStats">AntreaClusterNetworkPolicyStats</a>, 
+<a href="#stats.antrea.io/v1alpha1.AntreaNetworkPolicyStats">AntreaNetworkPolicyStats</a>, 
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyStats">NetworkPolicyStats</a>)
+</p>
+<p>
+<p>RuleTrafficStats contains TrafficStats of single rule inside a NetworkPolicy.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>trafficStats</code></br>
+<em>
+<a href="#stats.antrea.io/v1alpha1.TrafficStats">
+TrafficStats
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="stats.antrea.io/v1alpha1.TrafficStats">TrafficStats
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#stats.antrea.io/v1alpha1.AntreaClusterNetworkPolicyStats">AntreaClusterNetworkPolicyStats</a>, 
+<a href="#stats.antrea.io/v1alpha1.AntreaNetworkPolicyStats">AntreaNetworkPolicyStats</a>, 
+<a href="#stats.antrea.io/v1alpha1.NetworkPolicyStats">NetworkPolicyStats</a>, 
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyStats">NetworkPolicyStats</a>, 
+<a href="#stats.antrea.io/v1alpha1.RuleTrafficStats">RuleTrafficStats</a>)
+</p>
+<p>
+<p>TrafficStats contains the traffic stats of a NetworkPolicy.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>packets</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+<p>Packets is the packets count hit by the NetworkPolicy.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>bytes</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+<p>Bytes is the bytes count hit by the NetworkPolicy.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>sessions</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+<p>Sessions is the sessions count hit by the NetworkPolicy.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="system.antrea.io/v1beta1">system.antrea.io/v1beta1</h2>
+<p>
+<p>Package v1beta1 contains the v1beta1 version of the Antrea &ldquo;system&rdquo; API
+group definitions.</p>
+</p>
+Resource Types:
+<ul><li>
+<a href="#system.antrea.io/v1beta1.SupportBundle">SupportBundle</a>
+</li></ul>
+<h3 id="system.antrea.io/v1beta1.SupportBundle">SupportBundle
+</h3>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+system.antrea.io/v1beta1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>SupportBundle</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="#system.antrea.io/v1beta1.BundleStatus">
+BundleStatus
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>sum</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>since</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>size</code></br>
+<em>
+uint32
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>-</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="system.antrea.io/v1beta1.BundleStatus">BundleStatus
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#system.antrea.io/v1beta1.SupportBundle">SupportBundle</a>)
+</p>
+<p>
 </p>
 <hr/>
 <p><em>
