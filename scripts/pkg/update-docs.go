@@ -133,6 +133,7 @@ func syncDirs(sourceDocsPath string, destDocsPath string, docDir *DocDir) error 
 		if exists {
 			log.Printf("Syncing %s -> %s\n", sourcePath, destPath)
 		} else {
+			destPath = filepath.Join(destDocsPath, id)
 			log.Printf("Syncing %s -> %s [NEW]\n", sourcePath, destPath)
 		}
 		if !DryRun {

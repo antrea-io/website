@@ -64,6 +64,23 @@ func (v Version) MinorVersion() Version {
 	}
 }
 
+func (v Version) PrevPatchVersion() Version {
+	if v.patch == 0 {
+		return Version{
+			major:  v.major,
+			minor:  v.minor,
+			patch:  0,
+			suffix: "",
+		}
+	}
+	return Version{
+		major:  v.major,
+		minor:  v.minor,
+		patch:  v.patch - 1,
+		suffix: "",
+	}
+}
+
 func (v Version) LessThan(other Version) bool {
 	if v.major < other.major {
 		return true
@@ -339,8 +356,24 @@ func main() {
 	if semVer.IsNewMinorVersion() {
 		referenceVersion = "main"
 	} else {
-		referenceVersion = semVer.MinorVersion().String()
+		referenceVersion = ""
+		v := semVer.PrevPatchVersion()
+		for {
+			docsPath := filepath.Join(pkg.WebsiteRepo, "content", "docs", v.String())
+			if _, err := os.Stat(docsPath); err == nil {
+				referenceVersion = v.String()
+				break
+			}
+			if v.IsNewMinorVersion() {
+				break
+			}
+			v = v.PrevPatchVersion()
+		}
 	}
+	if referenceVersion == "" {
+		log.Fatalf("Cannot determine reference version")
+	}
+	log.Printf("Reference version is %s\n", referenceVersion)
 
 	destDocsPath := filepath.Join(pkg.WebsiteRepo, "content", "docs", version)
 	if err := createDocsIfNeeded(destDocsPath, version, referenceVersion); err != nil {
