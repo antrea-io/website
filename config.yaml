@@ -27,7 +27,7 @@ params:
   twitter_url: "https://twitter.com/projectantrea"
   github_url: "https://github.com/antrea-io/antrea"
   slack_url: "https://kubernetes.slack.com/archives/CR2J23M0X"
-  github_base_url: "https://github.com/antrea-io/antrea/site"
+  github_website_url: "https://github.com/antrea-io/website"
   rss_url: "/blog/feed.xml"
   use_advanced_docs: true
   docs_right_sidebar: true
