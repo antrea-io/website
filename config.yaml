@@ -3,7 +3,8 @@ languageCode: "en-us"
 title: "Antrea"
 theme: "antrea"
 outputs:
-  home: ["HTML", "REDIRECTS"]
+  home: ["HTML"]
+  # home: ["HTML", "REDIRECTS"]
   posts: ["HTML", "RSS"]
 pygmentsCodefences: true
 pygmentsStyle: "pygments"
@@ -54,9 +55,10 @@ mediaTypes:
   "text/netlify":
     delimiter: ""
 outputFormats:
-  REDIRECTS:
-    mediaType: "text/netlify"
-    baseName: "_redirects"
+  # this would override our default one?
+  # REDIRECTS:
+  #   mediaType: "text/netlify"
+  #   baseName: "_redirects"
   RSS:
     mediatype: "application/rss"
     baseName: "feed"
