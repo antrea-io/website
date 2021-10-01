@@ -263,8 +263,8 @@ func UpdateDocs(destDocsPath string) error {
 	}
 
 	docDirs := []DocDir{
-		DocDir{path: "", filter: "^.*md$", recursive: false},
-		DocDir{path: "docs", filter: "", recursive: true},
+		{path: "", filter: "^.*md$", recursive: false},
+		{path: "docs", filter: "", recursive: true},
 	}
 	for _, docDir := range docDirs {
 		if err := syncDirs(sourceDocsPath, destDocsPath, &docDir); err != nil {
