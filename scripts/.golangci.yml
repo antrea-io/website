@@ -1,0 +1,23 @@
+run:
+  tests: true
+  timeout: 5m
+  skip-files:
+    - ".*\\.pb\\.go"
+  skip-dirs-use-default: true
+
+linters-settings:
+  goimports:
+    local-prefixes: antrea.io/website/scripts
+
+linters:
+  disable-all: true
+  enable: # see https://golangci-lint.run/usage/linters/
+    - deadcode
+    - staticcheck
+    - govet
+    - gofmt
+    - goimports
+    - misspell
+
+run:
+  deadline: 5m
