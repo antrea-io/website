@@ -2,10 +2,12 @@
 publish = "public"
 command = "hugo"
 
+[context.production]
+command = "hugo -b $URL"
+
 [context.production.environment]
 HUGO_VERSION = "0.88.1"
 HUGO_ENV = "production"
-command = "hugo -b $URL"
 
 [context.deploy-preview]
 command = "hugo -b $DEPLOY_PRIME_URL"
