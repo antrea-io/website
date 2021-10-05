@@ -7,7 +7,7 @@
 		</div>
 		<div class="wrapper docs clearfix">
 			{{ partial "docs-sidebar.html" . }}
-			<div class="docs-content">
+			<div class="docs-content {{ if not .Site.Params.docs_right_sidebar }}full{{ end }}">
 				{{ .Content }}
 			</div>
 			{{ partial "docs-right-bar.html" . }}
