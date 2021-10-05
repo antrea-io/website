@@ -31,7 +31,7 @@ params:
   github_website_url: "https://github.com/antrea-io/website"
   rss_url: "/blog/feed.xml"
   use_advanced_docs: true
-  docs_right_sidebar: true
+  docs_right_sidebar: false
   docs_search: false
   docs_search_index_name: index_name
   docs_search_api_key: api_key
