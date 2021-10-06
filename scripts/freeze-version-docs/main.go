@@ -298,13 +298,6 @@ func updateHugoConfig(hugoConfigPath string, version string) error {
 		}
 	}
 
-	if hasVersion {
-		log.Printf("Hugo config already includes version %s\n", version)
-		return nil
-	}
-
-	log.Printf("Adding version %s to Hugo config\n", version)
-
 	if !hasVersion {
 		docsVersions = append(docsVersions, version)
 	}
@@ -318,8 +311,44 @@ func updateHugoConfig(hugoConfigPath string, version string) error {
 		return !v1.LessThan(v2)
 	})
 
-	if err := nDocsVersions.Encode(&docsVersions); err != nil {
-		return fmt.Errorf("error when encoding updated 'docs_versions' list: %w", err)
+	if hasVersion {
+		log.Printf("Hugo config already includes version %s\n", version)
+	} else {
+		log.Printf("Adding version %s to Hugo config\n", version)
+
+		if err := nDocsVersions.Encode(&docsVersions); err != nil {
+			return fmt.Errorf("error when encoding updated 'docs_versions' list: %w", err)
+		}
+	}
+
+	latestVersion := docsVersions[1]
+
+	var nDocsLatest *yaml.Node
+	for idx, n := range nParams.Content {
+		if n.Value == "docs_latest" {
+			nDocsLatest = nParams.Content[idx+1]
+			break
+		}
+	}
+	if nDocsLatest == nil {
+		return fmt.Errorf("'docs_latest' not found")
+	}
+	if nDocsLatest.Kind != yaml.ScalarNode {
+		return fmt.Errorf("wrong Node Kind for 'docs_latest'")
+	}
+	var docsLatest string
+	if err := nDocsLatest.Decode(&docsLatest); err != nil {
+		return fmt.Errorf("error when decoding 'docs_latest' scalar: %w", err)
+	}
+
+	if docsLatest == latestVersion {
+		log.Printf("Hugo config already has the correct latest version %s\n", latestVersion)
+	} else {
+		log.Printf("Setting latest version in Hugo config to %s\n", latestVersion)
+
+		if err := nDocsLatest.Encode(&latestVersion); err != nil {
+			return fmt.Errorf("error when encoding updated 'docs_latest' scalar: %w", err)
+		}
 	}
 
 	if pkg.DryRun {
