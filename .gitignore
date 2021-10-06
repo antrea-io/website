@@ -1,6 +1,9 @@
 # Where Hugo generates the webiste
 public/
 
+# Hugo resources cache
+resources/
+
 .DS_Store
 
 # VIM
