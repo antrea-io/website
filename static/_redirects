@@ -5,3 +5,7 @@
 /libOpenflow/* go-get=1 /golang/libOpenflow.html 200
 /ofnet/* go-get=1 /golang/ofnet.html 200
 /resource-auditing/* go-get=1 /golang/resource-auditing.html 200
+
+# Other redirects
+# Google docs with information about Antrea "live" office hours
+/live https://docs.google.com/document/d/1iy6pVVwf0pMV7I7YLZkOaFoJCNmCL1AXeSt_ErHQiG4 200
