@@ -1133,6 +1133,20 @@ It could be a list of names of AddressGroups and/or a list of IPBlock.</p>
 This field can only be possibly set for NetworkPolicyPeer of egress rules.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>toServices</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.ServiceReference">
+[]ServiceReference
+</a>
+</em>
+</td>
+<td>
+<p>A list of ServiceReference.
+This field can only be possibly set for NetworkPolicyPeer of egress rules.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="controlplane.antrea.io/v1beta2.NetworkPolicyReference">NetworkPolicyReference
@@ -1560,6 +1574,10 @@ It can only be specified when a numerical <code>port</code> is specified.</p>
 </table>
 <h3 id="controlplane.antrea.io/v1beta2.ServiceReference">ServiceReference
 </h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyPeer">NetworkPolicyPeer</a>)
+</p>
 <p>
 <p>ServiceReference represents reference to a v1.Service.</p>
 </p>
@@ -3255,7 +3273,25 @@ this field. If this field is empty, this rule matches all sources.</p>
 <td>
 <em>(Optional)</em>
 <p>Rule is matched if traffic is intended for workloads selected by
-this field. If this field is empty or missing, this rule matches all
+this field. This field can&rsquo;t be used with ToServices. If this field
+and ToServices are both empty or missing this rule matches all destinations.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>toServices</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.ServiceReference">
+[]ServiceReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Rule is matched if traffic is intended for a Service listed in this field.
+Currently only ClusterIP types Services are supported in this field. This field
+can only be used when AntreaProxy is enabled. This field can&rsquo;t be used with To
+or Ports. If this field and To are both empty or missing, this rule matches all
 destinations.</p>
 </td>
 </tr>
@@ -3311,6 +3347,47 @@ conjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo.</p>
 <p>
 <p>RuleAction describes the action to be applied on traffic matching a rule.</p>
 </p>
+<h3 id="crd.antrea.io/v1alpha1.ServiceReference">ServiceReference
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.Rule">Rule</a>)
+</p>
+<p>
+<p>ServiceReference represents a reference to a v1.Service.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Name of the Service</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Namespace of the Service</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.Source">Source
 </h3>
 <p>
@@ -6484,5 +6561,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>8336f7a</code>.
+on git commit <code>2abf457</code>.
 </em></p>
