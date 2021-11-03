@@ -3838,6 +3838,8 @@ Resource Types:
 <a href="#crd.antrea.io/v1alpha2.ExternalEntity">ExternalEntity</a>
 </li><li>
 <a href="#crd.antrea.io/v1alpha2.ExternalIPPool">ExternalIPPool</a>
+</li><li>
+<a href="#crd.antrea.io/v1alpha2.IPPool">IPPool</a>
 </li></ul>
 <h3 id="crd.antrea.io/v1alpha2.ClusterGroup">ClusterGroup
 </h3>
@@ -4352,6 +4354,108 @@ ExternalIPPoolStatus
 </td>
 <td>
 <p>The current status of the ExternalIPPool.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.IPPool">IPPool
+</h3>
+<p>
+<p>IPPool defines one or multiple IP sets that can be used for flexible IPAM feature. For instance, the IPs can be
+allocated to Pods according to IP pool specified in Deployment annotation.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1alpha2
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>IPPool</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+<p>Standard metadata of the object.</p>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.IPPoolSpec">
+IPPoolSpec
+</a>
+</em>
+</td>
+<td>
+<p>Specification of the IPPool.</p>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>ipVersion</code></br>
+<em>
+int
+</em>
+</td>
+<td>
+<p>IP Version for this IP pool - either 4 or 6</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ipRanges</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.SubnetIPRange">
+[]SubnetIPRange
+</a>
+</em>
+</td>
+<td>
+<p>List IP ranges, along with subnet definition.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.IPPoolStatus">
+IPPoolStatus
+</a>
+</em>
+</td>
+<td>
+<p>Most recently observed status of the pool.</p>
 </td>
 </tr>
 </tbody>
@@ -4959,11 +5063,177 @@ Cannot be set with any selector/IPBlock/ServiceReference.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha2.IPAddressOwner">IPAddressOwner
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.IPAddressState">IPAddressState</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>pod</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.PodOwner">
+PodOwner
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.IPAddressPhase">IPAddressPhase
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.IPAddressState">IPAddressState</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1alpha2.IPAddressState">IPAddressState
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.IPPoolStatus">IPPoolStatus</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ipAddress</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>IP Address this entry is tracking</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>phase</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.IPAddressPhase">
+IPAddressPhase
+</a>
+</em>
+</td>
+<td>
+<p>Allocation state - either Allocated or Preallocated</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>owner</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.IPAddressOwner">
+IPAddressOwner
+</a>
+</em>
+</td>
+<td>
+<p>Owner this IP Address is allocated to</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.IPPoolSpec">IPPoolSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.IPPool">IPPool</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ipVersion</code></br>
+<em>
+int
+</em>
+</td>
+<td>
+<p>IP Version for this IP pool - either 4 or 6</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ipRanges</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.SubnetIPRange">
+[]SubnetIPRange
+</a>
+</em>
+</td>
+<td>
+<p>List IP ranges, along with subnet definition.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.IPPoolStatus">IPPoolStatus
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.IPPool">IPPool</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ipAddresses</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.IPAddressState">
+[]IPAddressState
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha2.IPRange">IPRange
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha2.ExternalIPPoolSpec">ExternalIPPoolSpec</a>)
+<a href="#crd.antrea.io/v1alpha2.ExternalIPPoolSpec">ExternalIPPoolSpec</a>, 
+<a href="#crd.antrea.io/v1alpha2.SubnetIPRange">SubnetIPRange</a>)
 </p>
 <p>
 <p>IPRange is a set of contiguous IP addresses, represented by a CIDR or a pair of start and end IPs.</p>
@@ -5069,6 +5339,54 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha2.PodOwner">PodOwner
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.IPAddressOwner">IPAddressOwner</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>containerID</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha2.ServiceReference">ServiceReference
 </h3>
 <p>
@@ -5106,6 +5424,108 @@ string
 </td>
 <td>
 <p>Namespace of the Service</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.SubnetIPRange">SubnetIPRange
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.IPPoolSpec">IPPoolSpec</a>)
+</p>
+<p>
+<p>SubnetIPRange is a set of contiguous IP addresses, represented by a CIDR or a pair of start and end IPs,
+along with subnet definition.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>IPRange</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.IPRange">
+IPRange
+</a>
+</em>
+</td>
+<td>
+<p>
+(Members of <code>IPRange</code> are embedded into this type.)
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>SubnetInfo</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.SubnetInfo">
+SubnetInfo
+</a>
+</em>
+</td>
+<td>
+<p>
+(Members of <code>SubnetInfo</code> are embedded into this type.)
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.SubnetInfo">SubnetInfo
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.SubnetIPRange">SubnetIPRange</a>)
+</p>
+<p>
+<p>SubnetInfo specifies subnet attributes for IP Range</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>gateway</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Gateway IP for this subnet, eg. 10.10.1.1</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>prefixLength</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Prefix length for the subnet, eg. 24</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>vlan</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>VLAN ID for this subnet. Default is 0. String-typed for sake of potential autoselect option.</p>
 </td>
 </tr>
 </tbody>
@@ -6561,5 +6981,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>dddd79a</code>.
+on git commit <code>eded51a</code>.
 </em></p>

@@ -205,3 +205,53 @@ Node IPAM Controller, and Antrea has to handle the CIDR allocation.
 This feature requires the Node IPAM Controller to be disabled in Kubernetes
 Controller Manager. When Antrea and Kubernetes both run Node IPAM Controller
 there is a risk of conflicts in CIDR allocation between the two.
+
+### AntreaIPAM
+
+`AntreaIPAM` is a feature that allows flexible control over Pod IP Addressing. This can
+be achieved by configuring custom resource `IPPool` with desired set of IP ranges.
+The pool can be annotated to Namespace, and Antrea will manage IP address assignment for
+corresponding Pods according to pool spec. In the future, support will be extended to
+Deployments and StatefulSets, as well as requesting specific IP via Pod annotation.
+
+Note that IP pool annotation can not be updated, but rather re-created. IP Pool can be
+extended, but cannot be shrunk if already assigned to a resource. The IP ranges of IP
+Pools must not overlap, otherwise it would lead to undefined behavior.
+
+Traditional `Subnet per Node` IPAM will continue to be used for resources without IP pool
+annotation, or when `AntreaIPAM` feature is disabled.
+
+#### Requirements for this Feature
+
+In Antrea 1.4, AntreaIPAM can only work with Linux+IPv4, system OVSDatapathType and
+noEncap, noSNAT mode.
+AntreaIPAM is only verified with other FeatureGates at default state.
+
+Usage example:
+
+```yaml
+apiVersion: "crd.antrea.io/v1alpha2"
+kind: IPPool
+metadata:
+  name: pool1
+spec:
+  ipVersion: 4
+  ipRanges:
+  - start: "10.2.0.12"
+    end: "10.2.0.20"
+    gateway: "10.2.0.1"
+    prefixLength: 24
+```
+
+```yaml
+kind: Namespace
+metadata:
+  annotations:
+    ipam.antrea.io/ippools: 'pool1'
+```
+
+#### Requirements for this Feature
+
+This feature is currently supported on Linux Nodes only. Annotation of single IP pool
+is supported. In future, annotation of up to two pools of different IP versions will be
+supported.
