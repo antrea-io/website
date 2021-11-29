@@ -47,6 +47,11 @@ func CopyFile(source, dest string) error {
 	}
 	defer in.Close()
 
+	dir := filepath.Dir(dest)
+	if err := os.MkdirAll(dir, 0755); err != nil {
+		return err
+	}
+
 	out, err := os.Create(dest)
 	if err != nil {
 		return err
