@@ -5109,6 +5109,18 @@ PodOwner
 <td>
 </td>
 </tr>
+<tr>
+<td>
+<code>statefulSet</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.StatefulSetOwner">
+StatefulSetOwner
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="crd.antrea.io/v1alpha2.IPAddressPhase">IPAddressPhase
@@ -5364,6 +5376,7 @@ string
 <a href="#crd.antrea.io/v1alpha2.IPAddressOwner">IPAddressOwner</a>)
 </p>
 <p>
+<p>Pod owner</p>
 </p>
 <table>
 <thead>
@@ -5442,6 +5455,55 @@ string
 </td>
 <td>
 <p>Namespace of the Service</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.StatefulSetOwner">StatefulSetOwner
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.IPAddressOwner">IPAddressOwner</a>)
+</p>
+<p>
+<p>StatefulSet owner</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>index</code></br>
+<em>
+int
+</em>
+</td>
+<td>
 </td>
 </tr>
 </tbody>
@@ -6999,5 +7061,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>bde43d9</code>.
+on git commit <code>ba9c7b3</code>.
 </em></p>
