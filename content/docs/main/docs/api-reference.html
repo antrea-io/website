@@ -2512,6 +2512,46 @@ int32
 <p>
 <p>NamespaceMatchType describes Namespace matching strategy.</p>
 </p>
+<h3 id="crd.antrea.io/v1alpha1.NamespacedName">NamespacedName
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">NetworkPolicyPeer</a>)
+</p>
+<p>
+<p>NamespacedName refers to a Namespace scoped resource.
+All fields must be used together.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.NetworkPolicyPeer">NetworkPolicyPeer
 </h3>
 <p>
@@ -2648,6 +2688,22 @@ NetworkPolicyPeer of egress rules.
 Supported formats are:
 Exact FQDNs, i.e. &ldquo;google.com&rdquo;, &ldquo;db-svc.default.svc.cluster.local&rdquo;
 Wildcard expressions, i.e. &ldquo;*wayfair.com&rdquo;.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>serviceAccount</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+NamespacedName
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select all Pods with the ServiceAccount matched by this field, as
+workloads in AppliedTo/To/From fields.
+Cannot be set with any other selector.</p>
 </td>
 </tr>
 </tbody>
@@ -7061,5 +7117,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>c3621fb</code>.
+on git commit <code>78e3583</code>.
 </em></p>
