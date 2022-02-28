@@ -2516,7 +2516,10 @@ int32
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">NetworkPolicyPeer</a>)
+<a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">NetworkPolicyPeer</a>, 
+<a href="#crd.antrea.io/v1alpha1.Rule">Rule</a>, 
+<a href="#crd.antrea.io/v1alpha2.GroupSpec">GroupSpec</a>, 
+<a href="#crd.antrea.io/v1alpha3.GroupSpec">GroupSpec</a>)
 </p>
 <p>
 <p>NamespacedName refers to a Namespace scoped resource.
@@ -3337,8 +3340,8 @@ and ToServices are both empty or missing this rule matches all destinations.</p>
 <td>
 <code>toServices</code></br>
 <em>
-<a href="#crd.antrea.io/v1alpha1.ServiceReference">
-[]ServiceReference
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+[]NamespacedName
 </a>
 </em>
 </td>
@@ -3403,47 +3406,6 @@ conjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo.</p>
 <p>
 <p>RuleAction describes the action to be applied on traffic matching a rule.</p>
 </p>
-<h3 id="crd.antrea.io/v1alpha1.ServiceReference">ServiceReference
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha1.Rule">Rule</a>)
-</p>
-<p>
-<p>ServiceReference represents a reference to a v1.Service.</p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>name</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Name of the Service</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>namespace</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Namespace of the Service</p>
-</td>
-</tr>
-</tbody>
-</table>
 <h3 id="crd.antrea.io/v1alpha1.Source">Source
 </h3>
 <p>
@@ -4045,8 +4007,8 @@ Cannot be set with IPBlock.</p>
 <td>
 <code>serviceReference</code></br>
 <em>
-<a href="#crd.antrea.io/v1alpha2.ServiceReference">
-ServiceReference
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+NamespacedName
 </a>
 </em>
 </td>
@@ -5059,8 +5021,8 @@ Cannot be set with IPBlock.</p>
 <td>
 <code>serviceReference</code></br>
 <em>
-<a href="#crd.antrea.io/v1alpha2.ServiceReference">
-ServiceReference
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+NamespacedName
 </a>
 </em>
 </td>
@@ -5474,47 +5436,6 @@ string
 </tr>
 </tbody>
 </table>
-<h3 id="crd.antrea.io/v1alpha2.ServiceReference">ServiceReference
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha2.GroupSpec">GroupSpec</a>)
-</p>
-<p>
-<p>ServiceReference represent reference to a v1.Service.</p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>name</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Name of the Service</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>namespace</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Namespace of the Service</p>
-</td>
-</tr>
-</tbody>
-</table>
 <h3 id="crd.antrea.io/v1alpha2.StatefulSetOwner">StatefulSetOwner
 </h3>
 <p>
@@ -5789,8 +5710,8 @@ Cannot be set with any other selector or ServiceReference.</p>
 <td>
 <code>serviceReference</code></br>
 <em>
-<a href="#crd.antrea.io/v1alpha3.ServiceReference">
-ServiceReference
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+NamespacedName
 </a>
 </em>
 </td>
@@ -5993,8 +5914,8 @@ Cannot be set with any other selector or ServiceReference.</p>
 <td>
 <code>serviceReference</code></br>
 <em>
-<a href="#crd.antrea.io/v1alpha3.ServiceReference">
-ServiceReference
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+NamespacedName
 </a>
 </em>
 </td>
@@ -6067,47 +5988,6 @@ Cannot be set with any selector/IPBlock/ServiceReference.</p>
 </em>
 </td>
 <td>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="crd.antrea.io/v1alpha3.ServiceReference">ServiceReference
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha3.GroupSpec">GroupSpec</a>)
-</p>
-<p>
-<p>ServiceReference represent reference to a v1.Service.</p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>name</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Name of the Service</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>namespace</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Namespace of the Service</p>
 </td>
 </tr>
 </tbody>
@@ -7117,5 +6997,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>65e3574</code>.
+on git commit <code>5d9e963</code>.
 </em></p>
