@@ -1,0 +1,99 @@
+toc:
+  - title: Introduction
+    subfolderitems:
+      - page: Overview
+        url: /
+      - page: Getting Started
+        url: /docs/getting-started
+      - page: Support for K8s Installers
+        url: /docs/kubernetes-installers
+      - page: Deploying on kind
+        url: /docs/kind
+      - page: Configuration
+        url: /docs/configuration
+  - title: Cloud Deployment
+    subfolderitems:
+      - page: EKS Installation
+        url: /docs/eks-installation
+      - page: AKS Installation
+        url: /docs/aks-installation
+      - page: GKE Installation (Alpha)
+        url: /docs/gke-installation
+      - page: Running Antrea In Policy Only Mode
+        url: /docs/design/policy-only
+  - title: Reference
+    subfolderitems:
+      - page: Antrea Network Policy
+        url: /docs/antrea-network-policy
+      - page: antctl
+        url: /docs/antctl
+      - page: Architecture
+        url: /docs/design/architecture
+      - page: IPsec Configuration
+        url: /docs/ipsec-tunnel
+      - page: Securing Control Plane
+        url: /docs/securing-control-plane
+      - page: Troubleshooting
+        url: /docs/troubleshooting
+      - page: OS-specific Known Issues
+        url: /docs/os-issues
+      - page: OVS Pipeline
+        url: /docs/design/ovs-pipeline
+      - page: Feature Gates
+        url: /docs/feature-gates
+      - page: Network Flow Visibility
+        url: /docs/network-flow-visibility
+      - page: Traceflow Guide
+        url: /docs/traceflow-guide
+      - page: NoEncap and Hybrid Traffic Modes
+        url: /docs/noencap-hybrid-modes
+      - page: Egress Guide
+        url: /docs/egress
+      - page: NodePortLocal Guide
+        url: /docs/node-port-local
+      - page: Versioning
+        url: /docs/versioning
+      - page: Antrea API Groups
+        url: /docs/api
+      - page: Antrea API Reference
+        url: /docs/api-reference
+  - title: Windows
+    subfolderitems:
+      - page: Windows Deployment
+        url: /docs/windows
+      - page: Windows Design
+        url: /docs/design/windows-design
+  - title: Integrations
+    subfolderitems:
+      - page: Octant Plugin Installation
+        url: /docs/octant-plugin-installation
+      - page: Prometheus Integration
+        url: /docs/prometheus-integration
+  - title: Cookbooks
+    subfolderitems:
+      - page: Using Antrea with Multus
+        url: /docs/cookbooks/multus
+  - title: Developer Guide
+    subfolderitems:
+      - page: Code Generation
+        url: /docs//contributors/code-generation
+      - page: Release Instructions
+        url: /docs/maintainers/release
+      - page: Issue Management
+        url: /docs/contributors/issue-management
+      - page: GitHub Labels
+        url: /docs/contributors/github-labels
+      - page: Manual Installation
+        url: /docs/contributors/manual-installation
+  - title: Project Information
+    subfolderitems: 
+    - page: Contributing to Antrea
+      url: /contributing
+    - page: Roadmap
+      url: /roadmap
+    - page: Change Log
+      url: /changelog
+    - page: Code of Conduct
+      url: /code_of_conduct
+    - page: Antrea Adopters
+      url: /adopters
