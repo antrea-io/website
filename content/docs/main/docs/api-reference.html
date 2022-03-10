@@ -227,6 +227,36 @@ Refer to the Kubernetes API documentation for the fields of the
 <td>
 </td>
 </tr>
+<tr>
+<td>
+<code>totalMembers</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>totalPages</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>currentPage</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="controlplane.antrea.io/v1beta2.EgressGroup">EgressGroup
@@ -1460,6 +1490,40 @@ Refer to the Kubernetes API documentation for the fields of the
 </p>
 <p>
 </p>
+<h3 id="controlplane.antrea.io/v1beta2.PaginationGetOptions">PaginationGetOptions
+</h3>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>page</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>limit</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="controlplane.antrea.io/v1beta2.PodReference">PodReference
 </h3>
 <p>
@@ -6997,5 +7061,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>a51003a</code>.
+on git commit <code>cd37a9b</code>.
 </em></p>
