@@ -854,6 +854,19 @@ ExternalEntityReference
 <p>Ports is the list NamedPort of the GroupMember.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>node</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.NodeReference">
+NodeReference
+</a>
+</em>
+</td>
+<td>
+<p>Node maintains the reference to the Node.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="controlplane.antrea.io/v1beta2.GroupMemberSet">GroupMemberSet
@@ -1490,6 +1503,36 @@ Refer to the Kubernetes API documentation for the fields of the
 </p>
 <p>
 </p>
+<h3 id="controlplane.antrea.io/v1beta2.NodeReference">NodeReference
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.GroupMember">GroupMember</a>)
+</p>
+<p>
+<p>NodeReference represents a Node Reference.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The name of this Node.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="controlplane.antrea.io/v1beta2.PaginationGetOptions">PaginationGetOptions
 </h3>
 <p>
@@ -2771,6 +2814,21 @@ NamespacedName
 <p>Select all Pods with the ServiceAccount matched by this field, as
 workloads in AppliedTo/To/From fields.
 Cannot be set with any other selector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select certain Nodes which match the label selector.
+A NodeSelector cannot be set in AppliedTo field or set with any other selector.</p>
 </td>
 </tr>
 </tbody>
@@ -7062,5 +7120,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>3c88bc2</code>.
+on git commit <code>073f5ab</code>.
 </em></p>
