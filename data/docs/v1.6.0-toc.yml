@@ -7,8 +7,10 @@ toc:
         url: /docs/getting-started
       - page: Support for K8s Installers
         url: /docs/kubernetes-installers
-      - page: Deploying on kind
+      - page: Deploying on Kind
         url: /docs/kind
+      - page: Deploying on Minikube
+        url: /docs/minikube
       - page: Configuration
         url: /docs/configuration
   - title: Cloud Deployment
@@ -25,12 +27,12 @@ toc:
     subfolderitems:
       - page: Antrea Network Policy
         url: /docs/antrea-network-policy
-      - page: antctl
+      - page: Antctl
         url: /docs/antctl
       - page: Architecture
         url: /docs/design/architecture
-      - page: IPsec Configuration
-        url: /docs/ipsec-tunnel
+      - page: Traffic Encryption (Ipsec / WireGuard)
+        url: /docs/traffic-encryption
       - page: Securing Control Plane
         url: /docs/securing-control-plane
       - page: Troubleshooting
@@ -51,6 +53,10 @@ toc:
         url: /docs/egress
       - page: NodePortLocal Guide
         url: /docs/node-port-local
+      - page: Antrea IPAM Guide
+        url: /docs/antrea-ipam
+      - page: Exposing Services of type LoadBalancer
+        url: /docs/service-loadbalancer
       - page: Versioning
         url: /docs/versioning
       - page: Antrea API Groups
@@ -73,6 +79,16 @@ toc:
     subfolderitems:
       - page: Using Antrea with Multus
         url: /docs/cookbooks/multus
+      - page: Using Fluentd to collect Network policy logs
+        url: /docs/cookbooks/fluentd
+  - title: Multicluster
+    subfolderitems:
+      - page: User guide
+        url: /docs/multicluster/user-guide
+      - page: Antctl
+        url: /docs/multicluster/antctl
+      - page: Architecture
+        url: /docs/multicluster/architecture
   - title: Developer Guide
     subfolderitems:
       - page: Code Generation

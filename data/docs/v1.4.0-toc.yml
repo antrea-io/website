@@ -29,8 +29,8 @@ toc:
         url: /docs/antctl
       - page: Architecture
         url: /docs/design/architecture
-      - page: IPsec Configuration
-        url: /docs/ipsec-tunnel
+      - page: Traffic Encryption (Ipsec / WireGuard)
+        url: /docs/traffic-encryption
       - page: Securing Control Plane
         url: /docs/securing-control-plane
       - page: Troubleshooting
