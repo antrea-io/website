@@ -4,6 +4,9 @@ public/
 # Hugo resources cache
 resources/
 
+# Hugo build lock file (added in Hugo 0.89)
+.hugo_build.lock
+
 .DS_Store
 
 # VIM
