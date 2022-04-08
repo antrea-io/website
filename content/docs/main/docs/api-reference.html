@@ -4581,7 +4581,9 @@ IPPoolSpec
 <td>
 <code>ipVersion</code></br>
 <em>
-int
+<a href="#crd.antrea.io/v1alpha2.IPVersion">
+IPVersion
+</a>
 </em>
 </td>
 <td>
@@ -5347,7 +5349,9 @@ IPAddressOwner
 <td>
 <code>ipVersion</code></br>
 <em>
-int
+<a href="#crd.antrea.io/v1alpha2.IPVersion">
+IPVersion
+</a>
 </em>
 </td>
 <td>
@@ -5452,6 +5456,14 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha2.IPVersion">IPVersion
+(<code>int</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.IPPoolSpec">IPPoolSpec</a>)
+</p>
+<p>
+</p>
 <h3 id="crd.antrea.io/v1alpha2.NamedPort">NamedPort
 </h3>
 <p>
@@ -5555,6 +5567,18 @@ string
 </em>
 </td>
 <td>
+</td>
+</tr>
+<tr>
+<td>
+<code>ifName</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Network interface name. Used when the IP is allocated for a secondary network interface
+of the Pod.</p>
 </td>
 </tr>
 </tbody>
@@ -7120,5 +7144,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>03b3f2b</code>.
+on git commit <code>7fea8d3</code>.
 </em></p>
