@@ -1646,7 +1646,7 @@ Protocol
 </td>
 <td>
 <em>(Optional)</em>
-<p>The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this
+<p>The protocol (TCP, UDP, SCTP, or ICMP) which traffic must match. If not specified, this
 field defaults to TCP.</p>
 </td>
 </tr>
@@ -1661,7 +1661,9 @@ k8s.io/apimachinery/pkg/util/intstr.IntOrString
 </td>
 <td>
 <em>(Optional)</em>
-<p>The port name or number on the given protocol. If not specified, this matches all port numbers.</p>
+<p>Port and EndPort can only be specified, when the Protocol is TCP, UDP, or SCTP.
+Port defines the port name or number on the given protocol. If not specified
+and the Protocol is TCP, UDP, or SCTP, this matches all port numbers.</p>
 </td>
 </tr>
 <tr>
@@ -1675,6 +1677,29 @@ int32
 <em>(Optional)</em>
 <p>EndPort defines the end of the port range, being the end included within the range.
 It can only be specified when a numerical <code>port</code> is specified.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>icmpType</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ICMPType and ICMPCode can only be specified, when the Protocol is ICMP. If they
+both are not specified and the Protocol is ICMP, this matches all ICMP traffic.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>icmpCode</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
 </td>
 </tr>
 </tbody>
@@ -2461,6 +2486,47 @@ int32
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.ICMPProtocol">ICMPProtocol
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.NetworkPolicyProtocol">NetworkPolicyProtocol</a>)
+</p>
+<p>
+<p>ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. All
+fields could be used alone or together. If all fields are not provided, this
+matches all ICMP traffic.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>icmpType</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>icmpCode</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.IPBlock">IPBlock
 </h3>
 <p>
@@ -2901,6 +2967,38 @@ int32
 <em>(Optional)</em>
 <p>EndPort defines the end of the port range, being the end included within the range.
 It can only be specified when a numerical <code>port</code> is specified.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.NetworkPolicyProtocol">NetworkPolicyProtocol
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.Rule">Rule</a>)
+</p>
+<p>
+<p>NetworkPolicyProtocol defines additional protocols that are not supported by
+<code>ports</code>. All fields should be used as a standalone field.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>icmp</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.ICMPProtocol">
+ICMPProtocol
+</a>
+</em>
+</td>
+<td>
 </td>
 </tr>
 </tbody>
@@ -3423,8 +3521,23 @@ RuleAction
 </td>
 <td>
 <em>(Optional)</em>
-<p>Set of port and protocol allowed/denied by the rule. If this field is unset
-or empty, this rule matches all ports.</p>
+<p>Set of ports and protocols matched by the rule. If this field and Protocols
+are unset or empty, this rule matches all ports.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>protocols</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.NetworkPolicyProtocol">
+[]NetworkPolicyProtocol
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Set of protocols matched by the rule. If this field and Ports are unset or
+empty, this rule matches all protocols supported.</p>
 </td>
 </tr>
 <tr>
@@ -7144,5 +7257,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>5905e98</code>.
+on git commit <code>2921271</code>.
 </em></p>
