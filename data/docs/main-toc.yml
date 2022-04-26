@@ -43,6 +43,8 @@ toc:
         url: /docs/design/ovs-pipeline
       - page: Feature Gates
         url: /docs/feature-gates
+      - page: Antrea Proxy
+        url: /docs/antrea-proxy
       - page: Network Flow Visibility
         url: /docs/network-flow-visibility
       - page: Traceflow Guide
