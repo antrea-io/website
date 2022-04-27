@@ -4112,6 +4112,8 @@ Resource Types:
 <a href="#crd.antrea.io/v1alpha2.ExternalIPPool">ExternalIPPool</a>
 </li><li>
 <a href="#crd.antrea.io/v1alpha2.IPPool">IPPool</a>
+</li><li>
+<a href="#crd.antrea.io/v1alpha2.TrafficControl">TrafficControl</a>
 </li></ul>
 <h3 id="crd.antrea.io/v1alpha2.ClusterGroup">ClusterGroup
 </h3>
@@ -4734,11 +4736,143 @@ IPPoolStatus
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha2.TrafficControl">TrafficControl
+</h3>
+<p>
+<p>TrafficControl allows mirroring or redirecting the traffic Pods send or receive. It enables users to monitor and
+analyze Pod traffic, and to enforce custom network protections for Pods with fine-grained control over network
+traffic.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1alpha2
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>TrafficControl</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+<p>Standard metadata of the object.</p>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlSpec">
+TrafficControlSpec
+</a>
+</em>
+</td>
+<td>
+<p>Specification of the desired behavior of TrafficControl.</p>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>appliedTo</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.AppliedTo">
+AppliedTo
+</a>
+</em>
+</td>
+<td>
+<p>AppliedTo selects Pods to which the traffic control configuration will be applied.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>direction</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.Direction">
+Direction
+</a>
+</em>
+</td>
+<td>
+<p>The direction of traffic that should be matched. It can be Ingress, Egress, or Both.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>action</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlAction">
+TrafficControlAction
+</a>
+</em>
+</td>
+<td>
+<p>The action that should be taken for the traffic. It can be Redirect or Mirror.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>targetPort</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlPort">
+TrafficControlPort
+</a>
+</em>
+</td>
+<td>
+<p>The port to which the traffic should be redirected or mirrored.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>returnPort</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlPort">
+TrafficControlPort
+</a>
+</em>
+</td>
+<td>
+<p>The port from which the traffic will be sent back to OVS. It should only be set for Redirect action.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha2.AppliedTo">AppliedTo
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha2.EgressSpec">EgressSpec</a>)
+<a href="#crd.antrea.io/v1alpha2.EgressSpec">EgressSpec</a>, 
+<a href="#crd.antrea.io/v1alpha2.TrafficControlSpec">TrafficControlSpec</a>)
 </p>
 <p>
 <p>AppliedTo selects the entities to which a policy is applied.</p>
@@ -4806,6 +4940,99 @@ NamespaceSelector.</p>
 <p>
 <p>ClusterGroupReference represent reference to a ClusterGroup.</p>
 </p>
+<h3 id="crd.antrea.io/v1alpha2.Direction">Direction
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlSpec">TrafficControlSpec</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1alpha2.ERSPANTunnel">ERSPANTunnel
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlPort">TrafficControlPort</a>)
+</p>
+<p>
+<p>ERSPANTunnel represents an ERSPAN tunnel. Antrea will create a port on the OVS bridge for the tunnel.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>remoteIP</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The remote IP of the tunnel.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>sessionID</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>ERSPAN session ID.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>version</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>ERSPAN version.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>index</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>ERSPAN Index.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>dir</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>ERSPAN v2 mirrored traffic’s direction.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>hardwareID</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>ERSPAN hardware ID.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha2.EgressSpec">EgressSpec
 </h3>
 <p>
@@ -5105,6 +5332,47 @@ int
 </td>
 <td>
 <p>Number of allocated IPs.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.GRETunnel">GRETunnel
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlPort">TrafficControlPort</a>)
+</p>
+<p>
+<p>GRETunnel represents a GRE tunnel. Antrea will create a port on the OVS bridge for the tunnel.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>remoteIP</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The remote IP of the tunnel.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>key</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>GRE key.</p>
 </td>
 </tr>
 </tbody>
@@ -5635,6 +5903,67 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha2.NetworkDevice">NetworkDevice
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlPort">TrafficControlPort</a>)
+</p>
+<p>
+<p>NetworkDevice represents a network device. It must exist on all Nodes. Antrea will attach it to the OVS bridge if it
+is not attached.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The name of the network device.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.OVSInternalPort">OVSInternalPort
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlPort">TrafficControlPort</a>)
+</p>
+<p>
+<p>OVSInternalPort represents an OVS internal port. Antrea will create the port if it doesn&rsquo;t exist.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The name of the OVS internal port.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha2.PodOwner">PodOwner
 </h3>
 <p>
@@ -5843,6 +6172,248 @@ uint16
 </td>
 <td>
 <p>VLAN ID for this subnet. Default is 0. Valid value is 0~4094.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.TrafficControlAction">TrafficControlAction
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlSpec">TrafficControlSpec</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1alpha2.TrafficControlPort">TrafficControlPort
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlSpec">TrafficControlSpec</a>)
+</p>
+<p>
+<p>TrafficControlPort represents a port that can be used as the target of traffic mirroring or redirecting, and the
+return port of traffic redirecting.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ovsInternal</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.OVSInternalPort">
+OVSInternalPort
+</a>
+</em>
+</td>
+<td>
+<p>OVSInternal represents an OVS internal port.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>device</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.NetworkDevice">
+NetworkDevice
+</a>
+</em>
+</td>
+<td>
+<p>Device represents a network device.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>geneve</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.UDPTunnel">
+UDPTunnel
+</a>
+</em>
+</td>
+<td>
+<p>GENEVE represents a GENEVE tunnel.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>vxlan</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.UDPTunnel">
+UDPTunnel
+</a>
+</em>
+</td>
+<td>
+<p>VXLAN represents a VXLAN tunnel.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>gre</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.GRETunnel">
+GRETunnel
+</a>
+</em>
+</td>
+<td>
+<p>GRE represents a GRE tunnel.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>erspan</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.ERSPANTunnel">
+ERSPANTunnel
+</a>
+</em>
+</td>
+<td>
+<p>ERSPAN represents a ERSPAN tunnel.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.TrafficControlSpec">TrafficControlSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControl">TrafficControl</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>appliedTo</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.AppliedTo">
+AppliedTo
+</a>
+</em>
+</td>
+<td>
+<p>AppliedTo selects Pods to which the traffic control configuration will be applied.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>direction</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.Direction">
+Direction
+</a>
+</em>
+</td>
+<td>
+<p>The direction of traffic that should be matched. It can be Ingress, Egress, or Both.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>action</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlAction">
+TrafficControlAction
+</a>
+</em>
+</td>
+<td>
+<p>The action that should be taken for the traffic. It can be Redirect or Mirror.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>targetPort</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlPort">
+TrafficControlPort
+</a>
+</em>
+</td>
+<td>
+<p>The port to which the traffic should be redirected or mirrored.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>returnPort</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlPort">
+TrafficControlPort
+</a>
+</em>
+</td>
+<td>
+<p>The port from which the traffic will be sent back to OVS. It should only be set for Redirect action.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.UDPTunnel">UDPTunnel
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.TrafficControlPort">TrafficControlPort</a>)
+</p>
+<p>
+<p>UDPTunnel represents a UDP based tunnel. Antrea will create a port on the OVS bridge for the tunnel.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>remoteIP</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The remote IP of the tunnel.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>vni</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>The ID of the tunnel.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>destinationPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>The transport layer destination port of the tunnel. If not specified, the assigned IANA port will be used, i.e.,
+4789 for VXLAN, 6081 for GENEVE.</p>
 </td>
 </tr>
 </tbody>
@@ -7257,5 +7828,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>508f11f</code>.
+on git commit <code>00f9d98</code>.
 </em></p>
