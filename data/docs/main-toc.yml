@@ -35,6 +35,8 @@ toc:
         url: /docs/traffic-encryption
       - page: Securing Control Plane
         url: /docs/securing-control-plane
+      - page: Security considerations
+        url: /docs/security
       - page: Troubleshooting
         url: /docs/troubleshooting
       - page: OS-specific Known Issues
