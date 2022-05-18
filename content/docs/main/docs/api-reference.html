@@ -568,6 +568,19 @@ Refer to the Kubernetes API documentation for the fields of the
 <p>The TrafficStats of Antrea NetworkPolicies collected from the Node.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>multicast</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.MulticastGroupInfo">
+[]MulticastGroupInfo
+</a>
+</em>
+</td>
+<td>
+<p>Multicast group information collected from the Node.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="controlplane.antrea.io/v1beta2.AddressGroupPatch">AddressGroupPatch
@@ -1023,6 +1036,49 @@ int32
 </em>
 </td>
 <td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controlplane.antrea.io/v1beta2.MulticastGroupInfo">MulticastGroupInfo
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.NodeStatsSummary">NodeStatsSummary</a>)
+</p>
+<p>
+<p>MulticastGroupInfo contains the list of Pods that have joined a multicast group, for a given Node.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>group</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Group is the IP of the multicast group.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>pods</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.PodReference">
+[]PodReference
+</a>
+</em>
+</td>
+<td>
+<p>Pods is the list of Pods that have joined the multicast group.</p>
 </td>
 </tr>
 </tbody>
@@ -1571,7 +1627,8 @@ int64
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#controlplane.antrea.io/v1beta2.GroupMember">GroupMember</a>)
+<a href="#controlplane.antrea.io/v1beta2.GroupMember">GroupMember</a>, 
+<a href="#controlplane.antrea.io/v1beta2.MulticastGroupInfo">MulticastGroupInfo</a>)
 </p>
 <p>
 <p>PodReference represents a Pod Reference.</p>
@@ -7406,6 +7463,8 @@ Resource Types:
 </li><li>
 <a href="#stats.antrea.io/v1alpha1.AntreaNetworkPolicyStats">AntreaNetworkPolicyStats</a>
 </li><li>
+<a href="#stats.antrea.io/v1alpha1.MulticastGroup">MulticastGroup</a>
+</li><li>
 <a href="#stats.antrea.io/v1alpha1.NetworkPolicyStats">NetworkPolicyStats</a>
 </li></ul>
 <h3 id="stats.antrea.io/v1alpha1.AntreaClusterNetworkPolicyStats">AntreaClusterNetworkPolicyStats
@@ -7552,6 +7611,76 @@ TrafficStats
 </tr>
 </tbody>
 </table>
+<h3 id="stats.antrea.io/v1alpha1.MulticastGroup">MulticastGroup
+</h3>
+<p>
+<p>MulticastGroup contains the mapping between multicast group and Pods.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+stats.antrea.io/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>MulticastGroup</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>group</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Group is the IP of the multicast group.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>pods</code></br>
+<em>
+<a href="#stats.antrea.io/v1alpha1.PodReference">
+[]PodReference
+</a>
+</em>
+</td>
+<td>
+<p>Pods is the list of Pods that have joined the multicast group.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="stats.antrea.io/v1alpha1.NetworkPolicyStats">NetworkPolicyStats
 </h3>
 <p>
@@ -7607,6 +7736,47 @@ TrafficStats
 </td>
 <td>
 <p>The traffic stats of the K8s NetworkPolicy.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="stats.antrea.io/v1alpha1.PodReference">PodReference
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#stats.antrea.io/v1alpha1.MulticastGroup">MulticastGroup</a>)
+</p>
+<p>
+<p>PodReference represents a Pod Reference.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The name of this Pod.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The namespace of this Pod.</p>
 </td>
 </tr>
 </tbody>
@@ -7828,5 +7998,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>3a51abe</code>.
+on git commit <code>c23a20c</code>.
 </em></p>
