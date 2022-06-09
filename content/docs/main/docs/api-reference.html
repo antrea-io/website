@@ -1759,6 +1759,28 @@ int32
 <td>
 </td>
 </tr>
+<tr>
+<td>
+<code>igmpType</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>IGMPType and GroupAddress can only be specified when the Protocol is IGMP.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>groupAddress</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="controlplane.antrea.io/v1beta2.ServiceReference">ServiceReference
@@ -2584,6 +2606,51 @@ int32
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.IGMPProtocol">IGMPProtocol
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.NetworkPolicyProtocol">NetworkPolicyProtocol</a>)
+</p>
+<p>
+<p>IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType must
+be filled with:
+IGMPQuery    int32 = 0x11
+IGMPReportV1 int32 = 0x12
+IGMPReportV2 int32 = 0x16
+IGMPReportV3 int32 = 0x22
+If groupAddress is empty, all groupAddresses will be matched.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>igmpType</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>groupAddress</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.IPBlock">IPBlock
 </h3>
 <p>
@@ -3052,6 +3119,18 @@ It can only be specified when a numerical <code>port</code> is specified.</p>
 <em>
 <a href="#crd.antrea.io/v1alpha1.ICMPProtocol">
 ICMPProtocol
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>igmp</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.IGMPProtocol">
+IGMPProtocol
 </a>
 </em>
 </td>
@@ -7998,5 +8077,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>3e1b254</code>.
+on git commit <code>5a7e5c3</code>.
 </em></p>
