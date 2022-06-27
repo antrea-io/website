@@ -44,6 +44,17 @@ jobs:
         TAG: ${{ github.event.inputs.antrea-ref }}
       run: |
         ./website/scripts/bin/freeze-version-docs -antrea-repo antrea -website-repo website -version $TAG
+    - name: Update Helm index file
+      if: ${{ github.event.inputs.antrea-ref != 'main' }}
+      env:
+        TAG: ${{ github.event.inputs.antrea-ref }}
+      run: |
+        function version_lt() { test "$(printf '%s\n' "$@" | sort -rV | head -n 1)" != "$1"; }
+        if version_lt $TAG "v1.8.0"; then
+            echo "Antrea version < v1.8.0, skipping Helm index update"
+            exit 0
+        fi
+        ./website/scripts/update-helm-index.sh -website-repo website -version $TAG
     - name: Commit changes as antrea-bot
       uses: EndBug/add-and-commit@v7
       with:
