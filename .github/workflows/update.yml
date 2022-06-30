@@ -54,7 +54,7 @@ jobs:
             echo "Antrea version < v1.8.0, skipping Helm index update"
             exit 0
         fi
-        ./website/scripts/update-helm-index.sh -website-repo website -version $TAG
+        ./website/scripts/update-helm-index.sh --website-repo website --version $TAG
     - name: Commit changes as antrea-bot
       uses: EndBug/add-and-commit@v7
       with:

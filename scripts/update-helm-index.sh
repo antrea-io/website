@@ -93,7 +93,7 @@ RELEASE_ASSETS_URL="$ANTREA_REPO_URL/releases/download/$VERSION"
 ARCHIVE_URL="$RELEASE_ASSETS_URL/antrea-chart.tgz"
 INDEX_PATH="$WEBSITE_REPO/static/charts/index.yaml"
 
-curl -sLo "$TMP_DIR/antrea-${VERSION:1}.tgz" "$ARCHIVE_URL"
+curl -sLo "$TMP_DIR/antrea-chart.tgz" "$ARCHIVE_URL"
 
 $HELM repo index $TMP_DIR --merge $INDEX_PATH --url $RELEASE_ASSETS_URL
 
