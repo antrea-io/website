@@ -81,6 +81,10 @@ func (v Version) PrevPatchVersion() Version {
 	}
 }
 
+func (v Version) HasSuffix() bool {
+	return v.suffix != ""
+}
+
 func (v Version) LessThan(other Version) bool {
 	if v.major < other.major {
 		return true
@@ -419,9 +423,13 @@ func main() {
 		log.Fatalf("Failed to update TOC mapping: %v", err)
 	}
 
-	hugoConfigPath := filepath.Join(pkg.WebsiteRepo, "config.yaml")
-	if err := updateHugoConfig(hugoConfigPath, version); err != nil {
-		log.Fatalf("Failed to update Hugo config: %v", err)
+	if !semVer.HasSuffix() {
+		// for pre-releases (Alpha / Beta / Release Candidates), we hide the generated docs,
+		// by skipping the config.yaml update.
+		hugoConfigPath := filepath.Join(pkg.WebsiteRepo, "config.yaml")
+		if err := updateHugoConfig(hugoConfigPath, version); err != nil {
+			log.Fatalf("Failed to update Hugo config: %v", err)
+		}
 	}
 
 	if err := pkg.UpdateDocs(destDocsPath); err != nil {
