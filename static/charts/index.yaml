@@ -1,3 +1,27 @@
 apiVersion: v1
-entries: {}
-generated: "2022-07-05T22:53:18.567852772Z"
+entries:
+  antrea:
+  - apiVersion: v2
+    appVersion: 1.8.0-alpha.1
+    created: "2022-07-07T16:26:58.826240801Z"
+    description: Kubernetes networking based on Open vSwitch
+    digest: 851eb35c50464aa4de2e5dfa71116b2194e17c09f66a5761c749635908767410
+    home: https://antrea.io/
+    icon: https://raw.githubusercontent.com/antrea-io/antrea/main/docs/assets/logo/antrea_logo.svg
+    keywords:
+    - Kubernetes
+    - CNCF
+    - Networking
+    - CNI
+    - Security
+    - Open vSwitch
+    - OVS
+    kubeVersion: '>= 1.16.0-0'
+    name: antrea
+    sources:
+    - https://github.com/antrea-io/antrea
+    type: application
+    urls:
+    - https://github.com/antrea-io/antrea/releases/download/v1.8.0-alpha.1/antrea-chart.tgz
+    version: 1.8.0-alpha.1
+generated: "2022-07-07T16:26:58.824029921Z"
