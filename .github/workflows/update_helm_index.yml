@@ -1,0 +1,33 @@
+name: Update Helm index
+
+on:
+  workflow_dispatch:
+    inputs:
+      archive-url:
+        description: 'URL to the Helm archive (e.g., https://github.com/antrea-io/antrea/releases/download/v1.8.0/antrea-chart.tgz)'
+        required: true
+
+concurrency: needs_to_commit
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        path: website
+        token: ${{ secrets.ANTREA_BOT_PAT }}
+    - name: Update Helm index file
+      env:
+        ARCHIVE_URL: ${{ github.event.inputs.archive-url }}
+      run: |
+        ./website/scripts/update-helm-index.sh --website-repo website --archive-url $ARCHIVE_URL
+    - name: Commit changes as antrea-bot
+      uses: EndBug/add-and-commit@v7
+      with:
+        cwd: ./website
+        author_name: antrea-bot
+        author_email: antreabot@gmail.com
+        message: "Helm index update for ${{ github.event.inputs.archive-url }}"
+        signoff: false

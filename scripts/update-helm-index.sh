@@ -20,7 +20,7 @@ function echoerr {
     >&2 echo "$@"
 }
 
-_usage="Usage: $0 [--antrea-repo-url <URL>] --website-repo <DIR> --version <VERSION>
+_usage="Usage: $0 --website-repo <DIR> --archive-url <URL>
 Update the Helm repo index file."
 
 function print_usage {
@@ -31,25 +31,20 @@ function print_help {
     echoerr "Try '$0 --help' for more information."
 }
 
-ANTREA_REPO_URL="https://github.com/antrea-io/antrea"
 WEBSITE_REPO=""
-VERSION=""
+ARCHIVE_URL=""
 
 while [[ $# -gt 0 ]]
 do
 key="$1"
 
 case $key in
-    --antrea-repo-url)
-    ANTREA_REPO_URL="$2"
-    shift 2
-    ;;
     --website-repo)
     WEBSITE_REPO="$2"
     shift 2
     ;;
-    --version)
-    VERSION="$2"
+    --archive-url)
+    ARCHIVE_URL="$2"
     shift 2
     ;;
     -h|--help)
@@ -69,8 +64,8 @@ if [ "$WEBSITE_REPO" == "" ]; then
     exit 1
 fi
 
-if [ "$VERSION" == "" ]; then
-    echoerr "--version is required"
+if [ "$ARCHIVE_URL" == "" ]; then
+    echoerr "--archive-url is required"
     print_help
     exit 1
 fi
@@ -89,13 +84,13 @@ fi
 
 TMP_DIR=$(mktemp -d archives.XXXXXXXX)
 
-RELEASE_ASSETS_URL="$ANTREA_REPO_URL/releases/download/$VERSION"
-ARCHIVE_URL="$RELEASE_ASSETS_URL/antrea-chart.tgz"
 INDEX_PATH="$WEBSITE_REPO/static/charts/index.yaml"
+ARCHIVE_NAME=$(basename "$ARCHIVE_URL")
+BASE_URL=$(dirname "$ARCHIVE_URL")
 
-curl -sSfLo "$TMP_DIR/antrea-chart.tgz" "$ARCHIVE_URL"
+curl -sSfLo "$TMP_DIR/$ARCHIVE_NAME" "$ARCHIVE_URL"
 
-$HELM repo index $TMP_DIR --merge $INDEX_PATH --url $RELEASE_ASSETS_URL
+$HELM repo index $TMP_DIR --merge $INDEX_PATH --url $BASE_URL
 
 mv "$TMP_DIR/index.yaml" $INDEX_PATH
 
