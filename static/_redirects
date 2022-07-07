@@ -8,6 +8,6 @@
 
 # Other redirects
 # Github page with information about Antrea "live" office hours
-/live https://github.com/jayunit100/k8sprototypes/blob/master/antrea-LIVE/README.md 200
+/live https://github.com/jayunit100/k8sprototypes/blob/master/antrea-LIVE/README.md 301
 
-https://charts.antrea.io/* https://antrea.io/charts/:splat
+https://charts.antrea.io/* https://antrea.io/charts/:splat 301!
