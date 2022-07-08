@@ -7,8 +7,6 @@ on:
         description: 'URL to the Helm archive (e.g., https://github.com/antrea-io/antrea/releases/download/v1.8.0/antrea-chart.tgz)'
         required: true
 
-concurrency: needs_to_commit
-
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -18,6 +16,11 @@ jobs:
       with:
         path: website
         token: ${{ secrets.ANTREA_BOT_PAT }}
+    - name: Wait for exclusive access
+      working-directory: website
+      uses: ben-z/gh-action-mutex@v1.0-alpha-5
+      with:
+          branch: needs_to_commit-mutex
     - name: Update Helm index file
       env:
         ARCHIVE_URL: ${{ github.event.inputs.archive-url }}
