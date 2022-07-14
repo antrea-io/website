@@ -1,0 +1,10 @@
+# Artifact Hub repository metadata file
+repositoryID: 572652f4-28e8-461b-bd37-ce6a1ee45126
+# optional, packages that should not be indexed by Artifact Hub
+ignore:
+  - name: antrea
+    version: '^.*\-rc.*$'
+  - name: flow-aggregator
+    version: '^.*\-rc.*$'
+  - name: theia
+    version: '^.*\-rc.*$'
