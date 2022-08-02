@@ -5422,52 +5422,12 @@ Kubernetes meta/v1.LabelSelector
 <td>
 <code>usage</code></br>
 <em>
-<a href="#crd.antrea.io/v1alpha2.ExternalIPPoolUsage">
-ExternalIPPoolUsage
+<a href="#crd.antrea.io/v1alpha2.IPPoolUsage">
+IPPoolUsage
 </a>
 </em>
 </td>
 <td>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="crd.antrea.io/v1alpha2.ExternalIPPoolUsage">ExternalIPPoolUsage
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha2.ExternalIPPoolStatus">ExternalIPPoolStatus</a>)
-</p>
-<p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>total</code></br>
-<em>
-int
-</em>
-</td>
-<td>
-<p>Total number of IPs.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>used</code></br>
-<em>
-int
-</em>
-</td>
-<td>
-<p>Number of allocated IPs.</p>
 </td>
 </tr>
 </tbody>
@@ -5916,6 +5876,59 @@ IPVersion
 </em>
 </td>
 <td>
+</td>
+</tr>
+<tr>
+<td>
+<code>usage</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.IPPoolUsage">
+IPPoolUsage
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.IPPoolUsage">IPPoolUsage
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.ExternalIPPoolStatus">ExternalIPPoolStatus</a>, 
+<a href="#crd.antrea.io/v1alpha2.IPPoolStatus">IPPoolStatus</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>total</code></br>
+<em>
+int
+</em>
+</td>
+<td>
+<p>Total number of IPs.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>used</code></br>
+<em>
+int
+</em>
+</td>
+<td>
+<p>Number of allocated IPs.</p>
 </td>
 </tr>
 </tbody>
@@ -8077,5 +8090,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>8f73aea</code>.
+on git commit <code>b66ffda</code>.
 </em></p>
