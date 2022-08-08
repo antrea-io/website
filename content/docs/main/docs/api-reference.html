@@ -880,6 +880,20 @@ NodeReference
 <p>Node maintains the reference to the Node.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>service</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.ServiceReference">
+ServiceReference
+</a>
+</em>
+</td>
+<td>
+<p>Service is the reference to the Service. It can only be used in an AppliedTo
+Group and only a NodePort type Service can be referred by this field.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="controlplane.antrea.io/v1beta2.GroupMemberSet">GroupMemberSet
@@ -1787,6 +1801,7 @@ string
 </h3>
 <p>
 (<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.GroupMember">GroupMember</a>, 
 <a href="#controlplane.antrea.io/v1beta2.NetworkPolicyPeer">NetworkPolicyPeer</a>)
 </p>
 <p>
@@ -3019,6 +3034,24 @@ Kubernetes meta/v1.LabelSelector
 <em>(Optional)</em>
 <p>Select certain Nodes which match the label selector.
 A NodeSelector cannot be set in AppliedTo field or set with any other selector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>service</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+NamespacedName
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select a certain Service which matches the NamespacedName.
+A Service can only be set in either policy level AppliedTo field in a policy
+that only has ingress rules or rule level AppliedTo field in an ingress rule.
+Only a NodePort Service can be referred by this field.
+Cannot be set with any other selector.</p>
 </td>
 </tr>
 </tbody>
@@ -8090,5 +8123,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>b66ffda</code>.
+on git commit <code>e48c120</code>.
 </em></p>
