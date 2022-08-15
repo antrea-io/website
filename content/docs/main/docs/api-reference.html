@@ -1845,6 +1845,8 @@ Resource Types:
 <ul><li>
 <a href="#crd.antrea.io/v1alpha1.ClusterNetworkPolicy">ClusterNetworkPolicy</a>
 </li><li>
+<a href="#crd.antrea.io/v1alpha1.ExternalNode">ExternalNode</a>
+</li><li>
 <a href="#crd.antrea.io/v1alpha1.NetworkPolicy">NetworkPolicy</a>
 </li><li>
 <a href="#crd.antrea.io/v1alpha1.Tier">Tier</a>
@@ -1997,6 +1999,83 @@ NetworkPolicyStatus
 </td>
 <td>
 <p>Most recently observed status of the NetworkPolicy.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.ExternalNode">ExternalNode
+</h3>
+<p>
+<p>ExternalNode refers to a virtual machine or a bare-metal server
+which is not a K8s node, but has Antrea agent running on it.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>ExternalNode</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.ExternalNodeSpec">
+ExternalNodeSpec
+</a>
+</em>
+</td>
+<td>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>interfaces</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.NetworkInterface">
+[]NetworkInterface
+</a>
+</em>
+</td>
+<td>
+<p>Only one network interface is supported now.
+Other interfaces except interfaces[0] will be ignored if there are more than one interfaces.</p>
+</td>
+</tr>
+</table>
 </td>
 </tr>
 </tbody>
@@ -2539,6 +2618,39 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.ExternalNodeSpec">ExternalNodeSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.ExternalNode">ExternalNode</a>)
+</p>
+<p>
+<p>ExternalNodeSpec defines the desired state for ExternalNode.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>interfaces</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.NetworkInterface">
+[]NetworkInterface
+</a>
+</em>
+</td>
+<td>
+<p>Only one network interface is supported now.
+Other interfaces except interfaces[0] will be ignored if there are more than one interfaces.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.ICMPEchoRequestHeader">ICMPEchoRequestHeader
 </h3>
 <p>
@@ -2860,6 +2972,44 @@ string
 <code>namespace</code></br>
 <em>
 string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.NetworkInterface">NetworkInterface
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.ExternalNodeSpec">ExternalNodeSpec</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>ips</code></br>
+<em>
+[]string
 </em>
 </td>
 <td>
@@ -8410,5 +8560,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>173ef52</code>.
+on git commit <code>65b62cc</code>.
 </em></p>
