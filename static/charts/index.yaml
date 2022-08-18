@@ -7,9 +7,9 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: 1.8.0
-    created: "2022-08-18T08:08:42.764539272Z"
+    created: "2022-08-18T20:04:56.44830341Z"
     description: Kubernetes networking based on Open vSwitch
-    digest: a2e07a60244eb0d115e4b391b035aa24944304302a10294757b534a6360e8598
+    digest: b436a9bd09cd18278c650df0ae6aff5a6c0d28e2fd161cd1a09152fcabf214db
     home: https://antrea.io/
     icon: https://raw.githubusercontent.com/antrea-io/antrea/main/docs/assets/logo/antrea_logo.svg
     keywords:
@@ -190,4 +190,4 @@ entries:
     urls:
     - https://github.com/antrea-io/theia/releases/download/v0.2.0-alpha.0/theia-chart.tgz
     version: 0.2.0-alpha.0
-generated: "2022-08-18T09:09:27.677200185Z"
+generated: "2022-08-18T20:04:56.44486692Z"
