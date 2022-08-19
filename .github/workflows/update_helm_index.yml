@@ -11,25 +11,27 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v2
-      with:
-        path: website
-        token: ${{ secrets.ANTREA_BOT_PAT }}
     - name: Wait for exclusive access
       uses: ben-z/gh-action-mutex@v1.0-alpha-5
       with:
-          branch: needs_to_commit-mutex
+        repo-token: ${{ secrets.ANTREA_BOT_PAT }}
+        repository: antrea-io/website
+        branch: needs_to_commit-mutex
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        ref: main
+        path: website
+        token: ${{ secrets.ANTREA_BOT_PAT }}
     - name: Update Helm index file
       env:
         ARCHIVE_URL: ${{ github.event.inputs.archive-url }}
       run: |
         ./website/scripts/update-helm-index.sh --website-repo website --archive-url $ARCHIVE_URL
     - name: Commit changes as antrea-bot
-      uses: EndBug/add-and-commit@v7
+      uses: EndBug/add-and-commit@v9
       with:
         cwd: ./website
         author_name: antrea-bot
         author_email: antreabot@gmail.com
         message: "Helm index update for ${{ github.event.inputs.archive-url }}"
-        signoff: false

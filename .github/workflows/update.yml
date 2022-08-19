@@ -16,6 +16,12 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
+    - name: Wait for exclusive access
+      uses: ben-z/gh-action-mutex@v1.0-alpha-5
+      with:
+        repo-token: ${{ secrets.ANTREA_BOT_PAT }}
+        repository: antrea-io/website
+        branch: needs_to_commit-mutex
     - name: Checkout Antrea
       uses: actions/checkout@v2
       with:
@@ -25,12 +31,9 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v2
       with:
+        ref: main
         path: website
         token: ${{ secrets.ANTREA_BOT_PAT }}
-    - name: Wait for exclusive access
-      uses: ben-z/gh-action-mutex@v1.0-alpha-5
-      with:
-          branch: needs_to_commit-mutex
     - name: Install golang
       uses: actions/setup-go@v2
       with:
@@ -49,10 +52,9 @@ jobs:
       run: |
         ./website/scripts/bin/freeze-version-docs -antrea-repo antrea -website-repo website -version $TAG
     - name: Commit changes as antrea-bot
-      uses: EndBug/add-and-commit@v7
+      uses: EndBug/add-and-commit@v9
       with:
         cwd: ./website
         author_name: antrea-bot
         author_email: antreabot@gmail.com
         message: "Website update for ${{ github.event.inputs.antrea-ref }}"
-        signoff: false
