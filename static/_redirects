@@ -3,8 +3,10 @@
 
 /antrea/* go-get=1 /golang/antrea.html 200
 /libOpenflow/* go-get=1 /golang/libOpenflow.html 200
+/nephe/* go-get=1 /golang/nephe.html 200
 /ofnet/* go-get=1 /golang/ofnet.html 200
 /resource-auditing/* go-get=1 /golang/resource-auditing.html 200
+/theia/* go-get=1 /golang/theia.html 200
 
 # Other redirects
 # Github page with information about Antrea "live" office hours
