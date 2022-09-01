@@ -1849,6 +1849,8 @@ Resource Types:
 </li><li>
 <a href="#crd.antrea.io/v1alpha1.NetworkPolicy">NetworkPolicy</a>
 </li><li>
+<a href="#crd.antrea.io/v1alpha1.SupportBundleCollection">SupportBundleCollection</a>
+</li><li>
 <a href="#crd.antrea.io/v1alpha1.Tier">Tier</a>
 </li><li>
 <a href="#crd.antrea.io/v1alpha1.Traceflow">Traceflow</a>
@@ -2230,6 +2232,155 @@ NetworkPolicyStatus
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.SupportBundleCollection">SupportBundleCollection
+</h3>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>SupportBundleCollection</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+<p>Standard metadata of the object.</p>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.SupportBundleCollectionSpec">
+SupportBundleCollectionSpec
+</a>
+</em>
+</td>
+<td>
+<p>Specification of the desired behavior of SupportBundleCollection.</p>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>nodes</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.BundleNodes">
+BundleNodes
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>externalNodes</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.BundleExternalNodes">
+BundleExternalNodes
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>expirationMinutes</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>ExpirationMinutes is the requested duration of validity of the SupportBundleCollection.
+A SupportBundleCollection will be marked as Failed if it does not finish before expiration.
+Default is 60.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>sinceTime</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>SinceTime specifies a relative time before the current time from which to collect logs
+A valid value is like: 1d, 2h, 30m.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>fileServer</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.BundleFileServer">
+BundleFileServer
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>authentication</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.BundleServerAuthConfiguration">
+BundleServerAuthConfiguration
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.SupportBundleCollectionStatus">
+SupportBundleCollectionStatus
+</a>
+</em>
+</td>
+<td>
+<p>Most recently observed status of the SupportBundleCollection.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.Tier">Tier
 </h3>
 <p>
@@ -2462,6 +2613,191 @@ TraceflowStatus
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.BundleExternalNodes">BundleExternalNodes
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.SupportBundleCollectionSpec">SupportBundleCollectionSpec</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>Namespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeNames</code></br>
+<em>
+[]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>List the names of certain ExternalNodes which are expected to collect and upload
+bundle files.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select certain ExternalNodes which match the label selector.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.BundleFileServer">BundleFileServer
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.SupportBundleCollectionSpec">SupportBundleCollectionSpec</a>)
+</p>
+<p>
+<p>BundleFileServer specifies the bundle file server information.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>url</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The URL of the bundle file server. It is set with format: scheme://host[:port][/path],
+e.g, <a href="https://api.example.com:8443/v1/supportbundles/">https://api.example.com:8443/v1/supportbundles/</a>. If scheme is not set, https is used by default.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.BundleNodes">BundleNodes
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.SupportBundleCollectionSpec">SupportBundleCollectionSpec</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>nodeNames</code></br>
+<em>
+[]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>List the names of certain Nodes which are expected to collect and upload
+bundle files.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select certain Nodes which match the label selector.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.BundleServerAuthConfiguration">BundleServerAuthConfiguration
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.SupportBundleCollectionSpec">SupportBundleCollectionSpec</a>)
+</p>
+<p>
+<p>BundleServerAuthConfiguration defines the authentication parameters that Antrea uses to access
+the BundleFileServer.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>authType</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.BundleServerAuthType">
+BundleServerAuthType
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>authSecret</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#secretreference-v1-core">
+Kubernetes core/v1.SecretReference
+</a>
+</em>
+</td>
+<td>
+<p>AuthSecret is a Secret reference which stores the authentication value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.BundleServerAuthType">BundleServerAuthType
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.BundleServerAuthConfiguration">BundleServerAuthConfiguration</a>)
+</p>
+<p>
+<p>BundleServerAuthType defines the authentication type to access the BundleFileServer.</p>
+</p>
 <h3 id="crd.antrea.io/v1alpha1.ClusterNetworkPolicySpec">ClusterNetworkPolicySpec
 </h3>
 <p>
@@ -4115,6 +4451,241 @@ string
 <td>
 <p>IP is the source IPv4 or IPv6 address. IP as the source is supported
 only for live-traffic Traceflow.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.SupportBundleCollectionCondition">SupportBundleCollectionCondition
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.SupportBundleCollectionStatus">SupportBundleCollectionStatus</a>)
+</p>
+<p>
+<p>SupportBundleCollectionCondition describes the state of a SupportBundleCollection at a certain point.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.SupportBundleCollectionConditionType">
+SupportBundleCollectionConditionType
+</a>
+</em>
+</td>
+<td>
+<p>Type of StatefulSet condition.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#conditionstatus-v1-meta">
+Kubernetes meta/v1.ConditionStatus
+</a>
+</em>
+</td>
+<td>
+<p>Status of the condition, one of True, False, Unknown.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>lastTransitionTime</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
+Kubernetes meta/v1.Time
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Last time the condition transitioned from one status to another.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>reason</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>The reason for the condition&rsquo;s last transition.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>message</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>A human-readable message indicating details about the transition.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.SupportBundleCollectionConditionType">SupportBundleCollectionConditionType
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.SupportBundleCollectionCondition">SupportBundleCollectionCondition</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1alpha1.SupportBundleCollectionSpec">SupportBundleCollectionSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.SupportBundleCollection">SupportBundleCollection</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>nodes</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.BundleNodes">
+BundleNodes
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>externalNodes</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.BundleExternalNodes">
+BundleExternalNodes
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>expirationMinutes</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>ExpirationMinutes is the requested duration of validity of the SupportBundleCollection.
+A SupportBundleCollection will be marked as Failed if it does not finish before expiration.
+Default is 60.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>sinceTime</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>SinceTime specifies a relative time before the current time from which to collect logs
+A valid value is like: 1d, 2h, 30m.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>fileServer</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.BundleFileServer">
+BundleFileServer
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>authentication</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.BundleServerAuthConfiguration">
+BundleServerAuthConfiguration
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.SupportBundleCollectionStatus">SupportBundleCollectionStatus
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.SupportBundleCollection">SupportBundleCollection</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>succeededNodes</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>The number of Nodes and ExternalNodes that have completed the SupportBundleCollection.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>desiredNodes</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>The total number of Nodes and ExternalNodes that should process the SupportBundleCollection.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>conditions</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.SupportBundleCollectionCondition">
+[]SupportBundleCollectionCondition
+</a>
+</em>
+</td>
+<td>
+<p>Represents the latest available observations of a SupportBundleCollection current state.</p>
 </td>
 </tr>
 </tbody>
@@ -8560,5 +9131,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>7a3f6e2</code>.
+on git commit <code>5dfdf24</code>.
 </em></p>
