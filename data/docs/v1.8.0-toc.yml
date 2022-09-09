@@ -89,6 +89,8 @@ toc:
         url: /docs/cookbooks/fluentd
   - title: Multicluster
     subfolderitems:
+      - page: Quick Start
+        url: /docs/multicluster/quick-start
       - page: User guide
         url: /docs/multicluster/user-guide
       - page: Antctl
