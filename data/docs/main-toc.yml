@@ -63,6 +63,8 @@ toc:
         url: /docs/antrea-ipam
       - page: Exposing Services of type LoadBalancer
         url: /docs/service-loadbalancer
+      - page: Traffic Control
+        url: /docs/traffic-control
       - page: Versioning
         url: /docs/versioning
       - page: Antrea API Groups
