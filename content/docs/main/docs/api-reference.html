@@ -1966,8 +1966,8 @@ other AntreaClusterNetworkPolicies.</p>
 <td>
 <code>appliedTo</code></br>
 <em>
-<a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">
-[]NetworkPolicyPeer
+<a href="#crd.antrea.io/v1alpha1.AppliedTo">
+[]AppliedTo
 </a>
 </em>
 </td>
@@ -2193,8 +2193,8 @@ NetworkPolicies.</p>
 <td>
 <code>appliedTo</code></br>
 <em>
-<a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">
-[]NetworkPolicyPeer
+<a href="#crd.antrea.io/v1alpha1.AppliedTo">
+[]AppliedTo
 </a>
 </em>
 </td>
@@ -2635,6 +2635,128 @@ TraceflowStatus
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.AppliedTo">AppliedTo
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.ClusterNetworkPolicySpec">ClusterNetworkPolicySpec</a>, 
+<a href="#crd.antrea.io/v1alpha1.NetworkPolicySpec">NetworkPolicySpec</a>, 
+<a href="#crd.antrea.io/v1alpha1.Rule">Rule</a>)
+</p>
+<p>
+<p>AppliedTo describes the grouping selector of workloads in AppliedTo field.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>podSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select Pods from NetworkPolicy&rsquo;s Namespace as workloads in
+AppliedTo fields. If set with NamespaceSelector, Pods are
+matched from Namespaces matched by the NamespaceSelector.
+Cannot be set with any other selector except NamespaceSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespaceSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select all Pods from Namespaces matched by this selector, as
+workloads in AppliedTo fields. If set with PodSelector,
+Pods are matched from Namespaces matched by the NamespaceSelector.
+Cannot be set with any other selector except PodSelector or
+ExternalEntitySelector. Cannot be set with Namespaces.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>externalEntitySelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select ExternalEntities from NetworkPolicy&rsquo;s Namespace as workloads
+in AppliedTo fields. If set with NamespaceSelector,
+ExternalEntities are matched from Namespaces matched by the
+NamespaceSelector.
+Cannot be set with any other selector except NamespaceSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>group</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Group is the name of the ClusterGroup which can be set as an
+AppliedTo in place of a stand-alone selector. A Group cannot
+be set with any other selector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>serviceAccount</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+NamespacedName
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select all Pods with the ServiceAccount matched by this field, as
+workloads in AppliedTo fields.
+Cannot be set with any other selector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>service</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+NamespacedName
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select a certain Service which matches the NamespacedName.
+A Service can only be set in either policy level AppliedTo field in a policy
+that only has ingress rules or rule level AppliedTo field in an ingress rule.
+Only a NodePort Service can be referred by this field.
+Cannot be set with any other selector.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.BundleExternalNodes">BundleExternalNodes
 </h3>
 <p>
@@ -2868,8 +2990,8 @@ other AntreaClusterNetworkPolicies.</p>
 <td>
 <code>appliedTo</code></br>
 <em>
-<a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">
-[]NetworkPolicyPeer
+<a href="#crd.antrea.io/v1alpha1.AppliedTo">
+[]AppliedTo
 </a>
 </em>
 </td>
@@ -3298,6 +3420,7 @@ int32
 </h3>
 <p>
 (<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.AppliedTo">AppliedTo</a>, 
 <a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">NetworkPolicyPeer</a>, 
 <a href="#crd.antrea.io/v1alpha1.Rule">Rule</a>, 
 <a href="#crd.antrea.io/v1alpha2.GroupSpec">GroupSpec</a>, 
@@ -3471,8 +3594,6 @@ string
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha1.ClusterNetworkPolicySpec">ClusterNetworkPolicySpec</a>, 
-<a href="#crd.antrea.io/v1alpha1.NetworkPolicySpec">NetworkPolicySpec</a>, 
 <a href="#crd.antrea.io/v1alpha1.Rule">Rule</a>)
 </p>
 <p>
@@ -3514,7 +3635,7 @@ Kubernetes meta/v1.LabelSelector
 <td>
 <em>(Optional)</em>
 <p>Select Pods from NetworkPolicy&rsquo;s Namespace as workloads in
-AppliedTo/To/From fields. If set with NamespaceSelector, Pods are
+To/From fields. If set with NamespaceSelector, Pods are
 matched from Namespaces matched by the NamespaceSelector.
 Cannot be set with any other selector except NamespaceSelector.</p>
 </td>
@@ -3548,7 +3669,7 @@ PeerNamespaces
 </td>
 <td>
 <em>(Optional)</em>
-<p>Select Pod/ExternalEntity from Namespaces matched by specifc criteria.
+<p>Select Pod/ExternalEntity from Namespaces matched by specific criteria.
 Current supported criteria is match: Self, which selects from the same
 Namespace of the appliedTo workloads.
 Cannot be set with any other selector except PodSelector or
@@ -3569,7 +3690,7 @@ Kubernetes meta/v1.LabelSelector
 <td>
 <em>(Optional)</em>
 <p>Select ExternalEntities from NetworkPolicy&rsquo;s Namespace as workloads
-in AppliedTo/To/From fields. If set with NamespaceSelector,
+in To/From fields. If set with NamespaceSelector,
 ExternalEntities are matched from Namespaces matched by the
 NamespaceSelector.
 Cannot be set with any other selector except NamespaceSelector.</p>
@@ -3583,10 +3704,9 @@ string
 </em>
 </td>
 <td>
-<p>Group is the name of the ClusterGroup which can be set as an
-AppliedTo or within an Ingress or Egress rule in place of
-a stand-alone selector. A Group cannot be set with any other
-selector.</p>
+<p>Group is the name of the ClusterGroup which can be set within
+an Ingress or Egress rule in place of a stand-alone selector.
+A Group cannot be set with any other selector.</p>
 </td>
 </tr>
 <tr>
@@ -3617,7 +3737,7 @@ NamespacedName
 <td>
 <em>(Optional)</em>
 <p>Select all Pods with the ServiceAccount matched by this field, as
-workloads in AppliedTo/To/From fields.
+workloads in To/From fields.
 Cannot be set with any other selector.</p>
 </td>
 </tr>
@@ -3634,24 +3754,6 @@ Kubernetes meta/v1.LabelSelector
 <em>(Optional)</em>
 <p>Select certain Nodes which match the label selector.
 A NodeSelector cannot be set in AppliedTo field or set with any other selector.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>service</code></br>
-<em>
-<a href="#crd.antrea.io/v1alpha1.NamespacedName">
-NamespacedName
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Select a certain Service which matches the NamespacedName.
-A Service can only be set in either policy level AppliedTo field in a policy
-that only has ingress rules or rule level AppliedTo field in an ingress rule.
-Only a NodePort Service can be referred by this field.
-Cannot be set with any other selector.</p>
 </td>
 </tr>
 </tbody>
@@ -3820,8 +3922,8 @@ NetworkPolicies.</p>
 <td>
 <code>appliedTo</code></br>
 <em>
-<a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">
-[]NetworkPolicyPeer
+<a href="#crd.antrea.io/v1alpha1.AppliedTo">
+[]AppliedTo
 </a>
 </em>
 </td>
@@ -4401,8 +4503,8 @@ when rules are matched. Should be default to false.</p>
 <td>
 <code>appliedTo</code></br>
 <em>
-<a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">
-[]NetworkPolicyPeer
+<a href="#crd.antrea.io/v1alpha1.AppliedTo">
+[]AppliedTo
 </a>
 </em>
 </td>
@@ -9153,5 +9255,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>14e0dda</code>.
+on git commit <code>c491ead</code>.
 </em></p>
