@@ -41,6 +41,8 @@ Resource Types:
 <a href="#controlplane.antrea.io/v1beta2.NetworkPolicy">NetworkPolicy</a>
 </li><li>
 <a href="#controlplane.antrea.io/v1beta2.NodeStatsSummary">NodeStatsSummary</a>
+</li><li>
+<a href="#controlplane.antrea.io/v1beta2.SupportBundleCollection">SupportBundleCollection</a>
 </li></ul>
 <h3 id="controlplane.antrea.io/v1beta2.AddressGroup">AddressGroup
 </h3>
@@ -583,6 +585,98 @@ Refer to the Kubernetes API documentation for the fields of the
 </tr>
 </tbody>
 </table>
+<h3 id="controlplane.antrea.io/v1beta2.SupportBundleCollection">SupportBundleCollection
+</h3>
+<p>
+<p>SupportBundleCollection is the message format of antrea/pkg/controller/types.SupportBundleCollection in an API response.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+controlplane.antrea.io/v1beta2
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>SupportBundleCollection</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>expiredAt</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
+Kubernetes meta/v1.Time
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>sinceTime</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>fileServer</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.BundleFileServer">
+BundleFileServer
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>authentication</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.BundleServerAuthConfiguration">
+BundleServerAuthConfiguration
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="controlplane.antrea.io/v1beta2.AddressGroupPatch">AddressGroupPatch
 </h3>
 <p>
@@ -681,6 +775,122 @@ Refer to the Kubernetes API documentation for the fields of the
 <em>
 <a href="#controlplane.antrea.io/v1beta2.GroupMember">
 []GroupMember
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controlplane.antrea.io/v1beta2.BasicAuthentication">BasicAuthentication
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.BundleServerAuthConfiguration">BundleServerAuthConfiguration</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>username</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>password</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controlplane.antrea.io/v1beta2.BundleFileServer">BundleFileServer
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.SupportBundleCollection">SupportBundleCollection</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>url</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controlplane.antrea.io/v1beta2.BundleServerAuthConfiguration">BundleServerAuthConfiguration
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.SupportBundleCollection">SupportBundleCollection</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>bearerToken</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>apiKey</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>basicAuthentication</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.BasicAuthentication">
+BasicAuthentication
 </a>
 </em>
 </td>
@@ -1861,6 +2071,121 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="controlplane.antrea.io/v1beta2.SupportBundleCollectionNodeStatus">SupportBundleCollectionNodeStatus
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.SupportBundleCollectionStatus">SupportBundleCollectionStatus</a>)
+</p>
+<p>
+<p>SupportBundleCollectionNodeStatus is the status of a SupportBundleCollection on a Node.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>nodeName</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The name of the Node that produces the status.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeNamespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The namespace of the Node that produces the status. It is set only when NodeType is ExternalNode.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeType</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The type of the Node that produces the status. The values include Node and ExternalNode.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>completed</code></br>
+<em>
+bool
+</em>
+</td>
+<td>
+<p>The phase in which a SupportBundleCollection is on the Node.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>error</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controlplane.antrea.io/v1beta2.SupportBundleCollectionStatus">SupportBundleCollectionStatus
+</h3>
+<p>
+<p>SupportBundleCollectionStatus is the status of a SupportBundleCollection.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>nodes</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.SupportBundleCollectionNodeStatus">
+[]SupportBundleCollectionNodeStatus
+</a>
+</em>
+</td>
+<td>
+<p>Nodes contains statuses produced on a list of Nodes.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <hr/>
 <h2 id="crd.antrea.io/v1alpha1">crd.antrea.io/v1alpha1</h2>
 Resource Types:
@@ -2775,7 +3100,7 @@ Cannot be set with any other selector.</p>
 <tbody>
 <tr>
 <td>
-<code>Namespace</code></br>
+<code>namespace</code></br>
 <em>
 string
 </em>
@@ -9255,5 +9580,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>2971e09</code>.
+on git commit <code>53d253a</code>.
 </em></p>
