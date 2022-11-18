@@ -1492,6 +1492,18 @@ This field can only be possibly set for NetworkPolicyPeer of egress rules.</p>
 This field can only be possibly set for NetworkPolicyPeer of egress rules.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>labelIdentities</code></br>
+<em>
+[]uint32
+</em>
+</td>
+<td>
+<p>A list of labelIdentities selected as ingress peers for stretched policy.
+This field can only be possibly set for NetworkPolicyPeer of ingress rules.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="controlplane.antrea.io/v1beta2.NetworkPolicyReference">NetworkPolicyReference
@@ -4081,6 +4093,22 @@ Kubernetes meta/v1.LabelSelector
 A NodeSelector cannot be set in AppliedTo field or set with any other selector.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>scope</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.PeerScope">
+PeerScope
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Define scope of the Pod/NamespaceSelector(s) of this peer.
+Can only be used in ingress NetworkPolicyPeers.
+Defaults to &ldquo;Cluster&rdquo;.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="crd.antrea.io/v1alpha1.NetworkPolicyPhase">NetworkPolicyPhase
@@ -4686,6 +4714,14 @@ NamespaceMatchType
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.PeerScope">PeerScope
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">NetworkPolicyPeer</a>)
+</p>
+<p>
+</p>
 <h3 id="crd.antrea.io/v1alpha1.Rule">Rule
 </h3>
 <p>
@@ -9580,5 +9616,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>073dbf9</code>.
+on git commit <code>fcda658</code>.
 </em></p>
