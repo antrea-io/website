@@ -8557,6 +8557,7 @@ string
 </em>
 </td>
 <td>
+<p>Antrea binary version</p>
 </td>
 </tr>
 <tr>
@@ -8569,7 +8570,7 @@ Kubernetes core/v1.ObjectReference
 </em>
 </td>
 <td>
-<p>Antrea binary version</p>
+<p>The Pod that Antrea Agent is running in</p>
 </td>
 </tr>
 <tr>
@@ -8582,7 +8583,7 @@ Kubernetes core/v1.ObjectReference
 </em>
 </td>
 <td>
-<p>The Pod that Antrea Agent is running in</p>
+<p>The Node that Antrea Agent is running in</p>
 </td>
 </tr>
 <tr>
@@ -8593,7 +8594,7 @@ Kubernetes core/v1.ObjectReference
 </em>
 </td>
 <td>
-<p>The Node that Antrea Agent is running in</p>
+<p>Node subnets</p>
 </td>
 </tr>
 <tr>
@@ -8606,7 +8607,7 @@ OVSInfo
 </em>
 </td>
 <td>
-<p>Node subnets</p>
+<p>OVS Information</p>
 </td>
 </tr>
 <tr>
@@ -8619,7 +8620,7 @@ NetworkPolicyControllerInfo
 </em>
 </td>
 <td>
-<p>OVS Information</p>
+<p>Antrea Agent NetworkPolicy information</p>
 </td>
 </tr>
 <tr>
@@ -8630,7 +8631,7 @@ int32
 </em>
 </td>
 <td>
-<p>Antrea Agent NetworkPolicy information</p>
+<p>The number of Pods which the agent is in charge of</p>
 </td>
 </tr>
 <tr>
@@ -8643,7 +8644,7 @@ int32
 </em>
 </td>
 <td>
-<p>The number of Pods which the agent is in charge of</p>
+<p>Agent condition contains types like AgentHealthy</p>
 </td>
 </tr>
 <tr>
@@ -8654,7 +8655,7 @@ int
 </em>
 </td>
 <td>
-<p>Agent condition contains types like AgentHealthy</p>
+<p>The port of antrea agent API Server</p>
 </td>
 </tr>
 </tbody>
@@ -8710,6 +8711,7 @@ string
 </em>
 </td>
 <td>
+<p>Antrea binary version</p>
 </td>
 </tr>
 <tr>
@@ -8722,7 +8724,7 @@ Kubernetes core/v1.ObjectReference
 </em>
 </td>
 <td>
-<p>Antrea binary version</p>
+<p>The Pod that Antrea Controller is running in</p>
 </td>
 </tr>
 <tr>
@@ -8735,7 +8737,7 @@ Kubernetes core/v1.ObjectReference
 </em>
 </td>
 <td>
-<p>The Pod that Antrea Controller is running in</p>
+<p>The Node that Antrea Controller is running in</p>
 </td>
 </tr>
 <tr>
@@ -8748,7 +8750,7 @@ Kubernetes core/v1.ObjectReference
 </em>
 </td>
 <td>
-<p>The Node that Antrea Controller is running in</p>
+<p>Antrea Controller Service</p>
 </td>
 </tr>
 <tr>
@@ -8761,7 +8763,7 @@ NetworkPolicyControllerInfo
 </em>
 </td>
 <td>
-<p>Antrea Controller Service</p>
+<p>Antrea Controller NetworkPolicy information</p>
 </td>
 </tr>
 <tr>
@@ -8772,7 +8774,7 @@ int32
 </em>
 </td>
 <td>
-<p>Antrea Controller NetworkPolicy information</p>
+<p>Number of agents which are connected to this controller</p>
 </td>
 </tr>
 <tr>
@@ -8785,7 +8787,7 @@ int32
 </em>
 </td>
 <td>
-<p>Number of agents which are connected to this controller</p>
+<p>Controller condition contains types like ControllerHealthy</p>
 </td>
 </tr>
 <tr>
@@ -8796,7 +8798,7 @@ int
 </em>
 </td>
 <td>
-<p>Controller condition contains types like ControllerHealthy</p>
+<p>The port of antrea controller API Server</p>
 </td>
 </tr>
 </tbody>
@@ -8827,6 +8829,7 @@ AgentConditionType
 </em>
 </td>
 <td>
+<p>One of the AgentConditionType listed above</p>
 </td>
 </tr>
 <tr>
@@ -8839,7 +8842,7 @@ Kubernetes core/v1.ConditionStatus
 </em>
 </td>
 <td>
-<p>One of the AgentConditionType listed above</p>
+<p>Mark certain type status, one of True, False, Unknown</p>
 </td>
 </tr>
 <tr>
@@ -8852,7 +8855,7 @@ Kubernetes meta/v1.Time
 </em>
 </td>
 <td>
-<p>Mark certain type status, one of True, False, Unknown</p>
+<p>The timestamp when AntreaAgentInfo is created/updated, ideally heartbeat interval is 60s</p>
 </td>
 </tr>
 <tr>
@@ -8863,7 +8866,7 @@ string
 </em>
 </td>
 <td>
-<p>The timestamp when AntreaAgentInfo is created/updated, ideally heartbeat interval is 60s</p>
+<p>Brief reason</p>
 </td>
 </tr>
 <tr>
@@ -8874,7 +8877,7 @@ string
 </em>
 </td>
 <td>
-<p>Brief reason</p>
+<p>Human readable message indicating details</p>
 </td>
 </tr>
 </tbody>
@@ -8913,6 +8916,7 @@ ControllerConditionType
 </em>
 </td>
 <td>
+<p>One of the ControllerConditionType listed above, controllerHealthy</p>
 </td>
 </tr>
 <tr>
@@ -8925,7 +8929,7 @@ Kubernetes core/v1.ConditionStatus
 </em>
 </td>
 <td>
-<p>One of the ControllerConditionType listed above, controllerHealthy</p>
+<p>Mark certain type status, one of True, False, Unknown</p>
 </td>
 </tr>
 <tr>
@@ -8938,7 +8942,7 @@ Kubernetes meta/v1.Time
 </em>
 </td>
 <td>
-<p>Mark certain type status, one of True, False, Unknown</p>
+<p>The timestamp when AntreaControllerInfo is created/updated, ideally heartbeat interval is 60s</p>
 </td>
 </tr>
 <tr>
@@ -8949,7 +8953,7 @@ string
 </em>
 </td>
 <td>
-<p>The timestamp when AntreaControllerInfo is created/updated, ideally heartbeat interval is 60s</p>
+<p>Brief reason</p>
 </td>
 </tr>
 <tr>
@@ -8960,7 +8964,7 @@ string
 </em>
 </td>
 <td>
-<p>Brief reason</p>
+<p>Human readable message indicating details</p>
 </td>
 </tr>
 </tbody>
@@ -9066,6 +9070,7 @@ map[string]int32
 </em>
 </td>
 <td>
+<p>Key: flow table name, Value: flow number</p>
 </td>
 </tr>
 </tbody>
@@ -9616,5 +9621,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>fcda658</code>.
+on git commit <code>bd9d56d</code>.
 </em></p>
