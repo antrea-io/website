@@ -1164,6 +1164,61 @@ k8s.io/apimachinery/pkg/types.UID
 </tr>
 </tbody>
 </table>
+<h3 id="controlplane.antrea.io/v1beta2.HTTPProtocol">HTTPProtocol
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.L7Protocol">L7Protocol</a>)
+</p>
+<p>
+<p>HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together.
+If all fields are not provided, it matches all HTTP requests.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>host</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Host represents the hostname present in the URI or the HTTP Host header to match.
+It does not contain the port associated with the host.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>method</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Method represents the HTTP method to match.
+It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>path</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Path represents the URI path to match (Ex. &ldquo;/index.html&rdquo;, &ldquo;/admin&rdquo;).</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="controlplane.antrea.io/v1beta2.IPAddress">IPAddress
 (<code>[]byte</code> alias)</p></h3>
 <p>
@@ -1257,6 +1312,37 @@ IPAddress
 <code>prefixLength</code></br>
 <em>
 int32
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controlplane.antrea.io/v1beta2.L7Protocol">L7Protocol
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyRule">NetworkPolicyRule</a>)
+</p>
+<p>
+<p>L7Protocol defines application layer protocol to match.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>http</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.HTTPProtocol">
+HTTPProtocol
+</a>
 </em>
 </td>
 <td>
@@ -1705,6 +1791,19 @@ string
 <td>
 <p>Name describes the intention of this rule.
 Name should be unique within the policy.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>l7Protocols</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.L7Protocol">
+[]L7Protocol
+</a>
+</em>
+</td>
+<td>
+<p>L7Protocols is a list of application layer protocols which should be matched.</p>
 </td>
 </tr>
 </tbody>
@@ -3468,6 +3567,61 @@ Other interfaces except interfaces[0] will be ignored if there are more than one
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.HTTPProtocol">HTTPProtocol
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.L7Protocol">L7Protocol</a>)
+</p>
+<p>
+<p>HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together.
+If all fields are not provided, it matches all HTTP requests.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>host</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Host represents the hostname present in the URI or the HTTP Host header to match.
+It does not contain the port associated with the host.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>method</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Method represents the HTTP method to match.
+It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>path</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Path represents the URI path to match (Ex. &ldquo;/index.html&rdquo;, &ldquo;/admin&rdquo;).</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.ICMPEchoRequestHeader">ICMPEchoRequestHeader
 </h3>
 <p>
@@ -3740,6 +3894,36 @@ int32
 </td>
 <td>
 <p>HopLimit is the IPv6 Hop Limit.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.L7Protocol">L7Protocol
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.Rule">Rule</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>http</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.HTTPProtocol">
+HTTPProtocol
+</a>
+</em>
+</td>
+<td>
 </td>
 </tr>
 </tbody>
@@ -4783,6 +4967,23 @@ are unset or empty, this rule matches all ports.</p>
 <em>(Optional)</em>
 <p>Set of protocols matched by the rule. If this field and Ports are unset or
 empty, this rule matches all protocols supported.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>l7Protocols</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.L7Protocol">
+[]L7Protocol
+</a>
+</em>
+</td>
+<td>
+<p>Set of layer 7 protocols matched by the rule. If this field is set, action can only be Allow.
+When this field is used in a rule, any traffic matching the other layer <sup>3</sup>&frasl;<sub>4</sub> criteria of the rule (typically the
+5-tuple) will be forwarded to an application-aware engine for protocol detection and rule enforcement, and the
+traffic will be allowed if the layer 7 criteria is also matched, otherwise it will be dropped. Therefore, any
+rules after a layer 7 rule will not be enforced for the traffic.</p>
 </td>
 </tr>
 <tr>
@@ -9621,5 +9822,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>866cafe</code>.
+on git commit <code>a3128d5</code>.
 </em></p>
