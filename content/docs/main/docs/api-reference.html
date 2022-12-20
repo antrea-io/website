@@ -3943,7 +3943,6 @@ HTTPProtocol
 (<em>Appears on:</em>
 <a href="#crd.antrea.io/v1alpha1.AppliedTo">AppliedTo</a>, 
 <a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">NetworkPolicyPeer</a>, 
-<a href="#crd.antrea.io/v1alpha1.Rule">Rule</a>, 
 <a href="#crd.antrea.io/v1alpha2.GroupSpec">GroupSpec</a>, 
 <a href="#crd.antrea.io/v1alpha3.GroupSpec">GroupSpec</a>)
 </p>
@@ -4923,10 +4922,63 @@ NamespaceMatchType
 (<code>string</code> alias)</p></h3>
 <p>
 (<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">NetworkPolicyPeer</a>)
+<a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">NetworkPolicyPeer</a>, 
+<a href="#crd.antrea.io/v1alpha1.PeerService">PeerService</a>)
 </p>
 <p>
 </p>
+<h3 id="crd.antrea.io/v1alpha1.PeerService">PeerService
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.Rule">Rule</a>)
+</p>
+<p>
+<p>PeerService refers to a Service, which can be a in-cluster Service or
+imported multi-cluster service.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>scope</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.PeerScope">
+PeerScope
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.Rule">Rule
 </h3>
 <p>
@@ -5042,18 +5094,21 @@ and ToServices are both empty or missing this rule matches all destinations.</p>
 <td>
 <code>toServices</code></br>
 <em>
-<a href="#crd.antrea.io/v1alpha1.NamespacedName">
-[]NamespacedName
+<a href="#crd.antrea.io/v1alpha1.PeerService">
+[]PeerService
 </a>
 </em>
 </td>
 <td>
 <em>(Optional)</em>
 <p>Rule is matched if traffic is intended for a Service listed in this field.
-Currently only ClusterIP types Services are supported in this field. This field
-can only be used when AntreaProxy is enabled. This field can&rsquo;t be used with To
-or Ports. If this field and To are both empty or missing, this rule matches all
-destinations.</p>
+Currently, only ClusterIP types Services are supported in this field.
+When scope is set to ClusterSet, it matches traffic intended for a multi-cluster
+Service listed in this field. Service name and Namespace provided should match
+the original exported Service.
+This field can only be used when AntreaProxy is enabled. This field can&rsquo;t be used
+with To or Ports. If this field and To are both empty or missing, this rule matches
+all destinations.</p>
 </td>
 </tr>
 <tr>
@@ -9854,5 +9909,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>656a1f9</code>.
+on git commit <code>76ee297</code>.
 </em></p>
