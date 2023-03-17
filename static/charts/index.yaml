@@ -307,6 +307,40 @@ entries:
     urls:
     - https://github.com/antrea-io/antrea/releases/download/v1.8.0-alpha.2/flow-aggregator-chart.tgz
     version: 1.8.0-alpha.2
+  nephe:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/operator: "false"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.4.0-alpha.0
+    created: "2023-03-17T08:24:58.339155255Z"
+    dependencies:
+    - condition: crds.enabled
+      name: crds
+      repository: ""
+      version: 0.4.0-alpha.0
+    description: Antrea managed security policies in the public cloud
+    digest: d7c6bc322116636ba49b007d9554c5b8cf0d61897cdf9f6d518e923302fb8b4b
+    home: https://antrea.io/
+    icon: https://raw.githubusercontent.com/antrea-io/antrea/main/docs/assets/logo/antrea_logo.svg
+    keywords:
+    - Kubernetes
+    - CNCF
+    - Networking
+    - Antrea
+    - Security
+    - Public Cloud
+    - AWS
+    - Azure
+    kubeVersion: '>= 1.16.0-0'
+    name: nephe
+    sources:
+    - https://github.com/antrea-io/nephe
+    type: application
+    urls:
+    - https://github.com/antrea-io/nephe/releases/download/v0.4.0-alpha.0/nephe-chart.tgz
+    version: 0.4.0-alpha.0
   theia:
   - annotations:
       artifacthub.io/license: Apache-2.0
@@ -424,4 +458,4 @@ entries:
     urls:
     - https://github.com/antrea-io/theia/releases/download/v0.2.0-alpha.0/theia-chart.tgz
     version: 0.2.0-alpha.0
-generated: "2023-02-20T19:05:31.736307559Z"
+generated: "2023-03-17T08:24:58.337472227Z"
