@@ -314,14 +314,14 @@ entries:
       artifacthub.io/prerelease: "true"
     apiVersion: v2
     appVersion: 0.4.0-alpha.0
-    created: "2023-03-17T08:24:58.339155255Z"
+    created: "2023-03-17T12:26:22.864546224Z"
     dependencies:
     - condition: crds.enabled
       name: crds
       repository: ""
       version: 0.4.0-alpha.0
     description: Antrea managed security policies in the public cloud
-    digest: d7c6bc322116636ba49b007d9554c5b8cf0d61897cdf9f6d518e923302fb8b4b
+    digest: c66f66b25d10bd823f74a65b8952e249524cb2b1e16609061b04b30e8654a3e5
     home: https://antrea.io/
     icon: https://raw.githubusercontent.com/antrea-io/antrea/main/docs/assets/logo/antrea_logo.svg
     keywords:
@@ -458,4 +458,4 @@ entries:
     urls:
     - https://github.com/antrea-io/theia/releases/download/v0.2.0-alpha.0/theia-chart.tgz
     version: 0.2.0-alpha.0
-generated: "2023-03-17T08:24:58.337472227Z"
+generated: "2023-03-17T12:26:22.862646715Z"
