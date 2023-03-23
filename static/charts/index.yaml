@@ -438,6 +438,36 @@ entries:
       artifacthub.io/operator: "false"
       artifacthub.io/prerelease: "false"
     apiVersion: v2
+    appVersion: 0.5.0
+    created: "2023-03-23T14:55:05.074284238Z"
+    description: Antrea Network Flow Visibility
+    digest: 382bbf0b9c913014d00e39a10f4b246c1b17ba1b23e2bebc9f37fd22b00d12a6
+    home: https://antrea.io/
+    icon: https://raw.githubusercontent.com/antrea-io/antrea/main/docs/assets/logo/antrea_logo.svg
+    keywords:
+    - Kubernetes
+    - CNCF
+    - Networking
+    - CNI
+    - Security
+    - Open vSwitch
+    - OVS
+    - Antrea
+    - Observability
+    - Flow visibility
+    kubeVersion: '>= 1.16.0-0'
+    name: theia
+    sources:
+    - https://github.com/antrea-io/theia
+    type: application
+    urls:
+    - https://github.com/antrea-io/theia/releases/download/v0.5.0/theia-chart.tgz
+    version: 0.5.0
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/operator: "false"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
     appVersion: 0.4.0
     created: "2022-12-23T09:50:54.22240516Z"
     description: Antrea Network Flow Visibility
@@ -549,4 +579,4 @@ entries:
     urls:
     - https://github.com/antrea-io/theia/releases/download/v0.2.0-alpha.0/theia-chart.tgz
     version: 0.2.0-alpha.0
-generated: "2023-03-23T11:44:41.76964985Z"
+generated: "2023-03-23T14:55:05.067674773Z"
