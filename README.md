@@ -54,3 +54,11 @@ antrea-io Github organization, you need to open a PR with the following changes:
  * add a new HTML file under `static/golang/`, e.g., `static/golang/<new repo
    name>.html`; add the necessary HTML content (look at existing files for
    reference)
+
+## Removing old versions
+
+When a version of Antrea is no longer supported, it is a good idea to remove it
+from the drop-down navigation menu, by editing `config.yaml`. The actual
+documentation does not need to be removed from the `contents/` directory, unless
+website size becomes an issue. In doing so, we ensure that old links will keep
+working, while also decluttering the website.
