@@ -9,15 +9,17 @@ linters-settings:
   goimports:
     local-prefixes: antrea.io/website/scripts
 
+  gosec:
+    config:
+      G306: "0644" # WriteFile permissions: it is fine for the files we create to be readable by others
+
 linters:
   disable-all: true
   enable: # see https://golangci-lint.run/usage/linters/
-    - deadcode
+    - unused
     - staticcheck
     - govet
     - gofmt
     - goimports
+    - gosec
     - misspell
-
-run:
-  deadline: 5m

@@ -23,21 +23,22 @@ jobs:
         repository: antrea-io/website
         branch: needs_to_commit-mutex
     - name: Checkout Antrea
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: ${{ github.event.inputs.antrea-repository }}
         ref: ${{ github.event.inputs.antrea-ref }}
         path: antrea
     - name: Checkout repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         ref: main
         path: website
         token: ${{ secrets.ANTREA_BOT_PAT }}
     - name: Install golang
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v4
       with:
-        go-version: 1.17
+        go-version-file: './website/scripts/go.mod'
+        cache-dependency-path: './website/scripts/go.sum'
     - name: Build tools
       working-directory: ./website/scripts
       run: make
