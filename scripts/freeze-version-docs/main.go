@@ -432,7 +432,7 @@ func main() {
 		}
 	}
 
-	if err := pkg.UpdateDocs(destDocsPath); err != nil {
+	if err := pkg.UpdateDocs(destDocsPath, version); err != nil {
 		log.Fatalf("Failed to update docs: %v", err)
 	}
 }

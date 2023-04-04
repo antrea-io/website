@@ -13,8 +13,8 @@ jobs:
     name: Build Go scripts
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-go@v2
+    - uses: actions/checkout@v3
+    - uses: actions/setup-go@v4
       with:
         go-version: 1.17
     - name: Build
@@ -24,8 +24,8 @@ jobs:
   tidy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-go@v2
+    - uses: actions/checkout@v3
+    - uses: actions/setup-go@v4
       with:
         go-version: 1.17
     - name: Check tidiness
@@ -36,10 +36,25 @@ jobs:
     name: Run code linters for Go scripts
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-go@v2
+    - uses: actions/checkout@v3
+    - uses: actions/setup-go@v4
       with:
         go-version: 1.17
     - name: Build
       working-directory: ./scripts
       run: make golangci
+
+  test-unit:
+    name: Unit test
+    runs-on: [ubuntu-latest]
+    steps:
+    - name: Check-out code
+      uses: actions/checkout@v3
+    - name: Set up Go using version from go.mod
+      uses: actions/setup-go@v4
+      with:
+        go-version-file: 'scripts/go.mod'
+        cache-dependency-path: 'scripts/go.sum'
+    - name: Run unit tests
+      working-directory: ./scripts
+      run: make test-unit
