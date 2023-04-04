@@ -112,7 +112,7 @@ Also check out [@ProjectAntrea](https://twitter.com/ProjectAntrea) on Twitter!
 
 To explore more Antrea features and their usage, check the [Getting started](docs/getting-started.md#features)
 document and user guides in the [Antrea documentation folder](docs/). Refer to
-the [Changelogs](CHANGELOG/README.md) for a detailed list of features
+the [Changelogs](https://github.com/antrea-io/antrea/blob/v1.11.0/CHANGELOG/README.md) for a detailed list of features
 introduced for each version release.
 
 ## Adopters
@@ -127,6 +127,6 @@ in!
 
 ## License
 
-Antrea is licensed under the [Apache License, version 2.0](LICENSE)
+Antrea is licensed under the [Apache License, version 2.0](https://github.com/antrea-io/antrea/blob/v1.11.0/LICENSE)
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fantrea-io%2Fantrea.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fantrea-io%2Fantrea?ref=badge_large)

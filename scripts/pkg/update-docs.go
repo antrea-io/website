@@ -23,6 +23,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -165,7 +166,39 @@ func syncDirs(sourceDocsPath string, destDocsPath string, docDir *DocDir) error 
 	return nil
 }
 
-func fixupMarkdownFile(path string) error {
+func translateRelativeLinks(fullPath, version string, md []byte) ([]byte, error) {
+	re := regexp.MustCompile(`\]\(([^http][\/\.\-\w]+)\)`)
+	mdDir, err := filepath.Rel(fmt.Sprintf("website/content/docs/%s", version), fullPath)
+	if err != nil {
+		return nil, err
+	}
+	mdDir = filepath.Dir(mdDir)
+
+	md = []byte(re.ReplaceAllStringFunc(string(md), func(link string) string {
+		newLink := re.FindStringSubmatch(link)[1]
+		if !path.IsAbs(newLink) {
+			newLink = path.Join(mdDir, newLink)
+		} else {
+			newLink = strings.TrimLeft(newLink, "/")
+		}
+		newLink = path.Clean(newLink)
+
+		// All relative links present in .md files inside content/docs/<version>/ having any of the following
+		// prefixes after translating them into a relative link starting at the root of the directory,
+		// will be translated into their appropriate absolute links.
+		prefixes := []string{"build", "pkg", "hack", "ci", "CHANGELOG", "LICENSE", "VERSION"}
+
+		for _, prefix := range prefixes {
+			if strings.HasPrefix(newLink, prefix) {
+				return fmt.Sprintf("](https://github.com/antrea-io/antrea/blob/%s/%s)", version, newLink)
+			}
+		}
+		return link
+	}))
+	return md, nil
+}
+
+func fixupMarkdownFile(path, version string) error {
 	// Handle HTML <img> tags in Markdown
 	imgTag := regexp.MustCompile(`<(img (?s).*?)>`)
 	md, err := ioutil.ReadFile(path)
@@ -179,13 +212,20 @@ func fixupMarkdownFile(path string) error {
 	if DryRun {
 		return nil
 	}
+
+	// Translate relative links to directories and files outside content/docs/<version> into absolute links.
+	md, err = translateRelativeLinks(path, version, md)
+	if err != nil {
+		return err
+	}
+
 	if err := ioutil.WriteFile(path, md, 0644); err != nil {
 		return err
 	}
 	return nil
 }
 
-func fixupMarkdown(destDocsPath string) error {
+func fixupMarkdown(destDocsPath, version string) error {
 	re := regexp.MustCompile("^.*md$")
 	destFiles := make([]string, 0)
 	if err := filepath.WalkDir(destDocsPath, func(path string, d fs.DirEntry, err error) error {
@@ -206,7 +246,7 @@ func fixupMarkdown(destDocsPath string) error {
 
 	for _, destFile := range destFiles {
 		log.Printf("Fixing up markdown file %s\n", destFile)
-		if err := fixupMarkdownFile(destFile); err != nil {
+		if err := fixupMarkdownFile(destFile, version); err != nil {
 			return fmt.Errorf("error when fixing up markdown file: %w", err)
 		}
 	}
@@ -252,7 +292,7 @@ func init() {
 	flag.BoolVar(&DryRun, "dry-run", false, "Do a dry-run (do not modify any website source files")
 }
 
-func UpdateDocs(destDocsPath string) error {
+func UpdateDocs(destDocsPath, version string) error {
 	if AntreaRepo == "" || WebsiteRepo == "" {
 		return fmt.Errorf("flags -antrea-repo and -website-repo are required")
 	}
@@ -277,7 +317,7 @@ func UpdateDocs(destDocsPath string) error {
 		}
 	}
 
-	if err := fixupMarkdown(destDocsPath); err != nil {
+	if err := fixupMarkdown(destDocsPath, version); err != nil {
 		return fmt.Errorf("error when fixing-up markdown files: %w", err)
 	}
 

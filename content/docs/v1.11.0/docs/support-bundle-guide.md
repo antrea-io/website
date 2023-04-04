@@ -55,7 +55,7 @@ Node, you should enable it in the configuration on the external Node as well.
 A single Namespace (e.g., default) is created for saving the Secrets that are
 used to access the support bundle file server, and the permission to read Secrets
 in this Namespace is given to antrea-controller by modifying and applying the
-[RBAC file](../build/yamls/externalnode/support-bundle-collection-rbac.yml).
+[RBAC file](https://github.com/antrea-io/antrea/blob/v1.11.0/build/yamls/externalnode/support-bundle-collection-rbac.yml).
 
 ```yaml
 kind: RoleBinding
@@ -162,7 +162,7 @@ EOF
 ```
 
 For more information about the supported fields in a "SupportBundleCollection"
-CR, please refer to the [CRD definition](../build/charts/antrea/crds/supportbundlecollection.yaml)
+CR, please refer to the [CRD definition](https://github.com/antrea-io/antrea/blob/v1.11.0/build/charts/antrea/crds/supportbundlecollection.yaml)
 
 You can check the status of `SupportBundleCollection` by running command
 `kubectl get supportbundlecollections [NAME] -ojson`.

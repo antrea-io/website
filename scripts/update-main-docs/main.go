@@ -25,7 +25,7 @@ import (
 func main() {
 	flag.Parse()
 	destDocsPath := filepath.Join(pkg.WebsiteRepo, "content", "docs", "main")
-	if err := pkg.UpdateDocs(destDocsPath); err != nil {
+	if err := pkg.UpdateDocs(destDocsPath, "main"); err != nil {
 		log.Fatalf("Failed to update main docs: %v", err)
 	}
 }

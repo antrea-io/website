@@ -33,3 +33,8 @@ golangci-fix: .golangci-bin
 clean:
 	@rm -rf $(BINDIR)
 	@rm -rf .golangci-bin
+
+.PHONY: test-unit
+test-unit:
+	@echo "===> Running unit tests <==="
+	$(GO) test -race antrea.io/website/scripts/pkg/... 

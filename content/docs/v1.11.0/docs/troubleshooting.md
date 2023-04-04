@@ -183,7 +183,7 @@ curl --insecure --header "Authorization: Bearer $TOKEN" https://<Node IP address
 
 However, in this case you will be limited to the endpoints that `antctl` is
 allowed to access, as defined
-[here](../build/charts/antrea/templates/antctl/clusterrole.yaml).
+[here](https://github.com/antrea-io/antrea/blob/v1.11.0/build/charts/antrea/templates/antctl/clusterrole.yaml).
 
 ## Accessing the flow-aggregator API
 
