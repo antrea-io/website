@@ -1,11 +1,11 @@
 # antrea.io website
 
-Source for the antrea.io website
-
-This repository is a work-in-progess. The source of the current version of the
-antrea.io website is located in a
-[branch](https://github.com/antrea-io/antrea/tree/website-with-versioned-docs)
-of the main Antrea Github repository.
+This repository holds the source code for generating the
+[antrea.io](https://antrea.io) website. The documentation contents for the
+website are not primarily hosted here, but instead are mirrored from the main
+Antrea [repository](https://github.com/antrea-io/antrea). To improve or fix a
+documentation page, you will need to open a PR in that repository, and not this
+one.
 
 ## Building the website locally
 
