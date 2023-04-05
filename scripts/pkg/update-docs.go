@@ -19,7 +19,6 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -201,7 +200,7 @@ func translateRelativeLinks(fullPath, version string, md []byte) ([]byte, error)
 func fixupMarkdownFile(path, version string) error {
 	// Handle HTML <img> tags in Markdown
 	imgTag := regexp.MustCompile(`<(img (?s).*?)>`)
-	md, err := ioutil.ReadFile(path)
+	md, err := os.ReadFile(path)
 	if err != nil {
 		return err
 	}
@@ -219,7 +218,7 @@ func fixupMarkdownFile(path, version string) error {
 		return err
 	}
 
-	if err := ioutil.WriteFile(path, md, 0644); err != nil {
+	if err := os.WriteFile(path, md, 0644); err != nil {
 		return err
 	}
 	return nil
@@ -279,7 +278,7 @@ func generateAPIReference(sourceDocsPath string, destDocsPath string) error {
 	log.Printf("Creating api-reference.md\n")
 	mdPath := filepath.Join(destDocsPath, "docs", "api-reference.md")
 	if !DryRun {
-		if err := ioutil.WriteFile(mdPath, []byte(md), 0644); err != nil {
+		if err := os.WriteFile(mdPath, []byte(md), 0644); err != nil {
 			return err
 		}
 	}
@@ -311,7 +310,8 @@ func UpdateDocs(destDocsPath, version string) error {
 		{path: "", filter: "^.*md$", recursive: false},
 		{path: "docs", filter: "", recursive: true},
 	}
-	for _, docDir := range docDirs {
+	for idx := range docDirs {
+		docDir := docDirs[idx]
 		if err := syncDirs(sourceDocsPath, destDocsPath, &docDir); err != nil {
 			return fmt.Errorf("error when syncing doc dir %v: %w", docDir, err)
 		}

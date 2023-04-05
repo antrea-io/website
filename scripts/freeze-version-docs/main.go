@@ -19,7 +19,6 @@ import (
 	"flag"
 	"fmt"
 	"io/fs"
-	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -159,7 +158,7 @@ func updateVersionInFrontMatter(destDocsPath string, version string) error {
 		if filepath.Base(path) != "_index.md" {
 			return nil
 		}
-		md, err := ioutil.ReadFile(path)
+		md, err := os.ReadFile(path)
 		if err != nil {
 			return err
 		}
@@ -178,7 +177,7 @@ func updateVersionInFrontMatter(destDocsPath string, version string) error {
 		}
 		log.Printf("Updating version front matter variable in %s\n", path)
 		md = versionVariable.ReplaceAll(md, []byte(fmt.Sprintf("version: %s", version)))
-		return ioutil.WriteFile(path, md, 0644)
+		return os.WriteFile(path, md, 0644)
 	})
 }
 
@@ -230,7 +229,7 @@ func createTocFileIfNeeded(tocFile string, referenceVersion string) error {
 
 func updateTocMapping(tocMappingPath string, version string) error {
 	re := regexp.MustCompile(fmt.Sprintf(`%s:\s*%s-toc`, version, version))
-	b, err := ioutil.ReadFile(tocMappingPath)
+	b, err := os.ReadFile(tocMappingPath)
 	if err != nil {
 		return err
 	}
@@ -241,13 +240,13 @@ func updateTocMapping(tocMappingPath string, version string) error {
 	log.Printf("Updating TOC mapping")
 	if !pkg.DryRun {
 		b = append(b, []byte(fmt.Sprintf("%s: %s-toc\n", version, version))...)
-		return ioutil.WriteFile(tocMappingPath, b, 0644)
+		return os.WriteFile(tocMappingPath, b, 0644)
 	}
 	return nil
 }
 
 func updateHugoConfig(hugoConfigPath string, version string) error {
-	b, err := ioutil.ReadFile(hugoConfigPath)
+	b, err := os.ReadFile(hugoConfigPath)
 	if err != nil {
 		return err
 	}
