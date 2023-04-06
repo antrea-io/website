@@ -87,7 +87,7 @@ needs to become externally-accessible, by changing its type to `NodePort` or
 Since `antrea-agent` is running on an external Node which is not managed by
 Kubernetes, a configuration file needs to be present on each machine where the
 `antrea-agent` is running, and the path to this file will be provided to the
-`antrea-agent` as a command-line argument. Refer to the [sample configuration](../build/yamls/externalnode/conf/antrea-agent.conf)
+`antrea-agent` as a command-line argument. Refer to the [sample configuration](https://github.com/antrea-io/antrea/blob/main/build/yamls/externalnode/conf/antrea-agent.conf)
 to learn the`antrea-agent` configuration options when running on an external Node.
 
 A further [section](#install-antrea-agent-on-vm) will provide detailed steps
@@ -122,7 +122,7 @@ the `ExternalNode` resource if `NODE_NAME` is not set.
 
 `ExternalNode` resource is `Namespace` scoped. The `Namespace` is provided to
 `antrea-agent` with option `externalNodeNamespace` in
-[antrea-agent.conf](../build/yamls/externalnode/conf/antrea-agent.conf).
+[antrea-agent.conf](https://github.com/antrea-io/antrea/blob/main/build/yamls/externalnode/conf/antrea-agent.conf).
 
 ```yaml
 externalNodeNamespace: vm-ns
@@ -192,7 +192,7 @@ spec:
 
 3. Create a ServiceAccount, ClusterRole and ClusterRoleBinding for `antrea-agent`
    as shown below. If you use a Namespace other than `vm-ns`, you need to update
-   the [VM RBAC manifest](../build/yamls/externalnode/vm-agent-rbac.yml) and
+   the [VM RBAC manifest](https://github.com/antrea-io/antrea/blob/main/build/yamls/externalnode/vm-agent-rbac.yml) and
    change `vm-ns` to the right Namespace.
 
    ```bash
@@ -275,14 +275,14 @@ please refer to the [getting-started guide](getting-started.md#open-vswitch).
    make docker-bin
    ```
 
-2. Copy configuration files to the VM, including [antrea-agent.conf](../build/yamls/externalnode/conf/antrea-agent.conf),
+2. Copy configuration files to the VM, including [antrea-agent.conf](https://github.com/antrea-io/antrea/blob/main/build/yamls/externalnode/conf/antrea-agent.conf),
    which specifies agent configuration parameters;
    `antrea-agent.antrea.kubeconfig` and `antrea-agent.kubeconfig`, which were
    generated in steps 4 and 5 of [Prerequisites on Kubernetes cluster](#prerequisites-on-kubernetes-cluster).
 
 3. Bootstrap `antrea-agent` using one of these 2 methods:
 
-   1. Bootstrap `antrea-agent` using the [installation script](../hack/externalnode/install-vm.sh)
+   1. Bootstrap `antrea-agent` using the [installation script](https://github.com/antrea-io/antrea/blob/main/hack/externalnode/install-vm.sh)
       as shown below (Ubuntu 18.04 and 20.04, and Red Hat Enterprise Linux 8.4).
 
       ```bash
@@ -377,7 +377,7 @@ please refer to the [getting-started guide](getting-started.md#open-vswitch).
       docker pull antrea/antrea-ubuntu:<TAG>
       ```
 
-      The [installation script](../hack/externalnode/install-vm.sh) automatically downloads the specific released
+      The [installation script](https://github.com/antrea-io/antrea/blob/main/hack/externalnode/install-vm.sh) automatically downloads the specific released
       version of `antrea-ubuntu` Docker image on VM by specifying the installation argument `--antrea-version`.
       Also, the script automatically loads that image into Docker. For any given release `<TAG>` (e.g. `v1.9.0`), specify
       it in the --antrea-version argument as follows.
@@ -386,12 +386,12 @@ please refer to the [getting-started guide](getting-started.md#open-vswitch).
          --antrea-version <TAG>
       ```
 
-2. Copy configuration files to the VM, including [antrea-agent.conf](../build/yamls/externalnode/conf/antrea-agent.conf),
+2. Copy configuration files to the VM, including [antrea-agent.conf](https://github.com/antrea-io/antrea/blob/main/build/yamls/externalnode/conf/antrea-agent.conf),
    which specifies agent configuration parameters;
    `antrea-agent.antrea.kubeconfig` and `antrea-agent.kubeconfig`, which were
    generated in steps 4 and 5 of [Prerequisites on Kubernetes cluster](#prerequisites-on-kubernetes-cluster).
 
-3. Bootstrap `antrea-agent` using the [installation script](../hack/externalnode/install-vm.sh)
+3. Bootstrap `antrea-agent` using the [installation script](https://github.com/antrea-io/antrea/blob/main/hack/externalnode/install-vm.sh)
    as shown below (Ubuntu 18.04, 20.04, and Rhel 8.4).
 
     ```bash
@@ -428,7 +428,7 @@ Note: Only Windows Server 2019 is supported in the first release at the moment.
    make docker-windows-bin
    ```
 
-2. Copy [antrea-agent.conf](../build/yamls/externalnode/conf/antrea-agent.conf),
+2. Copy [antrea-agent.conf](https://github.com/antrea-io/antrea/blob/main/build/yamls/externalnode/conf/antrea-agent.conf),
    `antrea-agent.kubeconfig` and `antrea-agent.antrea.kubeconfig` files to the
    VM. Please refer to the step 2 of [Installation on Linux VM](#installation-steps-on-linux-vm)
    section for more information.
@@ -445,7 +445,7 @@ Note: Only Windows Server 2019 is supported in the first release at the moment.
 
 3. Bootstrap `antrea-agent` using one of these 2 methods:
 
-   1. Bootstrap `antrea-agent` using the [installation script](../hack/externalnode/install-vm.ps1)
+   1. Bootstrap `antrea-agent` using the [installation script](https://github.com/antrea-io/antrea/blob/main/hack/externalnode/install-vm.ps1)
       as shown below (only Windows Server 2019 is tested and supported).
 
       ```powershell
@@ -510,7 +510,7 @@ running on an external Node is as follows:
 - Only `update` permission is given on resource `antreaagentinfos`, and `create`
   permission is moved to `antrea-controller`
 
-For more details please refer to [vm-agent-rbac.yml](../build/yamls/externalnode/vm-agent-rbac.yml)
+For more details please refer to [vm-agent-rbac.yml](https://github.com/antrea-io/antrea/blob/main/build/yamls/externalnode/vm-agent-rbac.yml)
 
 `antrea-agent` reports its status by updating the `antreaagentinfo` resource
 which is created with the same name as the `ExternalNode`. `antrea-controller`

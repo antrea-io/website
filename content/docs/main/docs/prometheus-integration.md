@@ -122,7 +122,7 @@ relabel_configs:
 ```
 
 For further reference see the enclosed
-[configuration file](../build/yamls/antrea-prometheus.yml).
+[configuration file](https://github.com/antrea-io/antrea/blob/main/build/yamls/antrea-prometheus.yml).
 
 The configuration file above can be used to deploy Prometheus Server with
 scraping configuration for Antrea services.

@@ -136,7 +136,7 @@ To make it easier for reviewers to review your PR, consider the following:
 1. Follow the golang [coding conventions](https://github.com/golang/go/wiki/CodeReviewComments)
    and check out this [document](https://github.com/tnqn/code-review-comments#code-review-comments)
    for common comments we made during reviews and suggestions for fixing them.
-2. Format your code with `make golangci-fix`; if the [linters](ci/README.md) flag an issue that
+2. Format your code with `make golangci-fix`; if the [linters](https://github.com/antrea-io/antrea/blob/main/ci/README.md) flag an issue that
    cannot be fixed automatically, an error message will be displayed so you can address the issue.
 3. Follow [git commit](https://chris.beams.io/posts/git-commit/) guidelines.
 4. Follow [logging](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md) guidelines.
@@ -144,7 +144,7 @@ To make it easier for reviewers to review your PR, consider the following:
 spelling conventions when writing documentation or commenting code.
 
 If your PR fixes a bug or implements a new feature, add the appropriate test
-cases to our [automated test suite](ci/README.md) to guarantee enough
+cases to our [automated test suite](https://github.com/antrea-io/antrea/blob/main/ci/README.md) to guarantee enough
 coverage. A PR that makes significant code changes without contributing new test
 cases will be flagged by reviewers and will not be accepted.
 
@@ -201,7 +201,7 @@ specific function. For example:
 * *_windows.go change: skip Linux checks
 
 For more information about the tests we run as part of CI, please refer to
-[ci/README.md](ci/README.md).
+[ci/README.md](https://github.com/antrea-io/antrea/blob/main/ci/README.md).
 
 ### Cherry-picks to release branches
 

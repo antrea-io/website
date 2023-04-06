@@ -14,7 +14,7 @@ release. We use `<TAG>` as a placeholder for the release tag (e.g. `v1.4.0`).
 
 2. Open a PR (labelled with `kind/release`) against the appropriate release
    branch with the following commits:
-   - a commit to update the [CHANGELOG](../../CHANGELOG). *For a minor release*,
+   - a commit to update the [CHANGELOG](https://github.com/antrea-io/antrea/blob/main/CHANGELOG). *For a minor release*,
      all significant changes and all bug fixes (labelled with
      `action/release-note` since the first version of the previous minor release
      should be mentioned, even bug fixes which have already been included in
@@ -23,10 +23,10 @@ release. We use `<TAG>` as a placeholder for the release tag (e.g. `v1.4.0`).
      message must be *exactly* `"Update CHANGELOG for <TAG> release"`, as a bot
      will look for this commit and cherry-pick it to update the main branch
      (starting with Antrea v1.0). The
-     [process-changelog.go](../../hack/release/process-changelog.go) script may
+     [prepare-changelog.sh](https://github.com/antrea-io/antrea/blob/main/hack/release/prepare-changelog.sh) script may
      be used to easily generate links to PRs and the Github profiles of PR
-     authors.
-   - a commit to update [VERSION](../../VERSION) as needed, using the following
+     authors. Use `prepare-changelog.sh -h` to get the usage.
+   - a commit to update [VERSION](https://github.com/antrea-io/antrea/blob/main/VERSION) as needed, using the following
      commit message: `"Set VERSION to <TAG>"`. Before committing, ensure that
      you run `make -C build/charts/ helm-docs` and include the changes.
 
@@ -82,7 +82,7 @@ release. We use `<TAG>` as a placeholder for the release tag (e.g. `v1.4.0`).
    privileges).
 
 8. *For a minor release* Finally, open a PR against the main branch with a
-   single commit, to update [VERSION](../../VERSION) to the next minor version
+   single commit, to update [VERSION](https://github.com/antrea-io/antrea/blob/main/VERSION) to the next minor version
    (with `-dev` suffix). For example, if the release was for `v1.4.0`, the
    VERSION file should be updated to `v1.5.0-dev`. Before committing, ensure
    that you run `make -C build/charts/ helm-docs` and include the changes. Note
