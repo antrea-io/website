@@ -38,6 +38,8 @@ Resource Types:
 </li><li>
 <a href="#controlplane.antrea.io/v1beta2.GroupAssociation">GroupAssociation</a>
 </li><li>
+<a href="#controlplane.antrea.io/v1beta2.IPGroupAssociation">IPGroupAssociation</a>
+</li><li>
 <a href="#controlplane.antrea.io/v1beta2.NetworkPolicy">NetworkPolicy</a>
 </li><li>
 <a href="#controlplane.antrea.io/v1beta2.NodeStatsSummary">NodeStatsSummary</a>
@@ -375,6 +377,65 @@ Refer to the Kubernetes API documentation for the fields of the
 <td>
 <p>AssociatedGroups is a list of GroupReferences that is associated with the
 Pod/ExternalEntity being queried.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controlplane.antrea.io/v1beta2.IPGroupAssociation">IPGroupAssociation
+</h3>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+controlplane.antrea.io/v1beta2
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>IPGroupAssociation</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>associatedGroups</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.GroupReference">
+[]GroupReference
+</a>
+</em>
+</td>
+<td>
+<p>AssociatedGroups is a list of GroupReferences that is associated with the
+IP address being queried.</p>
 </td>
 </tr>
 </tbody>
@@ -1115,7 +1176,8 @@ Group and only a NodePort type Service can be referred by this field.</p>
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#controlplane.antrea.io/v1beta2.GroupAssociation">GroupAssociation</a>)
+<a href="#controlplane.antrea.io/v1beta2.GroupAssociation">GroupAssociation</a>, 
+<a href="#controlplane.antrea.io/v1beta2.IPGroupAssociation">IPGroupAssociation</a>)
 </p>
 <p>
 </p>
@@ -9971,5 +10033,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>01817a5</code>.
+on git commit <code>e5d4e7f</code>.
 </em></p>
