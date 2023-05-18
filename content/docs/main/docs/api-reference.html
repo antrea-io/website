@@ -2200,6 +2200,29 @@ string
 <td>
 </td>
 </tr>
+<tr>
+<td>
+<code>srcPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>SrcPort and SrcEndPort can only be specified, when the Protocol is TCP, UDP, or SCTP.
+It restricts the source port of the traffic.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>srcEndPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="controlplane.antrea.io/v1beta2.ServiceReference">ServiceReference
@@ -4422,8 +4445,34 @@ int32
 </td>
 <td>
 <em>(Optional)</em>
-<p>EndPort defines the end of the port range, being the end included within the range.
+<p>EndPort defines the end of the port range, inclusive.
 It can only be specified when a numerical <code>port</code> is specified.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>sourcePort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>The source port on the given protocol. This can only be a numerical port.
+If this field is not provided, rule matches all source ports.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>sourceEndPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>SourceEndPort defines the end of the source port range, inclusive.
+It can only be specified when <code>sourcePort</code> is specified.</p>
 </td>
 </tr>
 </tbody>
@@ -10033,5 +10082,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>27543af</code>.
+on git commit <code>f79c8ac</code>.
 </em></p>
