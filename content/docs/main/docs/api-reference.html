@@ -1868,6 +1868,17 @@ Name should be unique within the policy.</p>
 <p>L7Protocols is a list of application layer protocols which should be matched.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>logLabel</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>LogLabel is a user-defined arbitrary string which will be printed in the NetworkPolicy logs.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="controlplane.antrea.io/v1beta2.NetworkPolicyStats">NetworkPolicyStats
@@ -5246,6 +5257,18 @@ bool
 <em>(Optional)</em>
 <p>EnableLogging is used to indicate if agent should generate logs
 when rules are matched. Should be default to false.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>logLabel</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>LogLabel is a user-defined arbitrary string which will be printed in the NetworkPolicy logs.</p>
 </td>
 </tr>
 <tr>
@@ -10082,5 +10105,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>f3394c5</code>.
+on git commit <code>326f307</code>.
 </em></p>
