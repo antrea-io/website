@@ -719,6 +719,39 @@ entries:
       artifacthub.io/operator: "false"
       artifacthub.io/prerelease: "false"
     apiVersion: v2
+    appVersion: 0.5.0
+    created: "2023-06-02T17:34:23.704739542Z"
+    dependencies:
+    - condition: crds.enabled
+      name: crds
+      repository: ""
+      version: 0.5.0
+    description: Antrea managed security policies in the public cloud
+    digest: e7edc2d8cb97de397ad7c4c11e792a8de20611ebfc4335f6f025d20bfd6f5c9e
+    home: https://antrea.io/
+    icon: https://raw.githubusercontent.com/antrea-io/antrea/main/docs/assets/logo/antrea_logo.svg
+    keywords:
+    - Kubernetes
+    - CNCF
+    - Networking
+    - Antrea
+    - Security
+    - Public Cloud
+    - AWS
+    - Azure
+    kubeVersion: '>= 1.16.0-0'
+    name: nephe
+    sources:
+    - https://github.com/antrea-io/nephe
+    type: application
+    urls:
+    - https://github.com/antrea-io/nephe/releases/download/v0.5.0/nephe-chart.tgz
+    version: 0.5.0
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/operator: "false"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
     appVersion: 0.4.0
     created: "2023-03-20T07:53:07.291153366Z"
     dependencies:
@@ -957,4 +990,4 @@ entries:
     urls:
     - https://github.com/antrea-io/theia/releases/download/v0.2.0-alpha.0/theia-chart.tgz
     version: 0.2.0-alpha.0
-generated: "2023-05-29T08:31:25.092054933Z"
+generated: "2023-06-02T17:34:23.702555616Z"
