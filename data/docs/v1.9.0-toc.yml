@@ -109,8 +109,6 @@ toc:
         url: /docs/contributors/issue-management
       - page: GitHub Labels
         url: /docs/contributors/github-labels
-      - page: Manual Installation
-        url: /docs/contributors/manual-installation
   - title: Project Information
     subfolderitems: 
     - page: Contributing to Antrea
