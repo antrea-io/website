@@ -8978,6 +8978,8 @@ Resource Types:
 <a href="#crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo</a>
 </li><li>
 <a href="#crd.antrea.io/v1beta1.AntreaControllerInfo">AntreaControllerInfo</a>
+</li><li>
+<a href="#crd.antrea.io/v1beta1.Tier">Tier</a>
 </li></ul>
 <h3 id="crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo
 </h3>
@@ -9299,6 +9301,92 @@ int
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.Tier">Tier
+</h3>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1beta1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>Tier</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+<p>Standard metadata of the object.</p>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.TierSpec">
+TierSpec
+</a>
+</em>
+</td>
+<td>
+<p>Specification of the desired behavior of Tier.</p>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>priority</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Priority specfies the order of the Tier relative to other Tiers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>description</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Description is an optional field to add more information regarding
+the purpose of this Tier.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.AgentCondition">AgentCondition
 </h3>
 <p>
@@ -9567,6 +9655,48 @@ map[string]int32
 </td>
 <td>
 <p>Key: flow table name, Value: flow number</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.TierSpec">TierSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.Tier">Tier</a>)
+</p>
+<p>
+<p>TierSpec defines the desired state for Tier.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>priority</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Priority specfies the order of the Tier relative to other Tiers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>description</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Description is an optional field to add more information regarding
+the purpose of this Tier.</p>
 </td>
 </tr>
 </tbody>
@@ -10117,5 +10247,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>3e75a9d</code>.
+on git commit <code>7ac3d06</code>.
 </em></p>
