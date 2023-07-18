@@ -8979,6 +8979,8 @@ Resource Types:
 </li><li>
 <a href="#crd.antrea.io/v1beta1.AntreaControllerInfo">AntreaControllerInfo</a>
 </li><li>
+<a href="#crd.antrea.io/v1beta1.ExternalIPPool">ExternalIPPool</a>
+</li><li>
 <a href="#crd.antrea.io/v1beta1.Tier">Tier</a>
 </li></ul>
 <h3 id="crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo
@@ -9301,6 +9303,110 @@ int
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.ExternalIPPool">ExternalIPPool
+</h3>
+<p>
+<p>ExternalIPPool defines one or multiple IP sets that can be used in the external network. For instance, the IPs can be
+allocated to the Egress resources as the Egress IPs.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1beta1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>ExternalIPPool</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+<p>Standard metadata of the object.</p>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.ExternalIPPoolSpec">
+ExternalIPPoolSpec
+</a>
+</em>
+</td>
+<td>
+<p>Specification of the ExternalIPPool.</p>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>ipRanges</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.IPRange">
+[]IPRange
+</a>
+</em>
+</td>
+<td>
+<p>The IP ranges of this IP pool, e.g. 10.10.0.0/24, 10.10.10.2-10.10.10.20, 10.10.10.30-10.10.10.30.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<p>The Nodes that the external IPs can be assigned to. If empty, it means all Nodes.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.ExternalIPPoolStatus">
+ExternalIPPoolStatus
+</a>
+</em>
+</td>
+<td>
+<p>The current status of the ExternalIPPool.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.Tier">Tier
 </h3>
 <p>
@@ -9561,6 +9667,172 @@ string
 </p>
 <p>
 </p>
+<h3 id="crd.antrea.io/v1beta1.ExternalIPPoolSpec">ExternalIPPoolSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.ExternalIPPool">ExternalIPPool</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ipRanges</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.IPRange">
+[]IPRange
+</a>
+</em>
+</td>
+<td>
+<p>The IP ranges of this IP pool, e.g. 10.10.0.0/24, 10.10.10.2-10.10.10.20, 10.10.10.30-10.10.10.30.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<p>The Nodes that the external IPs can be assigned to. If empty, it means all Nodes.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.ExternalIPPoolStatus">ExternalIPPoolStatus
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.ExternalIPPool">ExternalIPPool</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>usage</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.IPPoolUsage">
+IPPoolUsage
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.IPPoolUsage">IPPoolUsage
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.ExternalIPPoolStatus">ExternalIPPoolStatus</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>total</code></br>
+<em>
+int
+</em>
+</td>
+<td>
+<p>Total number of IPs.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>used</code></br>
+<em>
+int
+</em>
+</td>
+<td>
+<p>Number of allocated IPs.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.IPRange">IPRange
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.ExternalIPPoolSpec">ExternalIPPoolSpec</a>)
+</p>
+<p>
+<p>IPRange is a set of contiguous IP addresses, represented by a CIDR or a pair of start and end IPs.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>cidr</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The CIDR of this range, e.g. 10.10.10.0/24.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>start</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The start IP of the range, e.g. 10.10.20.5, inclusive.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>end</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The end IP of the range, e.g. 10.10.20.20, inclusive.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.NetworkPolicyControllerInfo">NetworkPolicyControllerInfo
 </h3>
 <p>
@@ -10247,5 +10519,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>350c760</code>.
+on git commit <code>ae6f269</code>.
 </em></p>
