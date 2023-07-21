@@ -1410,6 +1410,18 @@ HTTPProtocol
 <td>
 </td>
 </tr>
+<tr>
+<td>
+<code>tls</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.TLSProtocol">
+TLSProtocol
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="controlplane.antrea.io/v1beta2.MulticastGroupInfo">MulticastGroupInfo
@@ -2389,6 +2401,37 @@ Refer to the Kubernetes API documentation for the fields of the
 </td>
 <td>
 <p>Nodes contains statuses produced on a list of Nodes.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controlplane.antrea.io/v1beta2.TLSProtocol">TLSProtocol
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.L7Protocol">L7Protocol</a>)
+</p>
+<p>
+<p>TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, this
+matches all TLS handshake packets.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>sni</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>SNI (Server Name Indication) indicates the server domain name in the TLS/SSL hello message.</p>
 </td>
 </tr>
 </tbody>
@@ -4022,6 +4065,18 @@ HTTPProtocol
 <td>
 </td>
 </tr>
+<tr>
+<td>
+<code>tls</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.TLSProtocol">
+TLSProtocol
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="crd.antrea.io/v1alpha1.NamespaceMatchType">NamespaceMatchType
@@ -5634,6 +5689,37 @@ int32
 </td>
 <td>
 <p>Flags are flags in the header.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.TLSProtocol">TLSProtocol
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.L7Protocol">L7Protocol</a>)
+</p>
+<p>
+<p>TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, this
+matches all TLS handshake packets.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>sni</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>SNI (Server Name Indication) indicates the server domain name in the TLS/SSL hello message.</p>
 </td>
 </tr>
 </tbody>
@@ -10519,5 +10605,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>f96efa2</code>.
+on git commit <code>9c09f7c</code>.
 </em></p>
