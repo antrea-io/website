@@ -3894,7 +3894,8 @@ string
 (<em>Appears on:</em>
 <a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">NetworkPolicyPeer</a>, 
 <a href="#crd.antrea.io/v1alpha2.GroupSpec">GroupSpec</a>, 
-<a href="#crd.antrea.io/v1alpha3.GroupSpec">GroupSpec</a>)
+<a href="#crd.antrea.io/v1alpha3.GroupSpec">GroupSpec</a>, 
+<a href="#crd.antrea.io/v1beta1.GroupSpec">GroupSpec</a>)
 </p>
 <p>
 <p>IPBlock describes a particular CIDR (Ex. &ldquo;192.168.1.<sup>1</sup>&frasl;<sub>24</sub>&rdquo;) that is allowed
@@ -4095,7 +4096,8 @@ TLSProtocol
 <a href="#crd.antrea.io/v1alpha1.AppliedTo">AppliedTo</a>, 
 <a href="#crd.antrea.io/v1alpha1.NetworkPolicyPeer">NetworkPolicyPeer</a>, 
 <a href="#crd.antrea.io/v1alpha2.GroupSpec">GroupSpec</a>, 
-<a href="#crd.antrea.io/v1alpha3.GroupSpec">GroupSpec</a>)
+<a href="#crd.antrea.io/v1alpha3.GroupSpec">GroupSpec</a>, 
+<a href="#crd.antrea.io/v1beta1.GroupSpec">GroupSpec</a>)
 </p>
 <p>
 <p>NamespacedName refers to a Namespace scoped resource.
@@ -9065,7 +9067,11 @@ Resource Types:
 </li><li>
 <a href="#crd.antrea.io/v1beta1.AntreaControllerInfo">AntreaControllerInfo</a>
 </li><li>
+<a href="#crd.antrea.io/v1beta1.ClusterGroup">ClusterGroup</a>
+</li><li>
 <a href="#crd.antrea.io/v1beta1.ExternalIPPool">ExternalIPPool</a>
+</li><li>
+<a href="#crd.antrea.io/v1beta1.Group">Group</a>
 </li><li>
 <a href="#crd.antrea.io/v1beta1.Tier">Tier</a>
 </li></ul>
@@ -9389,6 +9395,181 @@ int
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.ClusterGroup">ClusterGroup
+</h3>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1beta1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>ClusterGroup</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+<p>Standard metadata of the object.</p>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.GroupSpec">
+GroupSpec
+</a>
+</em>
+</td>
+<td>
+<p>Desired state of the group.</p>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>podSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select Pods matching the labels set in the PodSelector in
+AppliedTo/To/From fields. If set with NamespaceSelector, Pods are
+matched from Namespaces matched by the NamespaceSelector.
+Cannot be set with any other selector except NamespaceSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespaceSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select all Pods from Namespaces matched by this selector, as
+workloads in AppliedTo/To/From fields. If set with PodSelector,
+Pods are matched from Namespaces matched by the NamespaceSelector.
+Cannot be set with any other selector except PodSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ipBlocks</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.IPBlock">
+[]IPBlock
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>IPBlocks describe the IPAddresses/IPBlocks that are matched in to/from.
+IPBlocks cannot be set as part of the AppliedTo field.
+Cannot be set with any other selector or ServiceReference.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>serviceReference</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+NamespacedName
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select backend Pods of the referred Service.
+Cannot be set with any other selector or ipBlock.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>externalEntitySelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select ExternalEntities from all Namespaces as workloads
+in AppliedTo/To/From fields. If set with NamespaceSelector,
+ExternalEntities are matched from Namespaces matched by the
+NamespaceSelector.
+Cannot be set with any other selector except NamespaceSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>childGroups</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.ClusterGroupReference">
+[]ClusterGroupReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select other ClusterGroups by name. The ClusterGroups must already
+exist and must not contain ChildGroups themselves.
+Cannot be set with any selector/IPBlock/ServiceReference.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.GroupStatus">
+GroupStatus
+</a>
+</em>
+</td>
+<td>
+<p>Most recently observed status of the group.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.ExternalIPPool">ExternalIPPool
 </h3>
 <p>
@@ -9489,6 +9670,184 @@ ExternalIPPoolStatus
 </td>
 <td>
 <p>The current status of the ExternalIPPool.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.Group">Group
+</h3>
+<p>
+<p>Group can be used in AntreaNetworkPolicies. When used with AppliedTo, it cannot include NamespaceSelector,
+otherwise, Antrea will not realize the NetworkPolicy or rule, but will just update the NetworkPolicy
+Status as &ldquo;Unrealizable&rdquo;.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1beta1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>Group</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+<p>Standard metadata of the object.</p>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.GroupSpec">
+GroupSpec
+</a>
+</em>
+</td>
+<td>
+<p>Desired state of the group.</p>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>podSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select Pods matching the labels set in the PodSelector in
+AppliedTo/To/From fields. If set with NamespaceSelector, Pods are
+matched from Namespaces matched by the NamespaceSelector.
+Cannot be set with any other selector except NamespaceSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespaceSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select all Pods from Namespaces matched by this selector, as
+workloads in AppliedTo/To/From fields. If set with PodSelector,
+Pods are matched from Namespaces matched by the NamespaceSelector.
+Cannot be set with any other selector except PodSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ipBlocks</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.IPBlock">
+[]IPBlock
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>IPBlocks describe the IPAddresses/IPBlocks that are matched in to/from.
+IPBlocks cannot be set as part of the AppliedTo field.
+Cannot be set with any other selector or ServiceReference.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>serviceReference</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+NamespacedName
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select backend Pods of the referred Service.
+Cannot be set with any other selector or ipBlock.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>externalEntitySelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select ExternalEntities from all Namespaces as workloads
+in AppliedTo/To/From fields. If set with NamespaceSelector,
+ExternalEntities are matched from Namespaces matched by the
+NamespaceSelector.
+Cannot be set with any other selector except NamespaceSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>childGroups</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.ClusterGroupReference">
+[]ClusterGroupReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select other ClusterGroups by name. The ClusterGroups must already
+exist and must not contain ChildGroups themselves.
+Cannot be set with any selector/IPBlock/ServiceReference.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.GroupStatus">
+GroupStatus
+</a>
+</em>
+</td>
+<td>
+<p>Most recently observed status of the group.</p>
 </td>
 </tr>
 </tbody>
@@ -9666,6 +10025,15 @@ string
 </p>
 <p>
 </p>
+<h3 id="crd.antrea.io/v1beta1.ClusterGroupReference">ClusterGroupReference
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.GroupSpec">GroupSpec</a>)
+</p>
+<p>
+<p>ClusterGroupReference represent reference to a ClusterGroup.</p>
+</p>
 <h3 id="crd.antrea.io/v1beta1.ControllerCondition">ControllerCondition
 </h3>
 <p>
@@ -9819,6 +10187,218 @@ Kubernetes meta/v1.LabelSelector
 <em>
 <a href="#crd.antrea.io/v1beta1.IPPoolUsage">
 IPPoolUsage
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.GroupCondition">GroupCondition
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.GroupStatus">GroupStatus</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.GroupConditionType">
+GroupConditionType
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#conditionstatus-v1-core">
+Kubernetes core/v1.ConditionStatus
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>lastTransitionTime</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
+Kubernetes meta/v1.Time
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.GroupConditionType">GroupConditionType
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.GroupCondition">GroupCondition</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1beta1.GroupSpec">GroupSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.ClusterGroup">ClusterGroup</a>, 
+<a href="#crd.antrea.io/v1beta1.Group">Group</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>podSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select Pods matching the labels set in the PodSelector in
+AppliedTo/To/From fields. If set with NamespaceSelector, Pods are
+matched from Namespaces matched by the NamespaceSelector.
+Cannot be set with any other selector except NamespaceSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespaceSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select all Pods from Namespaces matched by this selector, as
+workloads in AppliedTo/To/From fields. If set with PodSelector,
+Pods are matched from Namespaces matched by the NamespaceSelector.
+Cannot be set with any other selector except PodSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ipBlocks</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.IPBlock">
+[]IPBlock
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>IPBlocks describe the IPAddresses/IPBlocks that are matched in to/from.
+IPBlocks cannot be set as part of the AppliedTo field.
+Cannot be set with any other selector or ServiceReference.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>serviceReference</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+NamespacedName
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select backend Pods of the referred Service.
+Cannot be set with any other selector or ipBlock.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>externalEntitySelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select ExternalEntities from all Namespaces as workloads
+in AppliedTo/To/From fields. If set with NamespaceSelector,
+ExternalEntities are matched from Namespaces matched by the
+NamespaceSelector.
+Cannot be set with any other selector except NamespaceSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>childGroups</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.ClusterGroupReference">
+[]ClusterGroupReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select other ClusterGroups by name. The ClusterGroups must already
+exist and must not contain ChildGroups themselves.
+Cannot be set with any selector/IPBlock/ServiceReference.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.GroupStatus">GroupStatus
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.ClusterGroup">ClusterGroup</a>, 
+<a href="#crd.antrea.io/v1beta1.Group">Group</a>)
+</p>
+<p>
+<p>GroupStatus represents information about the status of a Group.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>conditions</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.GroupCondition">
+[]GroupCondition
 </a>
 </em>
 </td>
@@ -10605,5 +11185,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>6328ef9</code>.
+on git commit <code>01b5acc</code>.
 </em></p>
