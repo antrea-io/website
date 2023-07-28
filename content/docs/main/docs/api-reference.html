@@ -9077,6 +9077,8 @@ Resource Types:
 <a href="#crd.antrea.io/v1beta1.NetworkPolicy">NetworkPolicy</a>
 </li><li>
 <a href="#crd.antrea.io/v1beta1.Tier">Tier</a>
+</li><li>
+<a href="#crd.antrea.io/v1beta1.Traceflow">Traceflow</a>
 </li></ul>
 <h3 id="crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo
 </h3>
@@ -10385,6 +10387,152 @@ the purpose of this Tier.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.Traceflow">Traceflow
+</h3>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1beta1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>Traceflow</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.TraceflowSpec">
+TraceflowSpec
+</a>
+</em>
+</td>
+<td>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>source</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.Source">
+Source
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>destination</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.Destination">
+Destination
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>packet</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.Packet">
+Packet
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>liveTraffic</code></br>
+<em>
+bool
+</em>
+</td>
+<td>
+<p>LiveTraffic indicates the Traceflow is to trace the live traffic
+rather than an injected packet, when set to true. The first packet of
+the first connection that matches the packet spec will be traced.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>droppedOnly</code></br>
+<em>
+bool
+</em>
+</td>
+<td>
+<p>DroppedOnly indicates only the dropped packet should be captured in a
+live-traffic Traceflow.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>timeout</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Timeout specifies the timeout of the Traceflow in seconds. Defaults
+to 20 seconds if not set.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.TraceflowStatus">
+TraceflowStatus
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.AgentCondition">AgentCondition
 </h3>
 <p>
@@ -10784,6 +10932,69 @@ string
 </p>
 <p>
 </p>
+<h3 id="crd.antrea.io/v1beta1.Destination">Destination
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.TraceflowSpec">TraceflowSpec</a>)
+</p>
+<p>
+<p>Destination describes the destination spec of the traceflow.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>namespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Namespace is the destination namespace.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>pod</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Pod is the destination pod, exclusive with destination service.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>service</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Service is the destination service, exclusive with destination pod.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ip</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>IP is the destination IPv4 or IPv6 address.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.EgressSpec">EgressSpec
 </h3>
 <p>
@@ -11252,6 +11463,47 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.ICMPEchoRequestHeader">ICMPEchoRequestHeader
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.TransportHeader">TransportHeader</a>)
+</p>
+<p>
+<p>ICMPEchoRequestHeader describes spec of an ICMP echo request header.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>id</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>ID is the ICMPEchoRequestHeader ID.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>sequence</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Sequence is the ICMPEchoRequestHeader sequence.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.ICMPProtocol">ICMPProtocol
 </h3>
 <p>
@@ -11371,6 +11623,58 @@ Valid examples are &ldquo;192.168.1.<sup>1</sup>&frasl;<sub>24</sub>&rdquo;.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.IPHeader">IPHeader
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.Packet">Packet</a>)
+</p>
+<p>
+<p>IPHeader describes spec of an IPv4 header.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>protocol</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Protocol is the IP protocol.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ttl</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>TTL is the IP TTL.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>flags</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Flags is the flags for IP.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.IPPoolUsage">IPPoolUsage
 </h3>
 <p>
@@ -11459,6 +11763,47 @@ string
 </td>
 <td>
 <p>The end IP of the range, e.g. 10.10.20.20, inclusive.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.IPv6Header">IPv6Header
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.Packet">Packet</a>)
+</p>
+<p>
+<p>IPv6Header describes spec of an IPv6 header.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>nextHeader</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>NextHeader is the IPv6 protocol.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>hopLimit</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>HopLimit is the IPv6 Hop Limit.</p>
 </td>
 </tr>
 </tbody>
@@ -12195,6 +12540,70 @@ int32
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.NodeResult">NodeResult
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.TraceflowStatus">TraceflowStatus</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>node</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Node is the node of the observation.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>role</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Role of the node like sender, receiver, etc.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>timestamp</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+<p>Timestamp is the timestamp of the observations on the node.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>observations</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.Observation">
+[]Observation
+</a>
+</em>
+</td>
+<td>
+<p>Observations includes all observations from sender nodes, receiver ones, etc.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.OVSInfo">OVSInfo
 </h3>
 <p>
@@ -12240,6 +12649,247 @@ map[string]int32
 </td>
 <td>
 <p>Key: flow table name, Value: flow number</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.Observation">Observation
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.NodeResult">NodeResult</a>)
+</p>
+<p>
+<p>Observation describes those from sender nodes or receiver nodes.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>component</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.TraceflowComponent">
+TraceflowComponent
+</a>
+</em>
+</td>
+<td>
+<p>Component is the observation component.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>componentInfo</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>ComponentInfo is the extension of Component field.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>action</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.TraceflowAction">
+TraceflowAction
+</a>
+</em>
+</td>
+<td>
+<p>Action is the action to the observation.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>pod</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Pod is the combination of Pod name and Pod Namespace.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>dstMAC</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>DstMAC is the destination MAC.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>networkPolicy</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>NetworkPolicy is the combination of Namespace and NetworkPolicyName.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>egress</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Egress is the name of the Egress.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ttl</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>TTL is the observation TTL.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>translatedSrcIP</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>TranslatedSrcIP is the translated source IP.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>translatedDstIP</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>TranslatedDstIP is the translated destination IP.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>tunnelDstIP</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>TunnelDstIP is the tunnel destination IP.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>egressIP</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.Packet">Packet
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.TraceflowSpec">TraceflowSpec</a>, 
+<a href="#crd.antrea.io/v1beta1.TraceflowStatus">TraceflowStatus</a>)
+</p>
+<p>
+<p>Packet includes header info.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>srcIP</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>dstIP</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>length</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Length is the IP packet length (includes the IPv4 or IPv6 header length).</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ipHeader</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.IPHeader">
+IPHeader
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>ipv6Header</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.IPv6Header">
+IPv6Header
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>transportHeader</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.TransportHeader">
+TransportHeader
+</a>
+</em>
+</td>
+<td>
 </td>
 </tr>
 </tbody>
@@ -12532,6 +13182,111 @@ conjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo.</p>
 <p>
 <p>RuleAction describes the action to be applied on traffic matching a rule.</p>
 </p>
+<h3 id="crd.antrea.io/v1beta1.Source">Source
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.TraceflowSpec">TraceflowSpec</a>)
+</p>
+<p>
+<p>Source describes the source spec of the traceflow.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>namespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Namespace is the source namespace.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>pod</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Pod is the source pod.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ip</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>IP is the source IPv4 or IPv6 address. IP as the source is supported
+only for live-traffic Traceflow.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.TCPHeader">TCPHeader
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.TransportHeader">TransportHeader</a>)
+</p>
+<p>
+<p>TCPHeader describes spec of a TCP header.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>srcPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>SrcPort is the source port.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>dstPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>DstPort is the destination port.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>flags</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Flags are flags in the header.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.TLSProtocol">TLSProtocol
 </h3>
 <p>
@@ -12601,6 +13356,316 @@ string
 <td>
 <p>Description is an optional field to add more information regarding
 the purpose of this Tier.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.TraceflowAction">TraceflowAction
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.Observation">Observation</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1beta1.TraceflowComponent">TraceflowComponent
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.Observation">Observation</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1beta1.TraceflowPhase">TraceflowPhase
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.TraceflowStatus">TraceflowStatus</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1beta1.TraceflowSpec">TraceflowSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.Traceflow">Traceflow</a>)
+</p>
+<p>
+<p>TraceflowSpec describes the spec of the traceflow.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>source</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.Source">
+Source
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>destination</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.Destination">
+Destination
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>packet</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.Packet">
+Packet
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>liveTraffic</code></br>
+<em>
+bool
+</em>
+</td>
+<td>
+<p>LiveTraffic indicates the Traceflow is to trace the live traffic
+rather than an injected packet, when set to true. The first packet of
+the first connection that matches the packet spec will be traced.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>droppedOnly</code></br>
+<em>
+bool
+</em>
+</td>
+<td>
+<p>DroppedOnly indicates only the dropped packet should be captured in a
+live-traffic Traceflow.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>timeout</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Timeout specifies the timeout of the Traceflow in seconds. Defaults
+to 20 seconds if not set.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.TraceflowStatus">TraceflowStatus
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.Traceflow">Traceflow</a>)
+</p>
+<p>
+<p>TraceflowStatus describes current status of the traceflow.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>phase</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.TraceflowPhase">
+TraceflowPhase
+</a>
+</em>
+</td>
+<td>
+<p>Phase is the Traceflow phase.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>reason</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Reason is a message indicating the reason of the traceflow&rsquo;s current phase.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>startTime</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
+Kubernetes meta/v1.Time
+</a>
+</em>
+</td>
+<td>
+<p>StartTime is the time at which the Traceflow as started by the Antrea Controller.
+Before K8s v1.20, null values (field not set) are not pruned, and a CR where a
+metav1.Time field is not set would fail OpenAPI validation (type string). The
+recommendation seems to be to use a pointer instead, and the field will be omitted when
+serializing.
+See <a href="https://github.com/kubernetes/kubernetes/issues/86811">https://github.com/kubernetes/kubernetes/issues/86811</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>dataplaneTag</code></br>
+<em>
+byte
+</em>
+</td>
+<td>
+<p>DataplaneTag is a tag to identify a traceflow session across Nodes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>results</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.NodeResult">
+[]NodeResult
+</a>
+</em>
+</td>
+<td>
+<p>Results is the collection of all observations on different nodes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>capturedPacket</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.Packet">
+Packet
+</a>
+</em>
+</td>
+<td>
+<p>CapturedPacket is the captured packet in live-traffic Traceflow.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.TransportHeader">TransportHeader
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.Packet">Packet</a>)
+</p>
+<p>
+<p>TransportHeader describes spec of a TransportHeader.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>icmp</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.ICMPEchoRequestHeader">
+ICMPEchoRequestHeader
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>udp</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.UDPHeader">
+UDPHeader
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>tcp</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.TCPHeader">
+TCPHeader
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.UDPHeader">UDPHeader
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.TransportHeader">TransportHeader</a>)
+</p>
+<p>
+<p>UDPHeader describes spec of a UDP header.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>srcPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>SrcPort is the source port.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>dstPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>DstPort is the destination port.</p>
 </td>
 </tr>
 </tbody>
@@ -13151,5 +14216,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>e8adb07</code>.
+on git commit <code>4dcd030</code>.
 </em></p>
