@@ -404,6 +404,25 @@ entries:
       artifacthub.io/operator: "false"
       artifacthub.io/prerelease: "false"
     apiVersion: v2
+    appVersion: 0.3.0
+    created: "2023-08-23T19:30:40.847235906Z"
+    description: Web UI for the Antrea Kubernetes network plugin
+    digest: 2c34be95afaab010a133154922d064cef66bacfb758bb9d2e3cc420eb80715cc
+    home: https://antrea.io/
+    icon: https://raw.githubusercontent.com/antrea-io/antrea/main/docs/assets/logo/antrea_logo.svg
+    kubeVersion: '>= 1.16.0-0'
+    name: antrea-ui
+    sources:
+    - https://github.com/antrea-io/antrea-ui
+    type: application
+    urls:
+    - https://github.com/antrea-io/antrea-ui/releases/download/v0.3.0/antrea-ui-chart.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/operator: "false"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
     appVersion: 0.2.0
     created: "2023-06-16T17:38:29.304769232Z"
     description: Web UI for the Antrea Kubernetes network plugin
@@ -1246,4 +1265,4 @@ entries:
     urls:
     - https://github.com/antrea-io/theia/releases/download/v0.2.0-alpha.0/theia-chart.tgz
     version: 0.2.0-alpha.0
-generated: "2023-07-28T15:36:40.392411397Z"
+generated: "2023-08-23T19:30:40.845224378Z"
