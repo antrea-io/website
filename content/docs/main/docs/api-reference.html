@@ -38,6 +38,8 @@ Resource Types:
 </li><li>
 <a href="#controlplane.antrea.io/v1beta2.GroupAssociation">GroupAssociation</a>
 </li><li>
+<a href="#controlplane.antrea.io/v1beta2.GroupMembers">GroupMembers</a>
+</li><li>
 <a href="#controlplane.antrea.io/v1beta2.IPGroupAssociation">IPGroupAssociation</a>
 </li><li>
 <a href="#controlplane.antrea.io/v1beta2.NetworkPolicy">NetworkPolicy</a>
@@ -166,7 +168,7 @@ Refer to the Kubernetes API documentation for the fields of the
 <h3 id="controlplane.antrea.io/v1beta2.ClusterGroupMembers">ClusterGroupMembers
 </h3>
 <p>
-<p>ClusterGroupMembers is a list of GroupMember objects or ipBlocks that are currently selected by a ClusterGroup.</p>
+<p>ClusterGroupMembers is a list of GroupMember objects or IPBlocks that are currently selected by a ClusterGroup.</p>
 </p>
 <table>
 <thead>
@@ -377,6 +379,106 @@ Refer to the Kubernetes API documentation for the fields of the
 <td>
 <p>AssociatedGroups is a list of GroupReferences that is associated with the
 Pod/ExternalEntity being queried.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controlplane.antrea.io/v1beta2.GroupMembers">GroupMembers
+</h3>
+<p>
+<p>GroupMembers is a list of GroupMember objects or IPBlocks that are currently selected by a Group.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+controlplane.antrea.io/v1beta2
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>GroupMembers</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>effectiveMembers</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.GroupMember">
+[]GroupMember
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>effectiveIPBlocks</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.IPNet">
+[]IPNet
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>totalMembers</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>totalPages</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>currentPage</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
 </td>
 </tr>
 </tbody>
@@ -1071,6 +1173,7 @@ string
 <a href="#controlplane.antrea.io/v1beta2.AppliedToGroup">AppliedToGroup</a>, 
 <a href="#controlplane.antrea.io/v1beta2.ClusterGroupMembers">ClusterGroupMembers</a>, 
 <a href="#controlplane.antrea.io/v1beta2.EgressGroup">EgressGroup</a>, 
+<a href="#controlplane.antrea.io/v1beta2.GroupMembers">GroupMembers</a>, 
 <a href="#controlplane.antrea.io/v1beta2.AddressGroupPatch">AddressGroupPatch</a>, 
 <a href="#controlplane.antrea.io/v1beta2.AppliedToGroupPatch">AppliedToGroupPatch</a>, 
 <a href="#controlplane.antrea.io/v1beta2.EgressGroupPatch">EgressGroupPatch</a>)
@@ -1344,6 +1447,7 @@ Except values will be rejected if they are outside the CIDR range.</p>
 <p>
 (<em>Appears on:</em>
 <a href="#controlplane.antrea.io/v1beta2.ClusterGroupMembers">ClusterGroupMembers</a>, 
+<a href="#controlplane.antrea.io/v1beta2.GroupMembers">GroupMembers</a>, 
 <a href="#controlplane.antrea.io/v1beta2.IPBlock">IPBlock</a>)
 </p>
 <p>
@@ -14216,5 +14320,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>a6c893c</code>.
+on git commit <code>2135110</code>.
 </em></p>
