@@ -1239,9 +1239,9 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: 0.7.1
-    created: "2023-10-03T18:04:26.053122736Z"
+    created: "2023-10-03T21:02:04.54143571Z"
     description: Antrea Network Flow Visibility
-    digest: 1314bd9670bf9949fcb0412f27eac01e1b0cc69dc1375cf79082adf73d82704e
+    digest: dcf0b72c47121bd8dae39954da104f243caee0a1225a6f4ba840ebecd1a297c1
     home: https://antrea.io/
     icon: https://raw.githubusercontent.com/antrea-io/antrea/main/docs/assets/logo/antrea_logo.svg
     keywords:
@@ -1469,4 +1469,4 @@ entries:
     urls:
     - https://github.com/antrea-io/theia/releases/download/v0.2.0-alpha.0/theia-chart.tgz
     version: 0.2.0-alpha.0
-generated: "2023-10-03T18:04:26.046970383Z"
+generated: "2023-10-03T21:02:04.536018441Z"
