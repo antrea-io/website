@@ -14,7 +14,8 @@ NetworkPolicy enforcement, which is why trying to disable AntreaProxy in these
 modes will normally cause the Antrea Agent to fail. It is possible to override
 this behavior and force AntreaProxy to be disabled by setting the
 ALLOW_NO_ENCAP_WITHOUT_ANTREA_PROXY environment variable to true for the Antrea
-Agent. For example:
+Agent in the [Antrea deployment yaml](https://github.com/antrea-io/antrea/blob/main/build/yamls/antrea.yml).
+For example:
 
 ```yaml
 apiVersion: apps/v1
@@ -24,11 +25,13 @@ metadata:
   labels:
     component: antrea-agent
 spec:
-  containers:
-    - name: antrea-agent
-      env:
-        - name: ALLOW_NO_ENCAP_WITHOUT_ANTREA_PROXY
-          value: "true"
+  template:
+    spec:
+      containers:
+        - name: antrea-agent
+          env:
+            - name: ALLOW_NO_ENCAP_WITHOUT_ANTREA_PROXY
+              value: "true"
 ```
 
 ## Hybrid Mode
