@@ -7138,6 +7138,88 @@ int32
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha2.EgressCondition">EgressCondition
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.EgressStatus">EgressStatus</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.EgressConditionType">
+EgressConditionType
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#conditionstatus-v1-core">
+Kubernetes core/v1.ConditionStatus
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>lastTransitionTime</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
+Kubernetes meta/v1.Time
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>reason</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>message</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha2.EgressConditionType">EgressConditionType
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha2.EgressCondition">EgressCondition</a>)
+</p>
+<p>
+</p>
 <h3 id="crd.antrea.io/v1alpha2.EgressSpec">EgressSpec
 </h3>
 <p>
@@ -7261,6 +7343,18 @@ string
 <td>
 <p>EgressIP indicates the effective Egress IP for the selected workloads. It could be empty if the Egress IP in spec
 is not assigned to any Node. It&rsquo;s also useful when there are more than one Egress IP specified in spec.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>conditions</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha2.EgressCondition">
+[]EgressCondition
+</a>
+</em>
+</td>
+<td>
 </td>
 </tr>
 </tbody>
@@ -11099,6 +11193,88 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.EgressCondition">EgressCondition
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.EgressStatus">EgressStatus</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.EgressConditionType">
+EgressConditionType
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#conditionstatus-v1-core">
+Kubernetes core/v1.ConditionStatus
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>lastTransitionTime</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
+Kubernetes meta/v1.Time
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>reason</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>message</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.EgressConditionType">EgressConditionType
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.EgressCondition">EgressCondition</a>)
+</p>
+<p>
+</p>
 <h3 id="crd.antrea.io/v1beta1.EgressSpec">EgressSpec
 </h3>
 <p>
@@ -11222,6 +11398,18 @@ string
 <td>
 <p>EgressIP indicates the effective Egress IP for the selected workloads. It could be empty if the Egress IP in spec
 is not assigned to any Node. It&rsquo;s also useful when there are more than one Egress IP specified in spec.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>conditions</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.EgressCondition">
+[]EgressCondition
+</a>
+</em>
+</td>
+<td>
 </td>
 </tr>
 </tbody>
@@ -14320,5 +14508,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>ae5e29b</code>.
+on git commit <code>0ff5d8c</code>.
 </em></p>
