@@ -10049,6 +10049,19 @@ same index in EgressIPs and ExternalIPPools are correlated.
 Cannot be set with ExternalIPPool.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>bandwidth</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.Bandwidth">
+Bandwidth
+</a>
+</em>
+</td>
+<td>
+<p>Bandwidth specifies the rate limit of north-south egress traffic of this Egress.</p>
+</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -10941,6 +10954,46 @@ Cannot be set with any other selector.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.Bandwidth">Bandwidth
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.EgressSpec">EgressSpec</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>rate</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Rate specifies the maximum traffic rate. e.g. 300k, 10M</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>burst</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Burst specifies the maximum burst size when traffic exceeds the rate. e.g. 300k, 10M</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.ClusterGroupReference">ClusterGroupReference
 (<code>string</code> alias)</p></h3>
 <p>
@@ -11356,6 +11409,19 @@ to a different Node when the Node becomes unreachable.</p>
 <p>ExternalIPPools specifies multiple unique IP Pools that the EgressIPs should be allocated from. Entries with the
 same index in EgressIPs and ExternalIPPools are correlated.
 Cannot be set with ExternalIPPool.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>bandwidth</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.Bandwidth">
+Bandwidth
+</a>
+</em>
+</td>
+<td>
+<p>Bandwidth specifies the rate limit of north-south egress traffic of this Egress.</p>
 </td>
 </tr>
 </tbody>
@@ -14508,5 +14574,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>d66de44</code>.
+on git commit <code>ffc6495</code>.
 </em></p>
