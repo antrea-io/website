@@ -26,6 +26,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+	"sync"
 )
 
 type DocDir struct {
@@ -256,10 +257,37 @@ func fixupMarkdown(destDocsPath, version string) error {
 func generateAPIReference(sourceDocsPath string, destDocsPath string) error {
 	log.Printf("Generating API reference file\n")
 	cmd := exec.Command("./generate-api-reference.sh")
+	stdoutPipe, err := cmd.StdoutPipe()
+	if err != nil {
+		return fmt.Errorf("error when connecting to stdout: %w", err)
+	}
+	stderrPipe, err := cmd.StderrPipe()
+	if err != nil {
+		return fmt.Errorf("error when connecting to stderr: %w", err)
+	}
 	dir := filepath.Join(sourceDocsPath, "hack", "api-reference")
 	cmd.Dir = dir
-	if err := cmd.Run(); err != nil {
-		return fmt.Errorf("Error when invoking generate-api-reference.sh: %w", err)
+	if err := cmd.Start(); err != nil {
+		return fmt.Errorf("error when starting generate-api-reference.sh command: %w", err)
+	}
+	var stdoutBytes, stderrBytes []byte
+	var wg sync.WaitGroup
+	wg.Add(2)
+	go func() {
+		defer wg.Done()
+		stdoutBytes, _ = io.ReadAll(stdoutPipe)
+	}()
+	go func() {
+		defer wg.Done()
+		stderrBytes, _ = io.ReadAll(stderrPipe)
+	}()
+	wg.Wait()
+	if err := cmd.Wait(); err != nil {
+		if _, ok := err.(*exec.ExitError); ok {
+			log.Printf("Stdout: %s\n", string(stdoutBytes))
+			log.Printf("Stderr: %s\n", string(stderrBytes))
+		}
+		return fmt.Errorf("error when running generate-api-reference.sh command: %w", err)
 	}
 	source := filepath.Join(dir, "api-reference.html")
 	dest := filepath.Join(destDocsPath, "docs", "api-reference.html")
