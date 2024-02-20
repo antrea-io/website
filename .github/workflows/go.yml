@@ -13,8 +13,8 @@ jobs:
     name: Build Go scripts
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-go@v4
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v5
       with:
         go-version-file: 'scripts/go.mod'
         cache-dependency-path: 'scripts/go.sum'
@@ -26,8 +26,8 @@ jobs:
     name: Tidiness
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-go@v4
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v5
       with:
         go-version-file: 'scripts/go.mod'
         cache-dependency-path: 'scripts/go.sum'
@@ -39,8 +39,8 @@ jobs:
     name: Run code linters for Go scripts
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-go@v4
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v5
       with:
         go-version-file: 'scripts/go.mod'
         cache-dependency-path: 'scripts/go.sum'
@@ -53,9 +53,9 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
     - name: Check-out code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Set up Go using version from go.mod
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       with:
         go-version-file: 'scripts/go.mod'
         cache-dependency-path: 'scripts/go.sum'

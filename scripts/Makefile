@@ -1,6 +1,6 @@
 GO                 ?= go
 BINDIR             ?= $(CURDIR)/bin
-GOLANGCI_LINT_VERSION := v1.50.1
+GOLANGCI_LINT_VERSION := v1.54.0
 GOLANGCI_LINT_BINDIR  := .golangci-bin
 GOLANGCI_LINT_BIN     := $(GOLANGCI_LINT_BINDIR)/$(GOLANGCI_LINT_VERSION)/golangci-lint
 
