@@ -10155,6 +10155,20 @@ ExternalIPPoolSpec
 </tr>
 <tr>
 <td>
+<code>subnetInfo</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.SubnetInfo">
+SubnetInfo
+</a>
+</em>
+</td>
+<td>
+<p>The Subnet info of this IP pool. If set, all IP ranges in the IP pool should share the same subnet attributes.
+Currently, it&rsquo;s only used when an IP is allocated from the pool for Egress, and is ignored otherwise.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>nodeSelector</code></br>
 <em>
 <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
@@ -10952,6 +10966,21 @@ Only a NodePort Service can be referred by this field.
 Cannot be set with any other selector.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>nodeSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select Nodes in cluster as workloads in AppliedTo fields.
+Cannot be set with any other selector.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="crd.antrea.io/v1beta1.Bandwidth">Bandwidth
@@ -11507,6 +11536,20 @@ is not assigned to any Node. It&rsquo;s also useful when there are more than one
 </td>
 <td>
 <p>The IP ranges of this IP pool, e.g. 10.10.0.0/24, 10.10.10.2-10.10.10.20, 10.10.10.30-10.10.10.30.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>subnetInfo</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.SubnetInfo">
+SubnetInfo
+</a>
+</em>
+</td>
+<td>
+<p>The Subnet info of this IP pool. If set, all IP ranges in the IP pool should share the same subnet attributes.
+Currently, it&rsquo;s only used when an IP is allocated from the pool for Egress, and is ignored otherwise.</p>
 </td>
 </tr>
 <tr>
@@ -12531,8 +12574,8 @@ string
 by name or by wildcard match patterns. This field can only be set for
 NetworkPolicyPeer of egress rules.
 Supported formats are:
-Exact FQDNs, i.e. &ldquo;google.com&rdquo;, &ldquo;db-svc.default.svc.cluster.local&rdquo;
-Wildcard expressions, i.e. &ldquo;*wayfair.com&rdquo;.</p>
+Exact FQDNs such as &ldquo;google.com&rdquo;.
+Wildcard expressions such as &ldquo;*wayfair.com&rdquo;.</p>
 </td>
 </tr>
 <tr>
@@ -12563,7 +12606,7 @@ Kubernetes meta/v1.LabelSelector
 <td>
 <em>(Optional)</em>
 <p>Select certain Nodes which match the label selector.
-A NodeSelector cannot be set in AppliedTo field or set with any other selector.</p>
+A NodeSelector cannot be set with any other selector.</p>
 </td>
 </tr>
 <tr>
@@ -13174,6 +13217,17 @@ string
 <td>
 </td>
 </tr>
+<tr>
+<td>
+<code>egressNode</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>EgressNode is the name of the Egress Node.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="crd.antrea.io/v1beta1.Packet">Packet
@@ -13600,6 +13654,58 @@ string
 <td>
 <p>IP is the source IPv4 or IPv6 address. IP as the source is supported
 only for live-traffic Traceflow.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.SubnetInfo">SubnetInfo
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.ExternalIPPoolSpec">ExternalIPPoolSpec</a>)
+</p>
+<p>
+<p>SubnetInfo specifies subnet attributes for IP Range.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>gateway</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Gateway IP for this subnet, e.g. 10.10.1.1.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>prefixLength</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Prefix length for the subnet, e.g. 24.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>vlan</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>VLAN ID for this subnet. Default is 0. Valid value is 0~4094.</p>
 </td>
 </tr>
 </tbody>
@@ -14585,5 +14691,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>68b5a02</code>.
+on git commit <code>968649c</code>.
 </em></p>

@@ -45,7 +45,7 @@ to implement the communication channel to Antrea Agents. Each Antrea Agent
 connects to the Controller API server and watches the computed NetworkPolicy
 objects. Controller also exposes a REST API for `antctl` on the same HTTP
 endpoint. See more information about the Controller API server implementation
-in the [Controller API server section](#Controller-API-server).
+in the [Controller API server section](#controller-api-server).
 
 #### Controller API server
 
@@ -218,8 +218,8 @@ the tunnel.
 
 {{< img src="../assets/service_walk.svg.png" width="600" alt="Antrea Service Traffic Walk" >}}
 
-`kube-proxy` can be used in any supported mode: user-space iptables, or IPVS.
-See the [Kubernetes Service documentation](https://kubernetes.io/docs/concepts/services-networking/service)
+`kube-proxy` can be used in any supported mode: iptables, IPVS or nftables.
+See the [Kubernetes Service Proxies documentation](https://kubernetes.io/docs/reference/networking/virtual-ips)
 for more details.
 
 When AntreaProxy is enabled, Antrea Agent will add OVS flows that implement

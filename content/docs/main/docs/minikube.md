@@ -26,11 +26,12 @@ minikube start --cni=antrea.yml --network-plugin=cni
 
 These instructions assume that you have built the Antrea Docker image locally
 (e.g. by running `make` from the root of the repository, or in case of arm64 architecture by running
-`DOCKER_BUILDKIT=1 ./hack/build-antrea-ubuntu-all.sh --platform linux/arm64`).
+`./hack/build-antrea-linux-all.sh --platform linux/arm64`).
 
 ```bash
-# load the Antrea Docker image in the minikube nodes
-minikube image load antrea/antrea-ubuntu:latest
+# load the Antrea Docker images in the minikube nodes
+minikube image load antrea/antrea-controller-ubuntu:latest
+minikube image load antrea/antrea-agent-ubuntu:latest
 # deploy Antrea
 kubectl apply -f antrea/build/yamls/antrea.yml
 ```

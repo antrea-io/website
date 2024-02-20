@@ -194,7 +194,7 @@ are using.
 
 ## Using DHCP for IPAM
 
-To use DHCP for IPAM, you need not create the Antrea `IPPool` CR in [step-3],
+To use DHCP for IPAM, you need not create the Antrea `IPPool` CR in [step-3](#step-3-create-an-ippool-and-a-networkattachmentdefinition),
 and `dhcp` should be specified as the IPAM type in the
 `NetworkAttachmentDefinition` CR created.  And, two more extra steps are
 required, after step 1 - 4.
@@ -208,8 +208,8 @@ statically), you may want to deploy a DHCP server in the K8s cluster,
 and use it to assign IP addresses to the macvlan secondary interfaces. In
 particular, this is the case if you are using our [test cluster].
 
-Note that in order to deploy the DHCP server in-cluster, [step-4] is
-required. You can then apply the following manifest after making the necessary
+Note that in order to deploy the DHCP server in-cluster, [step-4](#step-4-optional-create-a-macvlan-subinterface-on-each-node)
+is required. You can then apply the following manifest after making the necessary
 edits:
 
 ```bash
@@ -221,10 +221,11 @@ kubectl apply -f dhcp-server.yml
 Once again, if you are using our [test cluster], no edits are required and you
 can apply the file as is. Otherwise, make sure that you edit the
 `dhcp-server-conf` ConfigMap at the top of the file: the
-[dhcpd.conf](https://man.openbsd.org/dhcpd.conf.5) configuration data needs to
-be correct for our use case. You will need to ensure that the subnet matches the
-parent interface's network and that the range of allocatable addresses does not
-include the IP addresses assigned to the parent interfaces.
+[dhcpd.conf](https://manpages.ubuntu.com/manpages/jammy/en/man5/dhcpd.conf.5.html)
+configuration data needs to be correct for our use case. You will need to ensure
+that the subnet matches the parent interface's network and that the range of
+allocatable addresses does not include the IP addresses assigned to the parent
+interfaces.
 
 ### Step 6: Run the DHCP daemons
 
@@ -378,9 +379,3 @@ You can then validate that the configuration works by running the same
 [Whereabouts]: https://github.com/dougbtv/whereabouts
 [test cluster]: #suggested-test-cluster
 [DHCP]: #using-dhcp-for-ipam
-[step-1]: #step-1-deploying-antrea
-[step-2]: #step-2-deploy-multus-as-a-daemonset
-[step-3]: #step-3-create-an-ippool-and-a-networkattachmentdefinition
-[step-4]: #step-4-optional-create-a-macvlan-subinterface-on-each-node
-[step-5]: #step-5-run-a-dhcp-server
-[step-6]: #step-6-run-the-dhcp-daemons

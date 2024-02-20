@@ -110,7 +110,11 @@ Antrea v1.11.0, Multi-cluster Gateway also works with the Antrea `noEncap`, `hyb
 and `networkPolicyOnly` modes. For `noEncap` and `hybrid` modes, Antrea Multi-cluster
 deployment is the same as `encap` mode. For `networkPolicyOnly` mode, we need extra
 Antrea configuration changes to support Multi-cluster Gateway. Please check
-[the deployment guide](./policy-only-mode.md) for more information.
+[the deployment guide](./policy-only-mode.md) for more information. When using
+Multi-cluster Gateway, it is not possible to enable WireGuard for inter-Node
+traffic within the same member cluster. It is however possible to [enable
+WireGuard for cross-cluster traffic](#multi-cluster-wireguard-encryption)
+between member clusters.
 
 ### Deploy Antrea Multi-cluster Controller
 
@@ -450,6 +454,10 @@ data:
         port: 51821
 ```
 
+When WireGuard encryption is enabled for cross-cluster traffic as part of the
+Multi-cluster feature, in-cluster encryption (for traffic within a given member
+cluster) is no longer supported, not even with IPsec.
+
 ## Multi-cluster Service
 
 After you set up a ClusterSet properly, you can create a `ServiceExport` CR to
@@ -619,7 +627,7 @@ Service name and Namespace in the `toServices` field of an Antrea-native policy,
 of the `toServices` peer to `ClusterSet`:
 
 ```yaml
-apiVersion: crd.antrea.io/v1alpha1
+apiVersion: crd.antrea.io/v1beta1
 kind: ClusterNetworkPolicy
 metadata:
   name: acnp-drop-tenant-to-secured-mc-service
@@ -657,7 +665,7 @@ Policy rules can be created to enforce security postures on ingress traffic from
 clusters in a ClusterSet:
 
 ```yaml
-apiVersion: crd.antrea.io/v1alpha1
+apiVersion: crd.antrea.io/v1beta1
 kind: ClusterNetworkPolicy
 metadata:
   name: drop-tenant-access-to-admin-namespace
@@ -679,8 +687,8 @@ spec:
 ```
 
 ```yaml
-apiVersion: crd.antrea.io/v1alpha1
-kind: AntreaNetworkPolicy
+apiVersion: crd.antrea.io/v1beta1
+kind: NetworkPolicy
 metadata:
   name: db-svc-allow-ingress-from-client-only
   namespace: prod-us-west

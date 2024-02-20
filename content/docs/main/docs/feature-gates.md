@@ -56,6 +56,9 @@ edit the Agent configuration in the
 | `L7NetworkPolicy`             | Agent + Controller | `false` | Alpha | v1.10         | N/A          | N/A        | Yes                |                                               |
 | `AdminNetworkPolicy`          | Controller         | `false` | Alpha | v1.13         | N/A          | N/A        | Yes                |                                               |
 | `EgressTrafficShaping`        | Agent              | `false` | Alpha | v1.14         | N/A          | N/A        | Yes                | OVS meters should be supported                |
+| `EgressSeparateSubnet`        | Agent              | `false` | Alpha | v1.15         | N/A          | N/A        | No                 |                                               |
+| `NodeNetworkPolicy`           | Agent              | `false` | Alpha | v1.15         | N/A          | N/A        | Yes                |                                               |
+| `L7FlowExporter`              | Agent              | `false` | Alpha | v1.15         | N/A          | N/A        | Yes                |                                               |
 
 ## Description and Requirements of Features
 
@@ -404,6 +407,14 @@ this [document](antrea-l7-network-policy.md#prerequisites) for more information 
 The `AdminNetworkPolicy` API (which currently includes the AdminNetworkPolicy and BaselineAdminNetworkPolicy objects)
 complements the Antrea-native policies and help cluster administrators to set security postures in a portable manner.
 
+### NodeNetworkPolicy
+
+`NodeNetworkPolicy` allows users to apply ClusterNetworkPolicy to Kubernetes Nodes.
+
+#### Requirements for this Feature
+
+This feature is only supported for Linux Nodes at the moment.
+
 ### EgressTrafficShaping
 
 The `EgressTrafficShaping` feature gate of Antrea Agent enables traffic shaping of Egress, which could limit the
@@ -413,3 +424,17 @@ bandwidth for all egress traffic belonging to an Egress. Refer to this [document
 
 This feature leverages OVS meters to do the actual rate-limiting, therefore this feature requires OVS meters
 to be supported in the datapath.
+
+### EgressSeparateSubnet
+
+`EgressSeparateSubnet` allows users to allocate Egress IPs from a different subnet from the default Node subnet.
+Refer to this [document](egress.md#subnetinfo) for more information.
+
+### L7FlowExporter
+
+`L7FlowExporter` enables users to export application-layer flow data using Pod or Namespace annotations.
+Refer to this [document](network-flow-visibility.md#l7-visibility) for more information.
+
+#### Requirements for this Feature
+
+- Linux Nodes only.

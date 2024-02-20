@@ -69,7 +69,7 @@ encountered when running Antrea on specific OSes are documented
 There are also a few network prerequisites which need to be satisfied, and they depend
 on the tunnel mode you choose, please check [network requirements](./network-requirements.md).
 
-## Installation
+## Installation / Upgrade
 
 To deploy a released version of Antrea, pick a deployment manifest from the
 [list of releases](https://github.com/antrea-io/antrea/releases). For any
@@ -85,6 +85,9 @@ checked-in [deployment yaml](https://github.com/antrea-io/antrea/blob/main/build
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/antrea-io/antrea/main/build/yamls/antrea.yml
 ```
+
+You can use the same `kubectl apply` command to upgrade to a more recent version
+of Antrea.
 
 Antrea supports some experimental features that can be enabled or disabled,
 please refer to the [Feature Gates documentation](feature-gates.md) for more
@@ -137,7 +140,7 @@ following:
 2. Delete Flannel bridge and tunnel interface with `ip link delete flannel.1 &&
 ip link delete flannel cni0` **on each Node**.
 3. Ensure [requirements](#ensuring-requirements-are-satisfied) are satisfied.
-4. [Deploy Antrea](#installation).
+4. [Deploy Antrea](#installation--upgrade).
 5. Drain and uncordon Nodes one-by-one. For each Node, run `kubectl drain
 --ignore-daemonsets <node name> && kubectl uncordon <node name>`. The
 `--ignore-daemonsets` flag will ignore DaemonSet-managed Pods, including the

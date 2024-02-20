@@ -168,7 +168,6 @@ Here are the trigger phrases for individual checks:
 * `/test-windows-e2e`: Windows IPv4 e2e tests
 * `/test-windows-conformance`: Windows IPv4 conformance tests
 * `/test-windows-networkpolicy`: Windows IPv4 networkpolicy tests
-* `/test-windows-proxyall-e2e`: Windows IPv4 e2e tests with proxyAll enabled
 * `/test-ipv6-e2e`: Linux dual stack e2e tests
 * `/test-ipv6-conformance`: Linux dual stack conformance tests
 * `/test-ipv6-networkpolicy`: Linux dual stack networkpolicy tests
@@ -243,7 +242,7 @@ do:
 2. Run `make`
 
 The second step will compile the Antrea code in a `golang` container, and build
-a `Ubuntu 20.04` Docker image that includes all the generated binaries. [`Docker`](https://docs.docker.com/install)
+an Ubuntu-based Docker image that includes all the generated binaries. [`Docker`](https://docs.docker.com/install)
 must be installed on your local machine in advance. If you are a macOS user and
 cannot use [Docker Desktop](https://www.docker.com/products/docker-desktop) to
 contribute to Antrea for licensing reasons, check out this
@@ -367,10 +366,10 @@ labels are included on your issue:
   will ensure the appropriate reviewers shepherd the issue or PR through to its
   closure. For an overview of areas, see the
   [`docs/github-labels.md`](docs/contributors/github-labels.md).
-* **size** (optional) -- if you have an idea of the size (lines of code, complexity,
-  effort) of the issue, you can label it using a [size label](#size). The size
-  can be updated during backlog grooming by contributors. This estimate is used
-  to guide the number of features selected for a milestone.
+* **size** (optional) -- if you have an idea of the size (lines of code,
+  complexity, effort) of the issue, you can label it using a size label. The
+  size can be updated during backlog grooming by contributors. This estimate is
+  used to guide the number of features selected for a milestone.
 
 All other labels will be assigned during issue triage.
 
