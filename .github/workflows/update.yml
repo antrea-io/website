@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Wait for exclusive access
-      uses: ben-z/gh-action-mutex@v1.0-alpha-5
+      uses: ben-z/gh-action-mutex@v1.0-alpha-8
       with:
         repo-token: ${{ secrets.ANTREA_BOT_PAT }}
         repository: antrea-io/website
