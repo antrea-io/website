@@ -44,6 +44,8 @@ Resource Types:
 </li><li>
 <a href="#controlplane.antrea.io/v1beta2.NetworkPolicy">NetworkPolicy</a>
 </li><li>
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyEvaluation">NetworkPolicyEvaluation</a>
+</li><li>
 <a href="#controlplane.antrea.io/v1beta2.NodeStatsSummary">NodeStatsSummary</a>
 </li><li>
 <a href="#controlplane.antrea.io/v1beta2.SupportBundleCollection">SupportBundleCollection</a>
@@ -650,6 +652,62 @@ NetworkPolicyReference
 </tr>
 </tbody>
 </table>
+<h3 id="controlplane.antrea.io/v1beta2.NetworkPolicyEvaluation">NetworkPolicyEvaluation
+</h3>
+<p>
+<p>NetworkPolicyEvaluation contains the request and response for a NetworkPolicy evaluation.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+controlplane.antrea.io/v1beta2
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>NetworkPolicyEvaluation</code></td>
+</tr>
+<tr>
+<td>
+<code>request</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyEvaluationRequest">
+NetworkPolicyEvaluationRequest
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>response</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyEvaluationResponse">
+NetworkPolicyEvaluationResponse
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="controlplane.antrea.io/v1beta2.NodeStatsSummary">NodeStatsSummary
 </h3>
 <p>
@@ -1066,7 +1124,8 @@ BasicAuthentication
 (<code>string</code> alias)</p></h3>
 <p>
 (<em>Appears on:</em>
-<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyRule">NetworkPolicyRule</a>)
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyRule">NetworkPolicyRule</a>, 
+<a href="#controlplane.antrea.io/v1beta2.RuleRef">RuleRef</a>)
 </p>
 <p>
 <p>Direction defines traffic direction of NetworkPolicyRule.</p>
@@ -1116,6 +1175,37 @@ Refer to the Kubernetes API documentation for the fields of the
 <em>
 <a href="#controlplane.antrea.io/v1beta2.GroupMember">
 []GroupMember
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controlplane.antrea.io/v1beta2.Entity">Entity
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyEvaluationRequest">NetworkPolicyEvaluationRequest</a>)
+</p>
+<p>
+<p>Entity contains Namespace and Pod name as a request parameter.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>pod</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.PodReference">
+PodReference
 </a>
 </em>
 </td>
@@ -1625,6 +1715,104 @@ Protocol
 </tr>
 </tbody>
 </table>
+<h3 id="controlplane.antrea.io/v1beta2.NetworkPolicyEvaluationRequest">NetworkPolicyEvaluationRequest
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyEvaluation">NetworkPolicyEvaluation</a>)
+</p>
+<p>
+<p>NetworkPolicyEvaluationRequest is the request body of NetworkPolicy evaluation.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>source</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.Entity">
+Entity
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>destination</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.Entity">
+Entity
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controlplane.antrea.io/v1beta2.NetworkPolicyEvaluationResponse">NetworkPolicyEvaluationResponse
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyEvaluation">NetworkPolicyEvaluation</a>)
+</p>
+<p>
+<p>NetworkPolicyEvaluationResponse is the response of NetworkPolicy evaluation.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>networkPolicy</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyReference">
+NetworkPolicyReference
+</a>
+</em>
+</td>
+<td>
+<p>The reference of the effective NetworkPolicy.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ruleIndex</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>rule</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.RuleRef">
+RuleRef
+</a>
+</em>
+</td>
+<td>
+<p>The content of the effective rule.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="controlplane.antrea.io/v1beta2.NetworkPolicyNodeStatus">NetworkPolicyNodeStatus
 </h3>
 <p>
@@ -1775,6 +1963,7 @@ This field can only be possibly set for NetworkPolicyPeer of ingress rules.</p>
 <p>
 (<em>Appears on:</em>
 <a href="#controlplane.antrea.io/v1beta2.NetworkPolicy">NetworkPolicy</a>, 
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyEvaluationResponse">NetworkPolicyEvaluationResponse</a>, 
 <a href="#controlplane.antrea.io/v1beta2.NetworkPolicyStats">NetworkPolicyStats</a>)
 </p>
 <p>
@@ -2173,6 +2362,7 @@ int64
 </h3>
 <p>
 (<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.Entity">Entity</a>, 
 <a href="#controlplane.antrea.io/v1beta2.GroupMember">GroupMember</a>, 
 <a href="#controlplane.antrea.io/v1beta2.MulticastGroupInfo">MulticastGroupInfo</a>)
 </p>
@@ -2221,6 +2411,59 @@ string
 <p>
 <p>Protocol defines network protocols supported for things like container ports.</p>
 </p>
+<h3 id="controlplane.antrea.io/v1beta2.RuleRef">RuleRef
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#controlplane.antrea.io/v1beta2.NetworkPolicyEvaluationResponse">NetworkPolicyEvaluationResponse</a>)
+</p>
+<p>
+<p>RuleRef contains basic information for the rule.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>direction</code></br>
+<em>
+<a href="#controlplane.antrea.io/v1beta2.Direction">
+Direction
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>action</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.RuleAction">
+RuleAction
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="controlplane.antrea.io/v1beta2.Service">Service
 </h3>
 <p>
@@ -13600,6 +13843,7 @@ conjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo.</p>
 <p>
 (<em>Appears on:</em>
 <a href="#controlplane.antrea.io/v1beta2.NetworkPolicyRule">NetworkPolicyRule</a>, 
+<a href="#controlplane.antrea.io/v1beta2.RuleRef">RuleRef</a>, 
 <a href="#crd.antrea.io/v1beta1.Rule">Rule</a>)
 </p>
 <p>
@@ -14691,5 +14935,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>75205ef</code>.
+on git commit <code>5396f58</code>.
 </em></p>
