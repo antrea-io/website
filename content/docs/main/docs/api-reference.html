@@ -13128,6 +13128,8 @@ TransportHeader
 <a href="#crd.antrea.io/v1beta1.NetworkPolicyPeer">NetworkPolicyPeer</a>)
 </p>
 <p>
+<p>PeerNamespaces describes criteria for selecting Pod/ExternalEntity
+from matched Namespaces. Only one of the criteria can be set.</p>
 </p>
 <table>
 <thead>
@@ -13147,6 +13149,19 @@ NamespaceMatchType
 </em>
 </td>
 <td>
+<p>Selects from the same Namespace of the appliedTo workloads.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>sameLabels</code></br>
+<em>
+[]string
+</em>
+</td>
+<td>
+<p>Selects Namespaces that share the same values for the given set of label keys
+with the appliedTo Namespace. Namespaces must have all the label keys.</p>
 </td>
 </tr>
 </tbody>
@@ -14496,5 +14511,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>bc54253</code>.
+on git commit <code>59f642a</code>.
 </em></p>
