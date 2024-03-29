@@ -60,6 +60,33 @@ entries:
       artifacthub.io/operator: "false"
       artifacthub.io/prerelease: "false"
     apiVersion: v2
+    appVersion: 1.14.3
+    created: "2024-03-29T04:50:39.314723522Z"
+    description: Kubernetes networking based on Open vSwitch
+    digest: 61bbc347f6327598e2b123e5d34e4676f4ad29f078eb99f386b7560bf5429091
+    home: https://antrea.io/
+    icon: https://raw.githubusercontent.com/antrea-io/antrea/main/docs/assets/logo/antrea_logo.svg
+    keywords:
+    - Kubernetes
+    - CNCF
+    - Networking
+    - CNI
+    - Security
+    - Open vSwitch
+    - OVS
+    kubeVersion: '>= 1.16.0-0'
+    name: antrea
+    sources:
+    - https://github.com/antrea-io/antrea
+    type: application
+    urls:
+    - https://github.com/antrea-io/antrea/releases/download/v1.14.3/antrea-chart.tgz
+    version: 1.14.3
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/operator: "false"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
     appVersion: 1.14.2
     created: "2024-01-26T16:24:11.263067375Z"
     description: Kubernetes networking based on Open vSwitch
@@ -2040,4 +2067,4 @@ entries:
     urls:
     - https://github.com/antrea-io/theia/releases/download/v0.2.0-alpha.0/theia-chart.tgz
     version: 0.2.0-alpha.0
-generated: "2024-03-25T08:25:20.22969318Z"
+generated: "2024-03-29T04:50:39.312274466Z"
