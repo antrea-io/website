@@ -5229,6 +5229,8 @@ Resource Types:
 </li><li>
 <a href="#crd.antrea.io/v1beta1.Group">Group</a>
 </li><li>
+<a href="#crd.antrea.io/v1beta1.IPPool">IPPool</a>
+</li><li>
 <a href="#crd.antrea.io/v1beta1.NetworkPolicy">NetworkPolicy</a>
 </li><li>
 <a href="#crd.antrea.io/v1beta1.Tier">Tier</a>
@@ -6329,6 +6331,110 @@ GroupStatus
 </td>
 <td>
 <p>Most recently observed status of the group.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.IPPool">IPPool
+</h3>
+<p>
+<p>IPPool defines one or multiple IP sets that can be used for flexible IPAM feature. For instance, the IPs can be
+allocated to Pods according to IP pool specified in the Deployment annotation.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1beta1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>IPPool</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+<p>Standard metadata of the object.</p>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.IPPoolSpec">
+IPPoolSpec
+</a>
+</em>
+</td>
+<td>
+<p>Specification of the IPPool.</p>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>ipRanges</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.IPRange">
+[]IPRange
+</a>
+</em>
+</td>
+<td>
+<p>The IP ranges of this IP pool, e.g. 10.10.0.0/24, 10.10.10.2-10.10.10.20, 10.10.10.30-10.10.10.30.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>subnetInfo</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.SubnetInfo">
+SubnetInfo
+</a>
+</em>
+</td>
+<td>
+<p>The Subnet info of this IP pool. All the IP ranges in the IP pool should share the same subnet attributes.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.IPPoolStatus">
+IPPoolStatus
+</a>
+</em>
+</td>
+<td>
+<p>Most recently observed status of the pool.</p>
 </td>
 </tr>
 </tbody>
@@ -7948,6 +8054,111 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.IPAddressOwner">IPAddressOwner
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.IPAddressState">IPAddressState</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>pod</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.PodOwner">
+PodOwner
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>statefulSet</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.StatefulSetOwner">
+StatefulSetOwner
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.IPAddressPhase">IPAddressPhase
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.IPAddressState">IPAddressState</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1beta1.IPAddressState">IPAddressState
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.IPPoolStatus">IPPoolStatus</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ipAddress</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>IP Address this entry is tracking</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>phase</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.IPAddressPhase">
+IPAddressPhase
+</a>
+</em>
+</td>
+<td>
+<p>Allocation state - either Allocated or Preallocated</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>owner</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.IPAddressOwner">
+IPAddressOwner
+</a>
+</em>
+</td>
+<td>
+<p>Owner this IP Address is allocated to</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.IPBlock">IPBlock
 </h3>
 <p>
@@ -8033,11 +8244,98 @@ int32
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.IPPoolSpec">IPPoolSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.IPPool">IPPool</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ipRanges</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.IPRange">
+[]IPRange
+</a>
+</em>
+</td>
+<td>
+<p>The IP ranges of this IP pool, e.g. 10.10.0.0/24, 10.10.10.2-10.10.10.20, 10.10.10.30-10.10.10.30.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>subnetInfo</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.SubnetInfo">
+SubnetInfo
+</a>
+</em>
+</td>
+<td>
+<p>The Subnet info of this IP pool. All the IP ranges in the IP pool should share the same subnet attributes.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1beta1.IPPoolStatus">IPPoolStatus
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.IPPool">IPPool</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ipAddresses</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.IPAddressState">
+[]IPAddressState
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>usage</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.IPPoolUsage">
+IPPoolUsage
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.IPPoolUsage">IPPoolUsage
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#crd.antrea.io/v1beta1.ExternalIPPoolStatus">ExternalIPPoolStatus</a>)
+<a href="#crd.antrea.io/v1beta1.ExternalIPPoolStatus">ExternalIPPoolStatus</a>, 
+<a href="#crd.antrea.io/v1beta1.IPPoolStatus">IPPoolStatus</a>)
 </p>
 <p>
 </p>
@@ -8077,7 +8375,8 @@ int
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#crd.antrea.io/v1beta1.ExternalIPPoolSpec">ExternalIPPoolSpec</a>)
+<a href="#crd.antrea.io/v1beta1.ExternalIPPoolSpec">ExternalIPPoolSpec</a>, 
+<a href="#crd.antrea.io/v1beta1.IPPoolSpec">IPPoolSpec</a>)
 </p>
 <p>
 <p>IPRange is a set of contiguous IP addresses, represented by a CIDR or a pair of start and end IPs.</p>
@@ -9380,6 +9679,67 @@ PeerScope
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.PodOwner">PodOwner
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.IPAddressOwner">IPAddressOwner</a>)
+</p>
+<p>
+<p>Pod owner</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>containerID</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>ifName</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Network interface name. Used when the IP is allocated for a secondary network interface
+of the Pod.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.Rule">Rule
 </h3>
 <p>
@@ -9631,11 +9991,61 @@ only for live-traffic Traceflow.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.StatefulSetOwner">StatefulSetOwner
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.IPAddressOwner">IPAddressOwner</a>)
+</p>
+<p>
+<p>StatefulSet owner</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>index</code></br>
+<em>
+int
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.SubnetInfo">SubnetInfo
 </h3>
 <p>
 (<em>Appears on:</em>
-<a href="#crd.antrea.io/v1beta1.ExternalIPPoolSpec">ExternalIPPoolSpec</a>)
+<a href="#crd.antrea.io/v1beta1.ExternalIPPoolSpec">ExternalIPPoolSpec</a>, 
+<a href="#crd.antrea.io/v1beta1.IPPoolSpec">IPPoolSpec</a>)
 </p>
 <p>
 <p>SubnetInfo specifies subnet attributes for IP Range.</p>
@@ -10664,5 +11074,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>b11c561</code>.
+on git commit <code>9a9db6f</code>.
 </em></p>
