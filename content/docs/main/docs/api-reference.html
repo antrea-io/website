@@ -2786,6 +2786,8 @@ Resource Types:
 <ul><li>
 <a href="#crd.antrea.io/v1alpha1.ExternalNode">ExternalNode</a>
 </li><li>
+<a href="#crd.antrea.io/v1alpha1.NodeLatencyMonitor">NodeLatencyMonitor</a>
+</li><li>
 <a href="#crd.antrea.io/v1alpha1.SupportBundleCollection">SupportBundleCollection</a>
 </li></ul>
 <h3 id="crd.antrea.io/v1alpha1.ExternalNode">ExternalNode
@@ -2858,6 +2860,81 @@ ExternalNodeSpec
 <td>
 <p>Only one network interface is supported now.
 Other interfaces except interfaces[0] will be ignored if there are more than one interfaces.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.NodeLatencyMonitor">NodeLatencyMonitor
+</h3>
+<p>
+<p>NodeLatencyMonitor is used to monitor the latency between nodes in a Kubernetes cluster. It is a singleton resource,
+meaning only one instance of it can exist in the cluster.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>NodeLatencyMonitor</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.NodeLatencyMonitorSpec">
+NodeLatencyMonitorSpec
+</a>
+</em>
+</td>
+<td>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>pingIntervalSeconds</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>PingInterval specifies the interval in seconds between ping requests.
+Ping interval should be greater than or equal to 1s.</p>
 </td>
 </tr>
 </table>
@@ -3423,6 +3500,36 @@ string
 </em>
 </td>
 <td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.NodeLatencyMonitorSpec">NodeLatencyMonitorSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.NodeLatencyMonitor">NodeLatencyMonitor</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>pingIntervalSeconds</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>PingInterval specifies the interval in seconds between ping requests.
+Ping interval should be greater than or equal to 1s.</p>
 </td>
 </tr>
 </tbody>
@@ -11085,5 +11192,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>b109bf8</code>.
+on git commit <code>c3103a9</code>.
 </em></p>
