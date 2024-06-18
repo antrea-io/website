@@ -2784,12 +2784,139 @@ string
 <h2 id="crd.antrea.io/v1alpha1">crd.antrea.io/v1alpha1</h2>
 Resource Types:
 <ul><li>
+<a href="#crd.antrea.io/v1alpha1.BGPPolicy">BGPPolicy</a>
+</li><li>
 <a href="#crd.antrea.io/v1alpha1.ExternalNode">ExternalNode</a>
 </li><li>
 <a href="#crd.antrea.io/v1alpha1.NodeLatencyMonitor">NodeLatencyMonitor</a>
 </li><li>
 <a href="#crd.antrea.io/v1alpha1.SupportBundleCollection">SupportBundleCollection</a>
 </li></ul>
+<h3 id="crd.antrea.io/v1alpha1.BGPPolicy">BGPPolicy
+</h3>
+<p>
+<p>BGPPolicy defines BGP configuration applied to Nodes.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>BGPPolicy</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+<p>Standard metadata of the object.</p>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.BGPPolicySpec">
+BGPPolicySpec
+</a>
+</em>
+</td>
+<td>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>nodeSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<p>NodeSelector selects Nodes to which the BGPPolicy is applied. If multiple BGPPolicies select a Node, only one
+will be effective and enforced; others serve as alternatives.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>localASN</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>LocalASN is the AS number used by the BGP process. The available private AS number range is 64512-65535.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>listenPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>ListenPort is the port on which the BGP process listens, and the default value is 179.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>advertisements</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.Advertisements">
+Advertisements
+</a>
+</em>
+</td>
+<td>
+<p>Advertisements configures IPs or CIDRs to be advertised to BGP peers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>bgpPeers</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.BGPPeer">
+[]BGPPeer
+</a>
+</em>
+</td>
+<td>
+<p>BGPPeers is the list of BGP peers.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.ExternalNode">ExternalNode
 </h3>
 <p>
@@ -3091,6 +3218,221 @@ SupportBundleCollectionStatus
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.Advertisements">Advertisements
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.BGPPolicySpec">BGPPolicySpec</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>service</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.ServiceAdvertisement">
+ServiceAdvertisement
+</a>
+</em>
+</td>
+<td>
+<p>Service specifies how to advertise Service IPs.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>pod</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.PodAdvertisement">
+PodAdvertisement
+</a>
+</em>
+</td>
+<td>
+<p>Pod specifies how to advertise Pod IPs. Currently, if this is set, NodeIPAM Pod CIDR instead of specific Pods IPs
+will be advertised since pod selector is not added yet.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>egress</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.EgressAdvertisement">
+EgressAdvertisement
+</a>
+</em>
+</td>
+<td>
+<p>Egress specifies how to advertise Egress IPs. Currently, if this is set, all Egress IPs will be advertised since
+Egress selector is not added yet.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.BGPPeer">BGPPeer
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.BGPPolicySpec">BGPPolicySpec</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>address</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The IP address on which the BGP peer listens.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>port</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>The port number on which the BGP peer listens. The default value is 179, the well-known port of BGP protocol.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>asn</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>The AS number of the BGP peer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>multihopTTL</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>The Time To Live (TTL) value used in BGP packets sent to the BGP peer. The range of the value is from 1 to 255,
+and the default value is 1.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>gracefulRestartTimeSeconds</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>GracefulRestartTimeSeconds specifies how long the BGP peer would wait for the BGP session to re-establish after
+a restart before deleting stale routes. The range of the value is from 1 to 3600, and the default value is 120.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.BGPPolicySpec">BGPPolicySpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.BGPPolicy">BGPPolicy</a>)
+</p>
+<p>
+<p>BGPPolicySpec defines the specification for a BGPPolicy.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>nodeSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<p>NodeSelector selects Nodes to which the BGPPolicy is applied. If multiple BGPPolicies select a Node, only one
+will be effective and enforced; others serve as alternatives.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>localASN</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>LocalASN is the AS number used by the BGP process. The available private AS number range is 64512-65535.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>listenPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>ListenPort is the port on which the BGP process listens, and the default value is 179.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>advertisements</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.Advertisements">
+Advertisements
+</a>
+</em>
+</td>
+<td>
+<p>Advertisements configures IPs or CIDRs to be advertised to BGP peers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>bgpPeers</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.BGPPeer">
+[]BGPPeer
+</a>
+</em>
+</td>
+<td>
+<p>BGPPeers is the list of BGP peers.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.BundleExternalNodes">BundleExternalNodes
 </h3>
 <p>
@@ -3275,6 +3617,14 @@ Kubernetes core/v1.SecretReference
 </p>
 <p>
 <p>BundleServerAuthType defines the authentication type to access the BundleFileServer.</p>
+</p>
+<h3 id="crd.antrea.io/v1alpha1.EgressAdvertisement">EgressAdvertisement
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.Advertisements">Advertisements</a>)
+</p>
+<p>
 </p>
 <h3 id="crd.antrea.io/v1alpha1.ExternalNodeSpec">ExternalNodeSpec
 </h3>
@@ -3534,6 +3884,54 @@ Ping interval should be greater than or equal to 1s.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.PodAdvertisement">PodAdvertisement
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.Advertisements">Advertisements</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1alpha1.ServiceAdvertisement">ServiceAdvertisement
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.Advertisements">Advertisements</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ipTypes</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.ServiceIPType">
+[]ServiceIPType
+</a>
+</em>
+</td>
+<td>
+<p>IPTypes specifies the types of Service IPs from the selected Services to be advertised. Currently, all Services
+will be selected since Service selector is not added yet.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.ServiceIPType">ServiceIPType
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.ServiceAdvertisement">ServiceAdvertisement</a>)
+</p>
+<p>
+</p>
 <h3 id="crd.antrea.io/v1alpha1.SupportBundleCollectionCondition">SupportBundleCollectionCondition
 </h3>
 <p>
@@ -11363,5 +11761,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>25899c3</code>.
+on git commit <code>28b38ad</code>.
 </em></p>
