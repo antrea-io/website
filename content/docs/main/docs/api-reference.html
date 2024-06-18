@@ -10660,6 +10660,8 @@ Resource Types:
 <a href="#stats.antrea.io/v1alpha1.MulticastGroup">MulticastGroup</a>
 </li><li>
 <a href="#stats.antrea.io/v1alpha1.NetworkPolicyStats">NetworkPolicyStats</a>
+</li><li>
+<a href="#stats.antrea.io/v1alpha1.NodeLatencyStats">NodeLatencyStats</a>
 </li></ul>
 <h3 id="stats.antrea.io/v1alpha1.AntreaClusterNetworkPolicyStats">AntreaClusterNetworkPolicyStats
 </h3>
@@ -10934,6 +10936,108 @@ TrafficStats
 </tr>
 </tbody>
 </table>
+<h3 id="stats.antrea.io/v1alpha1.NodeLatencyStats">NodeLatencyStats
+</h3>
+<p>
+<p>NodeLatencyStats contains all the latency measurements collected by the Agent from a specific Node.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+stats.antrea.io/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>NodeLatencyStats</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>peerNodeLatencyStats</code></br>
+<em>
+<a href="#stats.antrea.io/v1alpha1.PeerNodeLatencyStats">
+[]PeerNodeLatencyStats
+</a>
+</em>
+</td>
+<td>
+<p>The list of PeerNodeLatencyStats.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="stats.antrea.io/v1alpha1.PeerNodeLatencyStats">PeerNodeLatencyStats
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#stats.antrea.io/v1alpha1.NodeLatencyStats">NodeLatencyStats</a>)
+</p>
+<p>
+<p>PeerNodeLatencyStats contains the latency stats of a Peer Node.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>nodeName</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The Node&rsquo;s name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>targetIPLatencyStats</code></br>
+<em>
+<a href="#stats.antrea.io/v1alpha1.TargetIPLatencyStats">
+[]TargetIPLatencyStats
+</a>
+</em>
+</td>
+<td>
+<p>The list of target IP latency stats.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="stats.antrea.io/v1alpha1.PodReference">PodReference
 </h3>
 <p>
@@ -11014,6 +11118,73 @@ TrafficStats
 </em>
 </td>
 <td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="stats.antrea.io/v1alpha1.TargetIPLatencyStats">TargetIPLatencyStats
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#stats.antrea.io/v1alpha1.PeerNodeLatencyStats">PeerNodeLatencyStats</a>)
+</p>
+<p>
+<p>TargetIPLatencyStats contains the latency stats of a target IP.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>targetIP</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The target IP address.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>lastSendTime</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
+Kubernetes meta/v1.Time
+</a>
+</em>
+</td>
+<td>
+<p>The timestamp of the last sent packet.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>lastRecvTime</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
+Kubernetes meta/v1.Time
+</a>
+</em>
+</td>
+<td>
+<p>The timestamp of the last received packet.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>lastMeasuredRTTNanoseconds</code></br>
+<em>
+int64
+</em>
+</td>
+<td>
+<p>The last measured RTT for this target IP, in nanoseconds.</p>
 </td>
 </tr>
 </tbody>
@@ -11192,5 +11363,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>f7de360</code>.
+on git commit <code>25899c3</code>.
 </em></p>
