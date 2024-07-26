@@ -65,6 +65,8 @@ toc:
         url: /docs/service-loadbalancer
       - page: Traffic Control
         url: /docs/traffic-control
+      - page: BGP Support
+        url: /docs/bgp-policy
       - page: Versioning
         url: /docs/versioning
       - page: Antrea API Groups
