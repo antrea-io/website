@@ -681,6 +681,27 @@ string
 </tr>
 <tr>
 <td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+<p>ObjectMeta was omitted by mistake when this type was first defined, and was added later on.
+To ensure backwards-compatibility, we had to use Protobuf field number 3 when adding the
+field, as 1 was already taken by the request field. This is unusual, as K8s API types
+always use 1 as the Protobuf field number for the metadata field, and that&rsquo;s also what we
+do for all other Antrea API types. It should only affect the wire format, and nothing else.
+When a new version of this API is introduced in the future (e.g., v1), we can correct
+this and assign 1 as the Protobuf field number for the metadata field.</p>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
 <code>request</code></br>
 <em>
 <a href="#controlplane.antrea.io/v1beta2.NetworkPolicyEvaluationRequest">
@@ -11749,5 +11770,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>b180c65</code>.
+on git commit <code>cf16884</code>.
 </em></p>
