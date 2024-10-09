@@ -8681,7 +8681,7 @@ IPAddressOwner
 <a href="#crd.antrea.io/v1beta1.NetworkPolicyPeer">NetworkPolicyPeer</a>)
 </p>
 <p>
-<p>IPBlock describes a particular CIDR (Ex. &ldquo;192.168.1.<sup>1</sup>&frasl;<sub>24</sub>&rdquo;) that is allowed
+<p>IPBlock describes a particular CIDR (Ex. &ldquo;192.168.1.0/24&rdquo;) that is allowed
 or denied to/from the workloads matched by a Spec.AppliedTo.</p>
 </p>
 <table>
@@ -8701,7 +8701,21 @@ string
 </td>
 <td>
 <p>CIDR is a string representing the IP Block
-Valid examples are &ldquo;192.168.1.<sup>1</sup>&frasl;<sub>24</sub>&rdquo;.</p>
+Valid examples are &ldquo;192.168.1.0/24&rdquo;.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>except</code></br>
+<em>
+[]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>except is a slice of CIDRs that should not be included within an IPBlock
+Valid examples are &ldquo;192.168.1.0/28&rdquo; or &ldquo;2001:db8::/64&rdquo;
+Except values will be rejected if they are outside the cidr range</p>
 </td>
 </tr>
 </tbody>
@@ -11770,5 +11784,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>761104a</code>.
+on git commit <code>d9e37f7</code>.
 </em></p>
