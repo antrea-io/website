@@ -2811,6 +2811,8 @@ Resource Types:
 </li><li>
 <a href="#crd.antrea.io/v1alpha1.NodeLatencyMonitor">NodeLatencyMonitor</a>
 </li><li>
+<a href="#crd.antrea.io/v1alpha1.PacketCapture">PacketCapture</a>
+</li><li>
 <a href="#crd.antrea.io/v1alpha1.SupportBundleCollection">SupportBundleCollection</a>
 </li></ul>
 <h3 id="crd.antrea.io/v1alpha1.BGPPolicy">BGPPolicy
@@ -3086,6 +3088,157 @@ Ping interval should be greater than or equal to 1s.</p>
 </td>
 </tr>
 </table>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.PacketCapture">PacketCapture
+</h3>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>PacketCapture</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureSpec">
+PacketCaptureSpec
+</a>
+</em>
+</td>
+<td>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>timeout</code></br>
+<em>
+uint16
+</em>
+</td>
+<td>
+<p>Timeout is the timeout for this capture session. If not specified, defaults to 60s.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>captureConfig</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.CaptureConfig">
+CaptureConfig
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>source</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.Source">
+Source
+</a>
+</em>
+</td>
+<td>
+<p>Source is the traffic source we want to perform capture on. Both <code>Source</code> and <code>Destination</code> is required
+for a capture session, and at least one <code>Pod</code> should be present either in the source or the destination.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>destination</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.Destination">
+Destination
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>packet</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.Packet">
+Packet
+</a>
+</em>
+</td>
+<td>
+<p>Packet defines what kind of traffic we want to capture between the source and destination. If not specified,
+all kinds of traffic will count.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>fileServer</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureFileServer">
+PacketCaptureFileServer
+</a>
+</em>
+</td>
+<td>
+<p>FileServer specifies the sftp url config for a file server. If present, captured packets will be uploaded to this server.
+If not, the packet capture results will only be present as a file in the antrea-agent container.
+When the capture finished, the path information will be shown in <code>.status.PacketsFilePath</code>.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureStatus">
+PacketCaptureStatus
+</a>
+</em>
+</td>
+<td>
 </td>
 </tr>
 </tbody>
@@ -3639,6 +3792,81 @@ Kubernetes core/v1.SecretReference
 <p>
 <p>BundleServerAuthType defines the authentication type to access the BundleFileServer.</p>
 </p>
+<h3 id="crd.antrea.io/v1alpha1.CaptureConfig">CaptureConfig
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureSpec">PacketCaptureSpec</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>firstN</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureFirstNConfig">
+PacketCaptureFirstNConfig
+</a>
+</em>
+</td>
+<td>
+<p>FirstN means we only capture first N packets from the target traffic.
+At the moment this is the only supported configuration and it is required for every capture.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.Destination">Destination
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureSpec">PacketCaptureSpec</a>)
+</p>
+<p>
+<p>Destination describes the destination spec of the PacketCapture.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>pod</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.PodReference">
+PodReference
+</a>
+</em>
+</td>
+<td>
+<p>Pod is the destination Pod, exclusive with destination IP.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ip</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>IP is the source IPv4 or IPv6 address.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.EgressAdvertisement">EgressAdvertisement
 </h3>
 <p>
@@ -3905,6 +4133,358 @@ Ping interval should be greater than or equal to 1s.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.Packet">Packet
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureSpec">PacketCaptureSpec</a>)
+</p>
+<p>
+<p>Packet includes header info.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ipFamily</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#ipfamily-v1-core">
+Kubernetes core/v1.IPFamily
+</a>
+</em>
+</td>
+<td>
+<p>IPFamily is the filter&rsquo;s IP family. Defaults to IPv4.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>protocol</code></br>
+<em>
+<a href="https://godoc.org/k8s.io/apimachinery/pkg/util/intstr#IntOrString">
+k8s.io/apimachinery/pkg/util/intstr.IntOrString
+</a>
+</em>
+</td>
+<td>
+<p>Protocol represents the transport protocol. No protocol based filter when it&rsquo;s empty.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>transportHeader</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.TransportHeader">
+TransportHeader
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.PacketCaptureCondition">PacketCaptureCondition
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureStatus">PacketCaptureStatus</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureConditionType">
+PacketCaptureConditionType
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#conditionstatus-v1-meta">
+Kubernetes meta/v1.ConditionStatus
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>lastTransitionTime</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#time-v1-meta">
+Kubernetes meta/v1.Time
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>reason</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>message</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.PacketCaptureConditionType">PacketCaptureConditionType
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureCondition">PacketCaptureCondition</a>)
+</p>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1alpha1.PacketCaptureFileServer">PacketCaptureFileServer
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureSpec">PacketCaptureSpec</a>)
+</p>
+<p>
+<p>PacketCaptureFileServer specifies the PacketCapture file server information.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>url</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The URL of the file server. It is set with format: scheme://host[:port][/path],
+e.g., <a href="https://api.example.com:8443/v1/packets/">https://api.example.com:8443/v1/packets/</a>. Currently only <code>sftp</code> protocol is supported.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.PacketCaptureFirstNConfig">PacketCaptureFirstNConfig
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.CaptureConfig">CaptureConfig</a>)
+</p>
+<p>
+<p>PacketCaptureFirstNConfig contains the config for the FirstN type capture. The only supported parameter is
+<code>Number</code> at the moment, meaning capturing the first specified number of packets in a flow.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>number</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.PacketCaptureSpec">PacketCaptureSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.PacketCapture">PacketCapture</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>timeout</code></br>
+<em>
+uint16
+</em>
+</td>
+<td>
+<p>Timeout is the timeout for this capture session. If not specified, defaults to 60s.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>captureConfig</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.CaptureConfig">
+CaptureConfig
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>source</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.Source">
+Source
+</a>
+</em>
+</td>
+<td>
+<p>Source is the traffic source we want to perform capture on. Both <code>Source</code> and <code>Destination</code> is required
+for a capture session, and at least one <code>Pod</code> should be present either in the source or the destination.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>destination</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.Destination">
+Destination
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>packet</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.Packet">
+Packet
+</a>
+</em>
+</td>
+<td>
+<p>Packet defines what kind of traffic we want to capture between the source and destination. If not specified,
+all kinds of traffic will count.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>fileServer</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureFileServer">
+PacketCaptureFileServer
+</a>
+</em>
+</td>
+<td>
+<p>FileServer specifies the sftp url config for a file server. If present, captured packets will be uploaded to this server.
+If not, the packet capture results will only be present as a file in the antrea-agent container.
+When the capture finished, the path information will be shown in <code>.status.PacketsFilePath</code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.PacketCaptureStatus">PacketCaptureStatus
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.PacketCapture">PacketCapture</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>numberCaptured</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>NumberCaptured records how many packets have been captured. If it reaches the target number, the capture
+can be considered as finished.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>filePath</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>FilePath specifies the location where captured packets are stored. It can either be a URL to download the pcap file (if &ldquo;Spec.FileServer&rdquo; is specified)
+or a local file path on the antrea-agent Pod where the packet was captured, formatted as : <antrea-agent-pod-name>:<path>.
+When using a local file path, the file will be automatically removed after the PacketCapture resource is deleted.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>conditions</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureCondition">
+[]PacketCaptureCondition
+</a>
+</em>
+</td>
+<td>
+<p>Condition represents the latest available observations of the PacketCapture&rsquo;s current state.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.PodAdvertisement">PodAdvertisement
 </h3>
 <p>
@@ -3913,6 +4493,45 @@ Ping interval should be greater than or equal to 1s.</p>
 </p>
 <p>
 </p>
+<h3 id="crd.antrea.io/v1alpha1.PodReference">PodReference
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.Destination">Destination</a>, 
+<a href="#crd.antrea.io/v1alpha1.Source">Source</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>namespace</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.ServiceAdvertisement">ServiceAdvertisement
 </h3>
 <p>
@@ -3953,6 +4572,49 @@ will be selected since Service selector is not added yet.</p>
 </p>
 <p>
 </p>
+<h3 id="crd.antrea.io/v1alpha1.Source">Source
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureSpec">PacketCaptureSpec</a>)
+</p>
+<p>
+<p>Source describes the source spec of the packetcapture.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>pod</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.PodReference">
+PodReference
+</a>
+</em>
+</td>
+<td>
+<p>Pod is the source Pod, mutually exclusive with IP.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ip</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>IP is the source IPv4 or IPv6 address.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.SupportBundleCollectionCondition">SupportBundleCollectionCondition
 </h3>
 <p>
@@ -4188,6 +4850,47 @@ int32
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.TCPHeader">TCPHeader
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.TransportHeader">TransportHeader</a>)
+</p>
+<p>
+<p>TCPHeader describes the spec of a TCP header.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>srcPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>SrcPort is the source port.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>dstPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>DstPort is the destination port.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.TLSProtocol">TLSProtocol
 </h3>
 <p>
@@ -4215,6 +4918,90 @@ string
 </td>
 <td>
 <p>SNI (Server Name Indication) indicates the server domain name in the TLS/SSL hello message.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.TransportHeader">TransportHeader
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.Packet">Packet</a>)
+</p>
+<p>
+<p>TransportHeader describes the spec of a TransportHeader.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>udp</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.UDPHeader">
+UDPHeader
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>tcp</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.TCPHeader">
+TCPHeader
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.UDPHeader">UDPHeader
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.TransportHeader">TransportHeader</a>)
+</p>
+<p>
+<p>UDPHeader describes the spec of a UDP header.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>srcPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>SrcPort is the source port.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>dstPort</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>DstPort is the destination port.</p>
 </td>
 </tr>
 </tbody>
@@ -11784,5 +12571,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>a6300d1</code>.
+on git commit <code>92454fb</code>.
 </em></p>
