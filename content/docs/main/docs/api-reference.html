@@ -3908,61 +3908,6 @@ Other interfaces except interfaces[0] will be ignored if there are more than one
 </tr>
 </tbody>
 </table>
-<h3 id="crd.antrea.io/v1alpha1.HTTPProtocol">HTTPProtocol
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha1.L7Protocol">L7Protocol</a>)
-</p>
-<p>
-<p>HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together.
-If all fields are not provided, it matches all HTTP requests.</p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>host</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Host represents the hostname present in the URI or the HTTP Host header to match.
-It does not contain the port associated with the host.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>method</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Method represents the HTTP method to match.
-It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>path</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Path represents the URI path to match (Ex. &ldquo;/index.html&rdquo;, &ldquo;/admin&rdquo;).</p>
-</td>
-</tr>
-</tbody>
-</table>
 <h3 id="crd.antrea.io/v1alpha1.IPBlock">IPBlock
 </h3>
 <p>
@@ -3987,44 +3932,6 @@ string
 <td>
 <p>CIDR is a string representing the IP Block
 Valid examples are &ldquo;192.168.1.<sup>1</sup>&frasl;<sub>24</sub>&rdquo;.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="crd.antrea.io/v1alpha1.L7Protocol">L7Protocol
-</h3>
-<p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>http</code></br>
-<em>
-<a href="#crd.antrea.io/v1alpha1.HTTPProtocol">
-HTTPProtocol
-</a>
-</em>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<code>tls</code></br>
-<em>
-<a href="#crd.antrea.io/v1alpha1.TLSProtocol">
-TLSProtocol
-</a>
-</em>
-</td>
-<td>
 </td>
 </tr>
 </tbody>
@@ -4887,37 +4794,6 @@ int32
 </td>
 <td>
 <p>DstPort is the destination port.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="crd.antrea.io/v1alpha1.TLSProtocol">TLSProtocol
-</h3>
-<p>
-(<em>Appears on:</em>
-<a href="#crd.antrea.io/v1alpha1.L7Protocol">L7Protocol</a>)
-</p>
-<p>
-<p>TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, this
-matches all TLS handshake packets.</p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>sni</code></br>
-<em>
-string
-</em>
-</td>
-<td>
-<p>SNI (Server Name Indication) indicates the server domain name in the TLS/SSL hello message.</p>
 </td>
 </tr>
 </tbody>
@@ -12571,5 +12447,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>773fb32</code>.
+on git commit <code>893b801</code>.
 </em></p>
