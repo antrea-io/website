@@ -1086,6 +1086,16 @@ string
 <td>
 </td>
 </tr>
+<tr>
+<td>
+<code>hostPublicKey</code></br>
+<em>
+[]byte
+</em>
+</td>
+<td>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="controlplane.antrea.io/v1beta2.BundleServerAuthConfiguration">BundleServerAuthConfiguration
@@ -3691,6 +3701,19 @@ string
 e.g, <a href="https://api.example.com:8443/v1/supportbundles/">https://api.example.com:8443/v1/supportbundles/</a>. If scheme is not set, https is used by default.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>hostPublicKey</code></br>
+<em>
+[]byte
+</em>
+</td>
+<td>
+<p>HostPublicKey specifies the only host public key that will be accepted when connecting to
+the file server. If omitted, any host key will be accepted, which is not recommended.
+For SFTP, the key must be formatted for use in the SSH wire protocol according to RFC 4253, section 6.6.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="crd.antrea.io/v1alpha1.BundleNodes">BundleNodes
@@ -4206,6 +4229,19 @@ string
 <td>
 <p>The URL of the file server. It is set with format: scheme://host[:port][/path],
 e.g., <a href="https://api.example.com:8443/v1/packets/">https://api.example.com:8443/v1/packets/</a>. Currently only <code>sftp</code> protocol is supported.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>hostPublicKey</code></br>
+<em>
+[]byte
+</em>
+</td>
+<td>
+<p>HostPublicKey specifies the only host public key that will be accepted when connecting to
+the file server. If omitted, any host key will be accepted, which is not recommended.
+For SFTP, the key must be formatted for use in the SSH wire protocol according to RFC 4253, section 6.6.</p>
 </td>
 </tr>
 </tbody>
@@ -12447,5 +12483,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>e404ccc</code>.
+on git commit <code>521cd4b</code>.
 </em></p>
