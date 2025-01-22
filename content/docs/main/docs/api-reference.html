@@ -2921,6 +2921,19 @@ int32
 </tr>
 <tr>
 <td>
+<code>confederation</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.Confederation">
+Confederation
+</a>
+</em>
+</td>
+<td>
+<p>Confederation specifies BGP confederation configuration.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>advertisements</code></br>
 <em>
 <a href="#crd.antrea.io/v1alpha1.Advertisements">
@@ -3591,6 +3604,19 @@ int32
 </tr>
 <tr>
 <td>
+<code>confederation</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.Confederation">
+Confederation
+</a>
+</em>
+</td>
+<td>
+<p>Confederation specifies BGP confederation configuration.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>advertisements</code></br>
 <em>
 <a href="#crd.antrea.io/v1alpha1.Advertisements">
@@ -3843,6 +3869,46 @@ PacketCaptureFirstNConfig
 <td>
 <p>FirstN means we only capture first N packets from the target traffic.
 At the moment this is the only supported configuration and it is required for every capture.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.Confederation">Confederation
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.BGPPolicySpec">BGPPolicySpec</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>identifier</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Identifier specifies the confederation&rsquo;s ASN.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>memberASNs</code></br>
+<em>
+[]int32
+</em>
+</td>
+<td>
+<p>MemberASNs lists the ASNs of other members in the confederation.</p>
 </td>
 </tr>
 </tbody>
@@ -12483,5 +12549,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>2a83607</code>.
+on git commit <code>b399b26</code>.
 </em></p>
