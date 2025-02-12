@@ -8,3 +8,8 @@ th, td {
     padding: 8px;
     text-align: left;
 }
+
+td:last-child, th:last-child {
+    border-right: 2px solid black; 
+    padding-right: 15px;
+}
