@@ -3222,6 +3222,20 @@ Destination
 </tr>
 <tr>
 <td>
+<code>direction</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.CaptureDirection">
+CaptureDirection
+</a>
+</em>
+</td>
+<td>
+<p>Direction specifies which packets to capture (source -&gt; destination, destination -&gt; source or both).
+If not specified, defaults to SourceToDestination.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>packet</code></br>
 <em>
 <a href="#crd.antrea.io/v1alpha1.Packet">
@@ -3873,6 +3887,14 @@ At the moment this is the only supported configuration and it is required for ev
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.CaptureDirection">CaptureDirection
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.PacketCaptureSpec">PacketCaptureSpec</a>)
+</p>
+<p>
+</p>
 <h3 id="crd.antrea.io/v1alpha1.Confederation">Confederation
 </h3>
 <p>
@@ -4405,6 +4427,20 @@ Destination
 </em>
 </td>
 <td>
+</td>
+</tr>
+<tr>
+<td>
+<code>direction</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.CaptureDirection">
+CaptureDirection
+</a>
+</em>
+</td>
+<td>
+<p>Direction specifies which packets to capture (source -&gt; destination, destination -&gt; source or both).
+If not specified, defaults to SourceToDestination.</p>
 </td>
 </tr>
 <tr>
@@ -12549,5 +12585,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>525f662</code>.
+on git commit <code>6bc4651</code>.
 </em></p>
