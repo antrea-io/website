@@ -4895,6 +4895,49 @@ int32
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.TCPFlagsMatcher">TCPFlagsMatcher
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.TCPHeader">TCPHeader</a>)
+</p>
+<p>
+<p>TCPFlagMatcher describes a TCP flags matching filter with flag and mask.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>value</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Value is the TCP flag value to match.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>mask</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Mask is used to specify which bits to consider. Defaults to Value if not specified.
+It is applied only to the packet header flags, not to the value provided in the &lsquo;Value&rsquo; field.
+Make sure that (Flag &amp; Mask) == Value; otherwise, the match will not succeed.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.TCPHeader">TCPHeader
 </h3>
 <p>
@@ -4932,6 +4975,20 @@ int32
 </td>
 <td>
 <p>DstPort is the destination port.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>flags</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.TCPFlagsMatcher">
+[]TCPFlagsMatcher
+</a>
+</em>
+</td>
+<td>
+<p>Flags is a list of TCP flag match conditions that are logically ORed. When direction is set to Both,
+the specified TCP flag matching conditions will be applied to traffic in both directions.</p>
 </td>
 </tr>
 </tbody>
@@ -12585,5 +12642,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>7820cdb</code>.
+on git commit <code>d0ae385</code>.
 </em></p>
