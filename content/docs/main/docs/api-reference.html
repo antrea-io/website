@@ -2819,6 +2819,8 @@ Resource Types:
 </li><li>
 <a href="#crd.antrea.io/v1alpha1.ExternalNode">ExternalNode</a>
 </li><li>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterDestination">FlowExporterDestination</a>
+</li><li>
 <a href="#crd.antrea.io/v1alpha1.NodeLatencyMonitor">NodeLatencyMonitor</a>
 </li><li>
 <a href="#crd.antrea.io/v1alpha1.PacketCapture">PacketCapture</a>
@@ -3033,6 +3035,137 @@ ExternalNodeSpec
 <td>
 <p>Only one network interface is supported now.
 Other interfaces except interfaces[0] will be ignored if there are more than one interfaces.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.FlowExporterDestination">FlowExporterDestination
+</h3>
+<p>
+<p>FlowExporterDestination is the Schema for the FlowExporterDestination API.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>FlowExporterDestination</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterDestinationSpec">
+FlowExporterDestinationSpec
+</a>
+</em>
+</td>
+<td>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>address</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The flow collector address including port as a string.</p>
+<p>Example:
+- flow-aggregator/flow-aggregator:14739
+- 10.244.10.10:4739</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>protocol</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterProtocol">
+FlowExporterProtocol
+</a>
+</em>
+</td>
+<td>
+<p>The protocol used to send flow details.</p>
+<p>Exactly one must be defined and non-nil.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>filter</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterFilter">
+FlowExporterFilter
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Filter criteria to select which flows to export.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>activeFlowExportTimeoutSeconds</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Provide the active flow export timeout in seconds, which is the timeout after which
+a flow record is sent to the collector for active flows.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>idleFlowExportTimeoutSeconds</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Provide the idle flow export timeout in seconds, which is the timeout after which
+a flow record is sent to the collector for idle flows.</p>
 </td>
 </tr>
 </table>
@@ -4041,6 +4174,224 @@ Other interfaces except interfaces[0] will be ignored if there are more than one
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.FlowExporterDestinationSpec">FlowExporterDestinationSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterDestination">FlowExporterDestination</a>)
+</p>
+<p>
+<p>FlowExporterDestinationSpec defines the desired state of a FlowExporterDestination.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>address</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>The flow collector address including port as a string.</p>
+<p>Example:
+- flow-aggregator/flow-aggregator:14739
+- 10.244.10.10:4739</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>protocol</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterProtocol">
+FlowExporterProtocol
+</a>
+</em>
+</td>
+<td>
+<p>The protocol used to send flow details.</p>
+<p>Exactly one must be defined and non-nil.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>filter</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterFilter">
+FlowExporterFilter
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Filter criteria to select which flows to export.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>activeFlowExportTimeoutSeconds</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Provide the active flow export timeout in seconds, which is the timeout after which
+a flow record is sent to the collector for active flows.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>idleFlowExportTimeoutSeconds</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Provide the idle flow export timeout in seconds, which is the timeout after which
+a flow record is sent to the collector for idle flows.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.FlowExporterFilter">FlowExporterFilter
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterDestinationSpec">FlowExporterDestinationSpec</a>)
+</p>
+<p>
+<p>FlowExporterFilter defines filtering criteria for exported flows.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>protocols</code></br>
+<em>
+[]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Filter for only flows whose protocol matches this filter.</p>
+<p>The default is to accept all protocols if unset or nil.</p>
+<p>Supported values are [tcp, udp, icmp, sctp].</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.FlowExporterGRPCConfig">FlowExporterGRPCConfig
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterProtocol">FlowExporterProtocol</a>)
+</p>
+<p>
+<p>FlowExporterGRPCConfig defines configuration for exporting using the gRPC protocol.</p>
+</p>
+<h3 id="crd.antrea.io/v1alpha1.FlowExporterIPFIXConfig">FlowExporterIPFIXConfig
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterProtocol">FlowExporterProtocol</a>)
+</p>
+<p>
+<p>FlowExporterIPFIXConfig defines configuration for exporting using the IPFIX protocol.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>transport</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterTransportProtocol">
+FlowExporterTransportProtocol
+</a>
+</em>
+</td>
+<td>
+<p>Transport protocol to use for IPFIX.</p>
+<p>Supported values are &ldquo;tcp&rdquo;, &ldquo;udp&rdquo;, and &ldquo;tls&rdquo;.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.FlowExporterProtocol">FlowExporterProtocol
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterDestinationSpec">FlowExporterDestinationSpec</a>)
+</p>
+<p>
+<p>FlowExporterProtocol defines the protocol used to send flow details.</p>
+<p>Exactly one of IPFIX or GRPC must be specified.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ipfix</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterIPFIXConfig">
+FlowExporterIPFIXConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Configuration for using IPFIX protocol.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>grpc</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterGRPCConfig">
+FlowExporterGRPCConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Configuration for using gRPC protocol.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.FlowExporterTransportProtocol">FlowExporterTransportProtocol
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterIPFIXConfig">FlowExporterIPFIXConfig</a>)
+</p>
+<p>
+</p>
 <h3 id="crd.antrea.io/v1alpha1.ICMPHeader">ICMPHeader
 </h3>
 <p>
@@ -12770,5 +13121,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>7bd5d51</code>.
+on git commit <code>f0b7bb4</code>.
 </em></p>
