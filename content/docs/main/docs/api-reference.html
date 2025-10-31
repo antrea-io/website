@@ -4128,7 +4128,7 @@ string
 </em>
 </td>
 <td>
-<p>IP is the source IPv4 or IPv6 address.</p>
+<p>IP is the destination IPv4 or IPv6 address.</p>
 </td>
 </tr>
 </tbody>
@@ -4469,6 +4469,86 @@ int32
 </tbody>
 </table>
 <h3 id="crd.antrea.io/v1alpha1.ICMPMsgType">ICMPMsgType
+(<code>string</code> alias)</p></h3>
+<p>
+</p>
+<h3 id="crd.antrea.io/v1alpha1.ICMPv6Header">ICMPv6Header
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.TransportHeader">TransportHeader</a>)
+</p>
+<p>
+<p>ICMPv6Header describes the spec of an ICMPv6 header.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>messages</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.ICMPv6MsgMatcher">
+[]ICMPv6MsgMatcher
+</a>
+</em>
+</td>
+<td>
+<p>Messages is a list of ICMPv6 message match conditions that are logically ORed. When direction is set to Both,
+the specified ICMPv6 message matching conditions will be applied to traffic in both directions.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.ICMPv6MsgMatcher">ICMPv6MsgMatcher
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.ICMPv6Header">ICMPv6Header</a>)
+</p>
+<p>
+<p>ICMPv6MsgMatcher describes an ICMPv6 message matching filter with type and code.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code></br>
+<em>
+<a href="https://godoc.org/k8s.io/apimachinery/pkg/util/intstr#IntOrString">
+k8s.io/apimachinery/pkg/util/intstr.IntOrString
+</a>
+</em>
+</td>
+<td>
+<p>Type is the type of ICMPv6 message to match.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>code</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Code is the optional code field of the ICMPv6 message to match.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.ICMPv6MsgType">ICMPv6MsgType
 (<code>string</code> alias)</p></h3>
 <p>
 </p>
@@ -5507,6 +5587,18 @@ TCPHeader
 <em>
 <a href="#crd.antrea.io/v1alpha1.ICMPHeader">
 ICMPHeader
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>icmpv6</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.ICMPv6Header">
+ICMPv6Header
 </a>
 </em>
 </td>
@@ -13121,5 +13213,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>4f05458</code>.
+on git commit <code>3d68f8f</code>.
 </em></p>
