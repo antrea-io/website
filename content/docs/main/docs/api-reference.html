@@ -3168,6 +3168,20 @@ int32
 a flow record is sent to the collector for idle flows.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>tlsConfig</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterTLSConfig">
+FlowExporterTLSConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>TLSConfig is used to configure TLS when using gRPC protocol or IPFIX protocol with TLS transport.</p>
+</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -4259,6 +4273,20 @@ int32
 a flow record is sent to the collector for idle flows.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>tlsConfig</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterTLSConfig">
+FlowExporterTLSConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>TLSConfig is used to configure TLS when using gRPC protocol or IPFIX protocol with TLS transport.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="crd.antrea.io/v1alpha1.FlowExporterFilter">FlowExporterFilter
@@ -4380,6 +4408,85 @@ FlowExporterGRPCConfig
 <td>
 <em>(Optional)</em>
 <p>Configuration for using gRPC protocol.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.FlowExporterTLSConfig">FlowExporterTLSConfig
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterDestinationSpec">FlowExporterDestinationSpec</a>)
+</p>
+<p>
+<p>FlowExporterTLSConfig stores the TLS configuration used by the gRPC exporter and IPFIX
+exporter with TLS transport.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>serverName</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ServerName is used to verify the hostname on the returned certificate. If specified
+it will be included in the client&rsquo;s handshake (SNI) to support virtual hosting unless
+it is an IP address. If this field is omitted, the hostname used for certificate
+verification will default to the provided server address (spec.address)</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>minTLSVersion</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>MinTLSVersion is the minimum TLS version the exporter will accept.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>caConfigMap</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+NamespacedName
+</a>
+</em>
+</td>
+<td>
+<p>CAConfigMap captures the location of the ConfigMap containing the CA certificate used to authenticate
+the collector service. The ConfigMap must store the certificate under the key &lsquo;ca.crt&rsquo;. To ensure flow
+exporter will have access to this resource it must be granted the proper RBAC permissions.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>clientSecret</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.NamespacedName">
+NamespacedName
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ClientSecret specifies the location of the Secret containing the client certificate and
+private key for mTLS. The Secret must contain the keys &lsquo;tls.crt&rsquo; and &lsquo;tls.key&rsquo;.
+If omitted, client authentication will be disabled. To ensure flow exporter will
+have access to this resource it must be granted the proper RBAC permissions.</p>
 </td>
 </tr>
 </tbody>
@@ -4582,6 +4689,10 @@ Valid examples are &ldquo;192.168.1.<sup>1</sup>&frasl;<sub>24</sub>&rdquo;.</p>
 </table>
 <h3 id="crd.antrea.io/v1alpha1.NamespacedName">NamespacedName
 </h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.FlowExporterTLSConfig">FlowExporterTLSConfig</a>)
+</p>
 <p>
 <p>NamespacedName refers to a Namespace scoped resource.
 All fields must be used together.</p>
@@ -13213,5 +13324,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>61514a5</code>.
+on git commit <code>f668339</code>.
 </em></p>
