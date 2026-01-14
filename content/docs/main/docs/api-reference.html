@@ -7705,6 +7705,22 @@ Cannot be set with any other selector except PodSelector.</p>
 </tr>
 <tr>
 <td>
+<code>nodeSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select Nodes matched by this selector as workloads in
+AppliedTo/To/From fields. Cannot be set with any other
+selector or ServiceReference</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>ipBlocks</code></br>
 <em>
 <a href="#crd.antrea.io/v1beta1.IPBlock">
@@ -8304,6 +8320,22 @@ Kubernetes meta/v1.LabelSelector
 workloads in AppliedTo/To/From fields. If set with PodSelector,
 Pods are matched from Namespaces matched by the NamespaceSelector.
 Cannot be set with any other selector except PodSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select Nodes matched by this selector as workloads in
+AppliedTo/To/From fields. Cannot be set with any other
+selector or ServiceReference</p>
 </td>
 </tr>
 <tr>
@@ -9825,6 +9857,22 @@ Kubernetes meta/v1.LabelSelector
 workloads in AppliedTo/To/From fields. If set with PodSelector,
 Pods are matched from Namespaces matched by the NamespaceSelector.
 Cannot be set with any other selector except PodSelector.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Select Nodes matched by this selector as workloads in
+AppliedTo/To/From fields. Cannot be set with any other
+selector or ServiceReference</p>
 </td>
 </tr>
 <tr>
@@ -13324,5 +13372,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>8155eed</code>.
+on git commit <code>c911250</code>.
 </em></p>
