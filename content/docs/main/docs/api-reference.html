@@ -7466,6 +7466,19 @@ string
 <p>The port range used by NodePortLocal</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>networkInfo</code></br>
+<em>
+<a href="#crd.antrea.io/v1beta1.NetworkInfo">
+NetworkInfo
+</a>
+</em>
+</td>
+<td>
+<p>Network information</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="crd.antrea.io/v1beta1.AntreaControllerInfo">AntreaControllerInfo
@@ -10674,6 +10687,69 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1beta1.NetworkInfo">NetworkInfo
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1beta1.AntreaAgentInfo">AntreaAgentInfo</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>transportInterface</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Name of the transport interface</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>transportInterfaceMTU</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>MTU of the transport interface</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>podMTU</code></br>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>MTU used for the Pod network</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>transportInterfaceIPs</code></br>
+<em>
+[]string
+</em>
+</td>
+<td>
+<p>IP addresses (with network) of the transport interface in CIDR notation
+There can be at most one value for each IP family (IPv4 and IPv6)</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1beta1.NetworkPolicyCondition">NetworkPolicyCondition
 </h3>
 <p>
@@ -13372,5 +13448,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>7e72b05</code>.
+on git commit <code>dbde99a</code>.
 </em></p>
