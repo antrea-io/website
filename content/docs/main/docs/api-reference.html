@@ -2815,6 +2815,8 @@ string
 <h2 id="crd.antrea.io/v1alpha1">crd.antrea.io/v1alpha1</h2>
 Resource Types:
 <ul><li>
+<a href="#crd.antrea.io/v1alpha1.AntreaNodeConfig">AntreaNodeConfig</a>
+</li><li>
 <a href="#crd.antrea.io/v1alpha1.BGPPolicy">BGPPolicy</a>
 </li><li>
 <a href="#crd.antrea.io/v1alpha1.ExternalNode">ExternalNode</a>
@@ -2827,6 +2829,99 @@ Resource Types:
 </li><li>
 <a href="#crd.antrea.io/v1alpha1.SupportBundleCollection">SupportBundleCollection</a>
 </li></ul>
+<h3 id="crd.antrea.io/v1alpha1.AntreaNodeConfig">AntreaNodeConfig
+</h3>
+<p>
+<p>AntreaNodeConfig defines Antrea Agent configuration for a set of Nodes
+selected by nodeSelector.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code></br>
+string</td>
+<td>
+<code>
+crd.antrea.io/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code></br>
+string
+</td>
+<td><code>AntreaNodeConfig</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+<p>Standard metadata of the object.</p>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.AntreaNodeConfigSpec">
+AntreaNodeConfigSpec
+</a>
+</em>
+</td>
+<td>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>nodeSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<p>NodeSelector selects Nodes to which this AntreaNodeConfig applies. If multiple
+AntreaNodeConfigs select the same Node, only the one with the highest priority
+(the earliest-created one — oldest creationTimestamp wins) will be applied.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>secondaryNetwork</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.SecondaryNetworkConfig">
+SecondaryNetworkConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>SecondaryNetwork defines secondary network bridge configuration for the selected Nodes.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.BGPPolicy">BGPPolicy
 </h3>
 <p>
@@ -3645,6 +3740,54 @@ EgressAdvertisement
 <td>
 <p>Egress specifies how to advertise Egress IPs. Currently, if this is set, all Egress IPs will be advertised since
 Egress selector is not added yet.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.AntreaNodeConfigSpec">AntreaNodeConfigSpec
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.AntreaNodeConfig">AntreaNodeConfig</a>)
+</p>
+<p>
+<p>AntreaNodeConfigSpec defines the desired state of AntreaNodeConfig.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>nodeSelector</code></br>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<p>NodeSelector selects Nodes to which this AntreaNodeConfig applies. If multiple
+AntreaNodeConfigs select the same Node, only the one with the highest priority
+(the earliest-created one — oldest creationTimestamp wins) will be applied.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>secondaryNetwork</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.SecondaryNetworkConfig">
+SecondaryNetworkConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>SecondaryNetwork defines secondary network bridge configuration for the selected Nodes.</p>
 </td>
 </tr>
 </tbody>
@@ -4795,6 +4938,108 @@ Ping interval should be greater than or equal to 1s.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="crd.antrea.io/v1alpha1.OVSBridgeConfig">OVSBridgeConfig
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.SecondaryNetworkConfig">SecondaryNetworkConfig</a>)
+</p>
+<p>
+<p>OVSBridgeConfig defines an OVS bridge and its uplink physical interfaces
+with allowed VLANs.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>bridgeName</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>BridgeName is the name of the OVS bridge. Once set, it is immutable.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>physicalInterfaces</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.OVSPhysicalInterfaceConfig">
+[]OVSPhysicalInterfaceConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PhysicalInterfaces is a list of physical interfaces to be connected to this bridge.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>enableMulticastSnooping</code></br>
+<em>
+bool
+</em>
+</td>
+<td>
+<p>EnableMulticastSnooping enables multicast snooping on the bridge, allowing the bridge
+to learn about multicast group memberships and forward multicast traffic only to ports
+that have interested receivers. When disabled, multicast traffic is flooded to all ports
+in the bridge.
+Defaults to false.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.OVSPhysicalInterfaceConfig">OVSPhysicalInterfaceConfig
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.OVSBridgeConfig">OVSBridgeConfig</a>)
+</p>
+<p>
+<p>OVSPhysicalInterfaceConfig defines a physical interface configuration including VLAN filters on OVS bridge.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Name is the name of the physical interface.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>allowedVLANs</code></br>
+<em>
+[]string
+</em>
+</td>
+<td>
+<p>AllowedVLANs is a list of VLAN IDs or VLAN ID ranges (e.g. &ldquo;100&rdquo;, &ldquo;200-300&rdquo;) that are
+allowed on this interface. If not specified, all VLANs are allowed.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="crd.antrea.io/v1alpha1.Packet">Packet
 </h3>
 <p>
@@ -5231,6 +5476,39 @@ string
 </em>
 </td>
 <td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crd.antrea.io/v1alpha1.SecondaryNetworkConfig">SecondaryNetworkConfig
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#crd.antrea.io/v1alpha1.AntreaNodeConfigSpec">AntreaNodeConfigSpec</a>)
+</p>
+<p>
+<p>SecondaryNetworkConfig defines secondary network bridge configuration.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ovsBridges</code></br>
+<em>
+<a href="#crd.antrea.io/v1alpha1.OVSBridgeConfig">
+[]OVSBridgeConfig
+</a>
+</em>
+</td>
+<td>
+<p>OVSBridges is a list of OVS bridge configurations for secondary networks.
+At the moment, only a single OVS bridge is supported.</p>
 </td>
 </tr>
 </tbody>
@@ -13448,5 +13726,5 @@ string
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>7347566</code>.
+on git commit <code>0601e2b</code>.
 </em></p>
