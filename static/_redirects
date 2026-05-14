@@ -10,6 +10,12 @@
 /resource-auditing/* go-get=1 /golang/resource-auditing.html 200
 /theia/* go-get=1 /golang/theia.html 200
 
+# mdlayher forks
+/arp/* go-get=1 /golang/arp.html 200
+/ethernet/* go-get=1 /golang/ethernet.html 200
+/packet/* go-get=1 /golang/packet.html 200
+/ndp/* go-get=1 /golang/ndp.html 200
+
 # Other redirects
 # Github page with information about Antrea "live" office hours
 /live https://github.com/jayunit100/k8sprototypes/blob/master/antrea-LIVE/README.md 301
