@@ -1425,6 +1425,33 @@ Thus, using FQDN rules with action `Drop` or `Reject` could potentially allow tr
 IP belonging to a denied domain, if a misbehaving client tries to connect to that domain with
 a cached but expired IP, leading to a security breach.
 
+The Antrea Agent limits the number of domain names it tracks, as a Pod resolving a large number of
+distinct names matching a wildcard expression would otherwise grow the memory used by the Agent
+without bound. Two limits apply:
+
+- at most 1024 distinct domain names are tracked for each FQDN wildcard expression used in a policy;
+- at most 10000 distinct domain names matched through wildcard expressions are tracked in total.
+
+Domain names which a policy lists explicitly, rather than through a wildcard expression, are never
+subject to either limit, and do not count towards the total: their number is determined by the
+policies which the cluster admin creates.
+
+When a limit is reached, the Agent keeps the domain names which the selected Pods resolved most
+recently, and stops tracking the least recently resolved one every time a new name is resolved. A
+domain name which is no longer tracked starts being tracked again, and its IPs are added back to the
+rule, the next time a selected Pod resolves it. Note that the total limit is shared: a Pod resolving
+many distinct names matching one wildcard expression can cause names matching a different expression
+to stop being tracked until they are resolved again.
+
+This is another reason why FQDN egress peers are recommended to ONLY be used in rules with action
+`Allow`: with a `Drop` or `Reject` rule, a domain name that stops being tracked stops being denied.
+
+The `antrea_agent_fqdn_cache_size` and `antrea_agent_fqdn_cache_eviction_count` metrics report,
+respectively, how many domain names an Agent tracks and how many it stopped tracking to honor each
+of the two limits. A non-zero eviction count is what to look for when a rule using a FQDN peer
+intermittently stops matching a domain name it selects. See the [Prometheus integration
+guide](prometheus-integration.md) for how to collect them.
+
 Also note that FQDN based policies do not work for [Service DNS names created by
 Kubernetes](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#services)
 (e.g. `kubernetes.default.svc` or `antrea.kube-system.svc`), except for headless
@@ -1746,7 +1773,16 @@ status of the group.
 
 - **groupMembersComputed**: The "GroupMembersComputed" condition is set to "True"
   when the controller has calculated all the corresponding workloads that match the
-  selectors set in the group.
+  selectors set in the group. It is set to "False" with the reason
+  "ChildGroupsNestingExceeded" when the group's `childGroups` are nested deeper than
+  the one level of nesting that is supported: such a group is not realized, it
+  contributes no address to the policies that select it as a peer, and a policy that
+  uses it as its `appliedTo` applies to nothing. Fixing the definition of the group
+  itself, or removing the `childGroups` of one of its childGroups (or deleting that
+  childGroup), clears the condition without the group having to be edited again.
+  Querying the members of such a group, with `kubectl get clustergroupmembers` or
+  `kubectl get groupmembers`, reports the same error rather than an empty list.
+  This condition applies to Groups as well as ClusterGroups.
 
 ### *kubectl* commands for ClusterGroup
 
