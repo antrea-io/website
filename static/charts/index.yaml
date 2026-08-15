@@ -1814,6 +1814,37 @@ entries:
       artifacthub.io/operator: "false"
       artifacthub.io/prerelease: "false"
     apiVersion: v2
+    appVersion: 2.6.3
+    created: "2026-08-15T02:31:19.902292741Z"
+    description: Antrea Flow Aggregator
+    digest: 16aa9ca92fda0c77b55b9646095c8523029498850230cf04c15c67c0a85317d2
+    home: https://antrea.io/
+    icon: https://raw.githubusercontent.com/antrea-io/antrea/main/docs/assets/logo/antrea_logo.svg
+    keywords:
+    - Kubernetes
+    - CNCF
+    - Networking
+    - CNI
+    - Security
+    - Open vSwitch
+    - OVS
+    - Antrea
+    - Observability
+    - Flow Visibility
+    - Flow Aggregator
+    kubeVersion: '>= 1.23.0-0'
+    name: flow-aggregator
+    sources:
+    - https://github.com/antrea-io/antrea
+    type: application
+    urls:
+    - https://github.com/antrea-io/antrea/releases/download/v2.6.3/flow-aggregator-chart.tgz
+    version: 2.6.3
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/operator: "false"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
     appVersion: 2.6.2
     created: "2026-06-17T05:36:38.774943493Z"
     description: Antrea Flow Aggregator
@@ -3941,4 +3972,4 @@ entries:
     urls:
     - https://github.com/antrea-io/theia/releases/download/v0.2.0-alpha.0/theia-chart.tgz
     version: 0.2.0-alpha.0
-generated: "2026-08-15T02:31:06.995840579Z"
+generated: "2026-08-15T02:31:19.901083796Z"
